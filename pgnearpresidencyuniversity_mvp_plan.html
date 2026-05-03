@@ -1,0 +1,322 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); }
+  .section { margin: 0 0 2rem; }
+  .section-title { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-tertiary); margin-bottom: 12px; }
+  .card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 20px; }
+  .badge-blue { background: var(--color-background-info); color: var(--color-text-info); }
+  .badge-green { background: var(--color-background-success); color: var(--color-text-success); }
+  .badge-amber { background: var(--color-background-warning); color: var(--color-text-warning); }
+  .badge-gray { background: var(--color-background-secondary); color: var(--color-text-secondary); }
+  .phase-bar { height: 6px; border-radius: 3px; margin: 8px 0 4px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .tech-chip { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 8px 10px; font-size: 13px; }
+  .tech-chip .label { font-size: 11px; color: var(--color-text-tertiary); margin-bottom: 2px; }
+  .tech-chip .name { font-weight: 500; color: var(--color-text-primary); }
+  .flow-box { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 10px 12px; background: var(--color-background-secondary); }
+  .flow-box .role { font-size: 11px; color: var(--color-text-tertiary); margin-bottom: 4px; }
+  .flow-box .action { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 6px; }
+  .flow-box ul { padding-left: 14px; }
+  .flow-box li { font-size: 12px; color: var(--color-text-secondary); line-height: 1.8; }
+  .page-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .page-item:last-child { border-bottom: none; }
+  .page-dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; flex-shrink: 0; }
+  .page-item .name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+  .page-item .desc { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
+  .schema-table { width: 100%; font-size: 12px; border-collapse: collapse; }
+  .schema-table th { text-align: left; font-size: 11px; color: var(--color-text-tertiary); font-weight: 500; padding: 4px 8px; background: var(--color-background-secondary); }
+  .schema-table td { padding: 5px 8px; border-top: 0.5px solid var(--color-border-tertiary); color: var(--color-text-secondary); }
+  .schema-table td:first-child { color: var(--color-text-primary); font-weight: 500; }
+  .phase-card { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px 16px; }
+  .phase-num { font-size: 11px; color: var(--color-text-tertiary); margin-bottom: 4px; }
+  .phase-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 6px; }
+  .phase-duration { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 10px; }
+  .phase-card ul { padding-left: 14px; }
+  .phase-card li { font-size: 12px; color: var(--color-text-secondary); line-height: 1.9; }
+  .divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 1.5rem 0; }
+  .stat { text-align: center; padding: 12px 8px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); }
+  .stat .num { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+  .stat .lbl { font-size: 11px; color: var(--color-text-tertiary); margin-top: 2px; }
+  .ask-btn { background: transparent; border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); padding: 6px 12px; font-size: 12px; color: var(--color-text-secondary); cursor: pointer; margin-top: 10px; transition: background 0.15s; }
+  .ask-btn:hover { background: var(--color-background-secondary); }
+</style>
+
+<div style="padding: 1rem 0;">
+
+  <!-- Header -->
+  <div style="margin-bottom: 1.5rem;">
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+      <span style="font-size: 20px; font-weight: 500; color: var(--color-text-primary);">PG Near Presidency University</span>
+      <span class="badge badge-green">MVP Blueprint</span>
+    </div>
+    <p style="font-size: 13px; color: var(--color-text-secondary);">A listing platform where students browse verified PGs and contact owners directly. Admins manage all listings.</p>
+  </div>
+
+  <!-- Stats row -->
+  <div class="grid4" style="margin-bottom: 2rem;">
+    <div class="stat"><div class="num">4</div><div class="lbl">Phases</div></div>
+    <div class="stat"><div class="num">6–8</div><div class="lbl">Weeks to MVP</div></div>
+    <div class="stat"><div class="num">12</div><div class="lbl">Pages / screens</div></div>
+    <div class="stat"><div class="num">3</div><div class="lbl">Collections (DB)</div></div>
+  </div>
+
+  <!-- Tech Stack -->
+  <div class="section">
+    <div class="section-title">Tech stack</div>
+    <div class="grid4">
+      <div class="tech-chip"><div class="label">Frontend & Backend</div><div class="name">Next.js 14 (App Router)</div></div>
+      <div class="tech-chip"><div class="label">Database</div><div class="name">MongoDB + Mongoose</div></div>
+      <div class="tech-chip"><div class="label">Media Storage</div><div class="name">Cloudinary</div></div>
+      <div class="tech-chip"><div class="label">Auth</div><div class="name">NextAuth.js (credentials)</div></div>
+    </div>
+    <div class="grid4" style="margin-top: 10px;">
+      <div class="tech-chip"><div class="label">Styling</div><div class="name">Tailwind CSS</div></div>
+      <div class="tech-chip"><div class="label">Deployment</div><div class="name">Vercel</div></div>
+      <div class="tech-chip"><div class="label">DB Hosting</div><div class="name">MongoDB Atlas (free)</div></div>
+      <div class="tech-chip"><div class="label">Contact</div><div class="name">WhatsApp / tel: link</div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- User Flows -->
+  <div class="section">
+    <div class="section-title">User flows</div>
+    <div class="grid2">
+      <div class="flow-box">
+        <div class="role">👨‍🎓 Student (public)</div>
+        <div class="action">Browse & contact PGs</div>
+        <ul>
+          <li>Lands on homepage</li>
+          <li>Filters by price, gender, furnishing</li>
+          <li>Views listing detail + photos</li>
+          <li>Clicks "Contact on WhatsApp" or calls</li>
+          <li>No login required to browse</li>
+        </ul>
+      </div>
+      <div class="flow-box">
+        <div class="role">🔐 Admin (private)</div>
+        <div class="action">Manage all listings</div>
+        <ul>
+          <li>Logs in at /admin/login</li>
+          <li>Adds new PG listing + uploads photos</li>
+          <li>Edits / deletes listings</li>
+          <li>Marks listings as verified</li>
+          <li>Manages enquiry visibility</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Pages -->
+  <div class="section">
+    <div class="section-title">Pages & screens</div>
+    <div class="grid2">
+      <!-- Public pages -->
+      <div class="card">
+        <div style="font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 10px; display:flex; align-items:center; gap:8px;">
+          Public <span class="badge badge-blue">Student-facing</span>
+        </div>
+        <div class="page-item">
+          <div class="page-dot" style="background:var(--color-background-info);color:var(--color-text-info);">1</div>
+          <div><div class="name">/ — Homepage</div><div class="desc">Hero, search bar, filter chips, listing grid</div></div>
+        </div>
+        <div class="page-item">
+          <div class="page-dot" style="background:var(--color-background-info);color:var(--color-text-info);">2</div>
+          <div><div class="name">/listings — All PGs</div><div class="desc">Paginated cards with filter sidebar (price, gender, amenities)</div></div>
+        </div>
+        <div class="page-item">
+          <div class="page-dot" style="background:var(--color-background-info);color:var(--color-text-info);">3</div>
+          <div><div class="name">/listing/[slug] — Detail</div><div class="desc">Photo gallery, amenities, map pin, contact button</div></div>
+        </div>
+        <div class="page-item">
+          <div class="page-dot" style="background:var(--color-background-info);color:var(--color-text-info);">4</div>
+          <div><div class="name">/about — About</div><div class="desc">Trust signal, how it works, contact form</div></div>
+        </div>
+      </div>
+
+      <!-- Admin pages -->
+      <div class="card">
+        <div style="font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 10px; display:flex; align-items:center; gap:8px;">
+          Admin <span class="badge badge-amber">Protected</span>
+        </div>
+        <div class="page-item">
+          <div class="page-dot" style="background:var(--color-background-warning);color:var(--color-text-warning);">A</div>
+          <div><div class="name">/admin/login</div><div class="desc">Email + password login, JWT session via NextAuth</div></div>
+        </div>
+        <div class="page-item">
+          <div class="page-dot" style="background:var(--color-background-warning);color:var(--color-text-warning);">B</div>
+          <div><div class="name">/admin/dashboard</div><div class="desc">Stats: total listings, active, enquiries this week</div></div>
+        </div>
+        <div class="page-item">
+          <div class="page-dot" style="background:var(--color-background-warning);color:var(--color-text-warning);">C</div>
+          <div><div class="name">/admin/listings</div><div class="desc">Table: all PGs, edit/delete/toggle active</div></div>
+        </div>
+        <div class="page-item">
+          <div class="page-dot" style="background:var(--color-background-warning);color:var(--color-text-warning);">D</div>
+          <div><div class="name">/admin/listings/new + /edit/[id]</div><div class="desc">Form: name, price, photos (Cloudinary), amenities, contact</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Database Schema -->
+  <div class="section">
+    <div class="section-title">MongoDB collections</div>
+    <div class="grid3">
+      <div class="card">
+        <div style="font-size: 13px; font-weight: 500; margin-bottom: 10px; display:flex;justify-content:space-between;align-items:center;">listings <span class="badge badge-blue">main</span></div>
+        <table class="schema-table">
+          <tr><th>Field</th><th>Type</th></tr>
+          <tr><td>_id</td><td>ObjectId</td></tr>
+          <tr><td>title</td><td>String</td></tr>
+          <tr><td>slug</td><td>String (unique)</td></tr>
+          <tr><td>price</td><td>Number</td></tr>
+          <tr><td>gender</td><td>Enum (any/male/female)</td></tr>
+          <tr><td>amenities</td><td>[String]</td></tr>
+          <tr><td>images</td><td>[Cloudinary URLs]</td></tr>
+          <tr><td>contactPhone</td><td>String</td></tr>
+          <tr><td>contactWhatsApp</td><td>String</td></tr>
+          <tr><td>isVerified</td><td>Boolean</td></tr>
+          <tr><td>isActive</td><td>Boolean</td></tr>
+          <tr><td>address</td><td>String</td></tr>
+          <tr><td>distanceFromUni</td><td>Number (m)</td></tr>
+          <tr><td>createdAt</td><td>Date</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div style="font-size: 13px; font-weight: 500; margin-bottom: 10px; display:flex;justify-content:space-between;align-items:center;">admins <span class="badge badge-amber">auth</span></div>
+        <table class="schema-table">
+          <tr><th>Field</th><th>Type</th></tr>
+          <tr><td>_id</td><td>ObjectId</td></tr>
+          <tr><td>email</td><td>String (unique)</td></tr>
+          <tr><td>passwordHash</td><td>String (bcrypt)</td></tr>
+          <tr><td>name</td><td>String</td></tr>
+          <tr><td>createdAt</td><td>Date</td></tr>
+        </table>
+        <div style="margin-top: 14px; font-size: 13px; font-weight: 500; margin-bottom: 10px; display:flex;justify-content:space-between;align-items:center;">enquiries <span class="badge badge-gray">optional</span></div>
+        <table class="schema-table">
+          <tr><th>Field</th><th>Type</th></tr>
+          <tr><td>_id</td><td>ObjectId</td></tr>
+          <tr><td>listingId</td><td>ObjectId (ref)</td></tr>
+          <tr><td>studentName</td><td>String</td></tr>
+          <tr><td>studentPhone</td><td>String</td></tr>
+          <tr><td>message</td><td>String</td></tr>
+          <tr><td>createdAt</td><td>Date</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div style="font-size: 13px; font-weight: 500; margin-bottom: 10px;">Key listing fields</div>
+        <div style="font-size: 12px; color: var(--color-text-secondary); line-height: 2;">
+          <div>🏠 Room type: single / double / triple</div>
+          <div>🚻 Gender: boys / girls / any</div>
+          <div>🍳 Food: included / not included</div>
+          <div>📶 WiFi, AC, laundry, parking</div>
+          <div>📍 Distance from university gate</div>
+          <div>📞 Direct WhatsApp link (wa.me/)</div>
+          <div>✅ Verified badge (admin toggle)</div>
+          <div>🖼 Up to 8 photos per listing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Phases -->
+  <div class="section">
+    <div class="section-title">Build phases</div>
+    <div class="grid2">
+      <div class="phase-card">
+        <div class="phase-num">Phase 1 · Week 1–2</div>
+        <div class="phase-name">Foundation</div>
+        <div class="phase-duration" style="display:flex;gap:6px;"><span class="badge badge-gray">Next.js setup</span><span class="badge badge-gray">MongoDB</span><span class="badge badge-gray">Auth</span></div>
+        <ul>
+          <li>Init Next.js 14 + Tailwind</li>
+          <li>MongoDB Atlas + Mongoose models</li>
+          <li>NextAuth.js credentials provider</li>
+          <li>Admin login page + session protection</li>
+          <li>Cloudinary account + upload helper</li>
+          <li>Mobile-first layout & navbar</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 2 · Week 3–4</div>
+        <div class="phase-name">Admin panel</div>
+        <div class="phase-duration" style="display:flex;gap:6px;"><span class="badge badge-amber">CRUD</span><span class="badge badge-amber">Uploads</span></div>
+        <ul>
+          <li>Admin dashboard with stats</li>
+          <li>Listings table (edit / delete / toggle)</li>
+          <li>Add / edit listing form</li>
+          <li>Cloudinary multi-image upload</li>
+          <li>API routes: /api/listings (GET/POST/PATCH/DELETE)</li>
+          <li>Verified badge toggle</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 3 · Week 5–6</div>
+        <div class="phase-name">Student-facing site</div>
+        <div class="phase-duration" style="display:flex;gap:6px;"><span class="badge badge-blue">Public</span><span class="badge badge-blue">SEO</span></div>
+        <ul>
+          <li>Homepage hero + search</li>
+          <li>Listing cards grid (responsive)</li>
+          <li>Filter bar: price, gender, amenities</li>
+          <li>Listing detail page + photo gallery</li>
+          <li>WhatsApp / call contact button</li>
+          <li>SEO: metadata, OG tags, sitemap</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 4 · Week 7–8</div>
+        <div class="phase-name">Polish & launch</div>
+        <div class="phase-duration" style="display:flex;gap:6px;"><span class="badge badge-green">Deploy</span><span class="badge badge-green">UX</span></div>
+        <ul>
+          <li>Mobile responsiveness audit</li>
+          <li>Loading skeletons & error states</li>
+          <li>Google Maps embed on detail page</li>
+          <li>Enquiry form (name + phone + message)</li>
+          <li>Deploy on Vercel + custom domain</li>
+          <li>Seed 5–10 real PG listings</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Smart Notes -->
+  <div class="section">
+    <div class="section-title">Smart MVP decisions</div>
+    <div class="card">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px;">
+        <div style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.9;">
+          <span style="color:var(--color-text-success);">✓</span> No student login needed (reduces friction on day 1)<br>
+          <span style="color:var(--color-text-success);">✓</span> WhatsApp button = free, instant conversion<br>
+          <span style="color:var(--color-text-success);">✓</span> Admin-only listing control = quality stays high<br>
+          <span style="color:var(--color-text-success);">✓</span> Cloudinary free tier = 25GB, plenty for MVP
+        </div>
+        <div style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.9;">
+          <span style="color:var(--color-text-warning);">→</span> Start with 10 real listings, not fake data<br>
+          <span style="color:var(--color-text-warning);">→</span> Add "Verified by admin" badge for trust<br>
+          <span style="color:var(--color-text-warning);">→</span> Distance from Presidency gate is a killer filter<br>
+          <span style="color:var(--color-text-warning);">→</span> Monetise later: charge ₹500–2000/month to list
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; padding-bottom: 0.5rem;">
+    <button class="ask-btn" onclick="sendPrompt('Show me the full Next.js folder structure for this MVP ↗')">Show folder structure ↗</button>
+    <button class="ask-btn" style="margin-left:8px" onclick="sendPrompt('Write the MongoDB Mongoose schema code for listings ↗')">Generate DB schemas ↗</button>
+    <button class="ask-btn" style="margin-left:8px" onclick="sendPrompt('Show me the Cloudinary upload API route in Next.js ↗')">Cloudinary upload code ↗</button>
+  </div>
+
+</div>
