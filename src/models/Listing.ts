@@ -9,6 +9,7 @@ const ListingSchema = new Schema(
     gender: { type: String, enum: ["any", "male", "female"] },
     amenities: [String],
     images: [{ type: String }],
+    ownerName: String,
     contactPhone: String,
     contactWhatsApp: String,
     isVerified: { type: Boolean, default: false },

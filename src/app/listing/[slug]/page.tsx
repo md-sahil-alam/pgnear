@@ -28,7 +28,7 @@ export default async function ListingDetailPage({
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Back Link */}
         <Link
-          href="/listings"
+          href="/pg-near-presidency-university"
           className="text-blue-600 hover:text-blue-800 mb-6 inline-block">
           ← Back to Listings
         </Link>

@@ -22,11 +22,10 @@ export default async function HomePage() {
           <p className="text-xl md:text-2xl mb-8 text-blue-100 font-light">
             Comfortable, affordable, and close to campus
           </p>
-          <Link href="/listings">
+          <Link href="/pg-near-presidency-university">
             <Button
               size="lg"
-              className="bg-white text-blue-600 hover:bg-gray-50 font-semibold"
-            >
+              className="bg-white text-blue-600 hover:bg-gray-50 font-semibold">
               Browse Listings
             </Button>
           </Link>
@@ -51,8 +50,7 @@ export default async function HomePage() {
                 <Link
                   key={listing._id}
                   href={`/listing/${listing.slug}`}
-                  className="group"
-                >
+                  className="group">
                   <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 h-full">
                     {/* Image */}
                     <div className="relative bg-gradient-to-br from-gray-100 to-gray-200 h-56 flex items-center justify-center overflow-hidden">
@@ -98,14 +96,15 @@ export default async function HomePage() {
 
                       {listing.amenities && listing.amenities.length > 0 && (
                         <div className="flex gap-1 flex-wrap">
-                          {listing.amenities.slice(0, 2).map((amenity: string) => (
-                            <span
-                              key={amenity}
-                              className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded"
-                            >
-                              {amenity}
-                            </span>
-                          ))}
+                          {listing.amenities
+                            .slice(0, 2)
+                            .map((amenity: string) => (
+                              <span
+                                key={amenity}
+                                className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded">
+                                {amenity}
+                              </span>
+                            ))}
                           {listing.amenities.length > 2 && (
                             <span className="text-xs text-gray-500 px-2 py-1">
                               +{listing.amenities.length - 2} more
@@ -120,7 +119,7 @@ export default async function HomePage() {
             </div>
 
             <div className="text-center">
-              <Link href="/listings">
+              <Link href="/pg-near-presidency-university">
                 <Button size="lg" variant="outline">
                   View All Listings →
                 </Button>

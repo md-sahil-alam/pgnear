@@ -21,7 +21,7 @@ export default function Navbar() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-6">
             <Link
-              href="/listings"
+              href="/pg-near-presidency-university"
               className="text-gray-700 hover:text-blue-600 transition font-medium">
               Listings
             </Link>
@@ -66,7 +66,7 @@ export default function Navbar() {
           <div className="md:hidden bg-gray-50 border-t border-gray-200 py-4 px-4">
             <div className="space-y-3">
               <Link
-                href="/listings"
+                href="/pg-near-presidency-university"
                 className="block text-gray-700 hover:text-blue-600 transition font-medium py-2"
                 onClick={() => setMenuOpen(false)}>
                 Listings

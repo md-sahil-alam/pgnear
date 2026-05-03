@@ -25,7 +25,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="/listings"
+                  href="/pg-near-presidency-university"
                   className="hover:text-blue-400 transition">
                   Browse Listings
                 </Link>
