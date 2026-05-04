@@ -10,16 +10,22 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <nav className="bg-white/50 backdrop-blur-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="font-bold text-2xl text-blue-600">
-            🏠 PG Near Uni
+          <Link href="/" className="font-bold text-3xl text-blue-600 ">
+            PG Near
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-6">
+            <Link
+              href="/"
+              className="text-gray-700 hover:text-blue-600 transition font-medium">
+              home
+            </Link>
+
             <Link
               href="/pg-near-presidency-university"
               className="text-gray-700 hover:text-blue-600 transition font-medium">
@@ -46,11 +52,7 @@ export default function Navbar() {
                   </div>
                 </div>
               </>
-            ) : (
-              <Link href="/test-login">
-                <Button size="sm">Login</Button>
-              </Link>
-            )}
+            ) : null}
           </div>
 
           {/* Mobile Menu Button */}
@@ -63,11 +65,11 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="md:hidden bg-gray-50 border-t border-gray-200 py-4 px-4">
+          <div className="md:hidden  border-t border-b border-gray-200 py-4 px-4">
             <div className="space-y-3">
               <Link
                 href="/pg-near-presidency-university"
-                className="block text-gray-700 hover:text-blue-600 transition font-medium py-2"
+                className="block text-blue-600 transition font-medium py-2 bo"
                 onClick={() => setMenuOpen(false)}>
                 Listings
               </Link>
@@ -76,7 +78,7 @@ export default function Navbar() {
                 <>
                   <Link
                     href="/admin/listings"
-                    className="block text-gray-700 hover:text-blue-600 transition font-medium py-2"
+                    className="block text-blue-600 transition font-medium py-2 border-t border-gray-200"
                     onClick={() => setMenuOpen(false)}>
                     Dashboard
                   </Link>
@@ -85,7 +87,7 @@ export default function Navbar() {
                       signOut();
                       setMenuOpen(false);
                     }}
-                    className="block w-full text-left text-gray-700 hover:text-blue-600 transition font-medium py-2">
+                    className="block w-full text-left text-blue-600 transition font-medium py-2 border-t border-gray-200">
                     Logout
                   </button>
                 </>

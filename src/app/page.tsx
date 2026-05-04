@@ -3,6 +3,7 @@ import Listing from "@/models/Listing";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent } from "@/components/ui/Card";
+import Navbar from "@/components/Navbar";
 
 export default async function HomePage() {
   await connectDB();
@@ -14,6 +15,7 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
+      <Navbar />
       <section className="bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 text-white py-24 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">

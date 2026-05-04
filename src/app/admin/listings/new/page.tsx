@@ -13,7 +13,9 @@ export default function NewListingPage() {
 
   const [form, setForm] = useState({
     title: "",
-    price: "",
+    oneSharingprice: "",
+    twoSharingprice: "",
+    threeSharingprice: "",
     gender: "any",
     amenities: "",
     contactPhone: "",
@@ -36,13 +38,18 @@ export default function NewListingPage() {
         method: "POST",
         body: JSON.stringify({
           ...form,
-          price: Number(form.price),
+          oneSharingprice: Number(form.oneSharingprice),
+          twoSharingprice: Number(form.twoSharingprice),
+          threeSharingprice: Number(form.threeSharingprice),
           distanceFromUni: Number(form.distanceFromUni),
           amenities: form.amenities
             .split(",")
             .map((a) => a.trim())
             .filter(Boolean),
           images,
+          headers: {
+            "Content-Type": "application/json",
+          },
         }),
       });
 
@@ -80,13 +87,39 @@ export default function NewListingPage() {
             {/* Price */}
             <div>
               <label className="block text-sm font-medium mb-2">
-                Price (₹/month)
+                One Sharing (₹/month)
+              </label>
+              <Input
+                name="oneSharingprice"
+                type="number"
+                placeholder="5000"
+                value={form.oneSharingprice}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Two Sharing (₹/month)
               </label>
               <Input
                 name="price"
+                type="twoSharingprice"
+                placeholder="5000"
+                value={form.twoSharingprice}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Three Sharing (₹/month)
+              </label>
+              <Input
+                name="threeSharingprice"
                 type="number"
                 placeholder="5000"
-                value={form.price}
+                value={form.threeSharingprice}
                 onChange={handleChange}
               />
             </div>
