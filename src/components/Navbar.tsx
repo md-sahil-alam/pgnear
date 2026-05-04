@@ -15,7 +15,10 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="font-bold text-3xl text-blue-600 ">
-            PG Near
+            PG Near{" "}
+            <p className="text-sm text-gray-500 -mt-1 font-style: italic font-normal">
+              Presidency University
+            </p>
           </Link>
 
           {/* Desktop Menu */}

@@ -7,6 +7,7 @@ import { MessagesSquare, PhoneCall, MessageCircleMore } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { UserRound } from "lucide-react";
 import { Tooltip } from "@/components/ui/Tooltip";
+import { Users, MapPin, IndianRupee, ShieldCheck } from "lucide-react";
 
 export default async function ListingDetailPage({
   params,
@@ -88,7 +89,7 @@ export default async function ListingDetailPage({
                           <span className="flex items-center gap-1">
                             1 Sharing
                             <UserRound size={14} />
-                            <Tooltip text="Single persion in room" />
+                            <Tooltip text="Single persion (only you) in a room" />
                           </span>
                         </td>
                         <td className="px-4 py-2 font-semibold">
@@ -107,6 +108,7 @@ export default async function ListingDetailPage({
                           <span className="flex items-center gap-1">
                             2 Sharing <UserRound size={14} />
                             <UserRound size={14} />
+                            <Tooltip text="Two persion in a room" />
                           </span>
                         </td>
                         <td className="px-4 py-2 font-semibold">

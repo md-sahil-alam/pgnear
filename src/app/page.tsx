@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent } from "@/components/ui/Card";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Users, MapPin, IndianRupee, ShieldCheck } from "lucide-react";
 
 export default async function HomePage() {
   await connectDB();
@@ -16,158 +18,217 @@ export default async function HomePage() {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <Navbar />
-      <section className="bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 text-white py-24 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Find Your Perfect PG
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 text-blue-100 font-light">
-            Comfortable, affordable, and close to campus
-          </p>
-          <Link href="/pg-near-presidency-university">
-            <Button
-              size="lg"
-              className="bg-white text-blue-600 hover:bg-gray-50 font-semibold">
-              Browse Listings
-            </Button>
-          </Link>
+      <section className="relative w-full h-[70vh] min-h-[500px] overflow-hidden">
+        {/* Background Image */}
+        <img
+          src="https://res.cloudinary.com/dd1rxc66q/image/upload/v1777930318/ChatGPT_Image_May_5_2026_03_01_21_AM_fn0nbu.png"
+          alt="PG near Presidency University Bangalore"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+
+        {/* Optional subtle dark overlay (for readability) */}
+        <div
+          className="absolute inset-0 
+            bg-white/80
+            backdrop-blur-2xl
+            mask-[linear-gradient(to_top,black,transparent)]"
+        />
+
+        {/* Content */}
+        <div className="absolute inset-0 flex items-end justify-center pb-12 px-4">
+          <div className="px-6 py-6 text-center max-w-2xl w-full ">
+            <h1 className="text-2xl md:text-5xl font-bold  leading-tight">
+              Find PG Near Presidency University Bangalore
+            </h1>
+
+            <p className="  mt-2 text-sm md:text-base ">
+              Varified PG listings. Clear pricing. Direct contact.
+            </p>
+
+            <div className="mt-5">
+              <Link href="/pg-near-presidency-university  ">
+                <p className=" hover:text-blue-500 ">Browse Listings →</p>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Latest Listings Section */}
-      <section className="max-w-7xl mx-auto px-4 py-20">
-        <div className="mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-2">
-            Latest Listings
-          </h2>
-          <p className="text-gray-600 text-lg">
-            Recently added accommodations near the university
-          </p>
+      <section className="max-w-7xl mx-auto px-4 py-16">
+        {/* Header */}
+        <div className="flex items-end justify-between mb-10">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              Latest PG Listings
+            </h2>
+            <p className="text-gray-600 mt-2">
+              Recently added PGs near Presidency University
+            </p>
+          </div>
+
+          <Link
+            href="/pg-near-presidency-university"
+            className="hidden md:block text-blue-600 font-semibold hover:underline">
+            View all →
+          </Link>
         </div>
 
+        {/* Listings */}
         {listings.length > 0 ? (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {listings.map((listing: any) => (
                 <Link
                   key={listing._id}
                   href={`/listing/${listing.slug}`}
-                  className="group">
-                  <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 h-full">
+                  className="group block">
+                  <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden transition hover:shadow-lg">
                     {/* Image */}
-                    <div className="relative bg-gradient-to-br from-gray-100 to-gray-200 h-56 flex items-center justify-center overflow-hidden">
-                      {listing.images && listing.images.length > 0 ? (
+                    <div className="relative h-52 overflow-hidden">
+                      {listing.images?.length ? (
                         <img
                           src={listing.images[0]}
                           alt={listing.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                          className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                         />
                       ) : (
-                        <div className="text-gray-400 text-center">
-                          <p className="text-4xl mb-2">📷</p>
-                          <p className="text-sm">No Image</p>
+                        <div className="flex items-center justify-center h-full bg-gray-100 text-gray-400">
+                          No Image
                         </div>
+                      )}
+
+                      {/* Verified badge */}
+                      {listing.isVerified && (
+                        <span className="absolute top-3 left-3 bg-green-500 text-white text-xs px-2 py-1 rounded-md">
+                          Verified
+                        </span>
                       )}
                     </div>
 
                     {/* Content */}
-                    <CardContent className="p-4">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition">
+                    <div className="p-5">
+                      {/* Title */}
+                      <h3 className="text-lg font-semibold text-gray-900 line-clamp-1 group-hover:text-blue-600 transition">
                         {listing.title}
                       </h3>
 
-                      <p className="text-2xl font-bold text-blue-600 mb-3">
-                        ₹{listing.price}
+                      {/* Price */}
+                      <p className="text-lg font-bold text-emerald-600 mt-2">
+                        ₹{listing.threeSharingprice || "—"}
                         <span className="text-sm text-gray-500 font-normal">
                           /month
                         </span>
                       </p>
 
-                      <p className="text-sm text-gray-600 mb-3 line-clamp-1">
-                        📍 {listing.address}
+                      {/* Location */}
+                      <p className="text-sm text-gray-500 mt-1 line-clamp-1">
+                        {listing.address || "Location not available"}
                       </p>
 
-                      <div className="flex items-center justify-between text-sm text-gray-500 mb-3">
-                        <span className="capitalize bg-gray-100 px-2 py-1 rounded">
-                          {listing.gender}
+                      {/* Meta */}
+                      <div className="flex items-center justify-between text-sm text-gray-500 mt-3">
+                        <span className="capitalize">
+                          {listing.gender || "Any"}
                         </span>
                         <span>
-                          🎓 {(listing.distanceFromUni / 1000).toFixed(1)}km
+                          {listing.distanceFromUni
+                            ? `${listing.distanceFromUni}m`
+                            : "--"}
                         </span>
                       </div>
 
-                      {listing.amenities && listing.amenities.length > 0 && (
-                        <div className="flex gap-1 flex-wrap">
-                          {listing.amenities
-                            .slice(0, 2)
-                            .map((amenity: string) => (
-                              <span
-                                key={amenity}
-                                className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded">
-                                {amenity}
-                              </span>
-                            ))}
+                      {/* Amenities */}
+                      {listing.amenities?.length > 0 && (
+                        <div className="flex gap-2 flex-wrap mt-3">
+                          {listing.amenities.slice(0, 2).map((a: string) => (
+                            <span
+                              key={a}
+                              className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-md">
+                              {a}
+                            </span>
+                          ))}
+
                           {listing.amenities.length > 2 && (
-                            <span className="text-xs text-gray-500 px-2 py-1">
-                              +{listing.amenities.length - 2} more
+                            <span className="text-xs text-gray-500">
+                              +{listing.amenities.length - 2}
                             </span>
                           )}
                         </div>
                       )}
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 </Link>
               ))}
             </div>
 
-            <div className="text-center">
+            {/* Mobile CTA */}
+            <div className="text-center mt-10 ">
               <Link href="/pg-near-presidency-university">
-                <Button size="lg" variant="outline">
+                <button className="px-6 py-3 border rounded-lg font-medium">
                   View All Listings →
-                </Button>
+                </button>
               </Link>
             </div>
           </>
         ) : (
-          <div className="text-center py-12">
-            <p className="text-lg text-gray-500">
-              No listings available yet. Check back soon!
-            </p>
+          <div className="text-center py-16">
+            <p className="text-gray-500 text-lg">No listings available yet</p>
           </div>
         )}
       </section>
 
-      {/* Features Section */}
-      <section className="bg-gray-50 py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-            Why Choose Us
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="text-4xl mb-4">🏠</div>
-              <h3 className="font-semibold text-lg mb-2">Verified Listings</h3>
-              <p className="text-gray-600">
-                All accommodations are verified for authenticity
+      {/* Features/why us Section */}
+      <section>
+        <div className="max-w-6xl mx-auto px-12 py-12">
+          {/* Heading */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              Built for the Students. By the Students.
+            </h2>
+            <p className="text-gray-600 mt-3 max-w-2xl mx-auto">
+              We understand what matters when choosing a PG because we’ve been
+              through it ourselves.
+            </p>
+          </div>
+
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Feature 1 */}
+            <div className="p-6 rounded-xl border border-gray-200 hover:shadow-md transition">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                No Brokers. Direct Contact
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Talk directly to PG owners. No middlemen, no commition.
               </p>
             </div>
-            <div className="text-center">
-              <div className="text-4xl mb-4">💬</div>
-              <h3 className="font-semibold text-lg mb-2">Direct Contact</h3>
-              <p className="text-gray-600">
-                Connect with owners via WhatsApp or phone instantly
+
+            {/* Feature 4 */}
+            <div className="p-6 rounded-xl border border-gray-200 hover:shadow-md transition">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Verified Listings
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Only genuine PGs listed to save your time and effort.
               </p>
             </div>
-            <div className="text-center">
-              <div className="text-4xl mb-4">🗺️</div>
-              <h3 className="font-semibold text-lg mb-2">Near Campus</h3>
-              <p className="text-gray-600">
-                All listings are conveniently close to the university
+
+            {/* Feature 6 */}
+            <div className="p-6 rounded-xl border border-gray-200 hover:shadow-md transition">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Built by Someone Like You
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Created by a student who faced the same struggle and decided to
+                fix it.
               </p>
             </div>
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

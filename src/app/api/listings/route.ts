@@ -34,19 +34,23 @@ export async function GET(req: Request) {
   const minPrice = searchParams.get("minPrice");
   const maxPrice = searchParams.get("maxPrice");
   const gender = searchParams.get("gender");
-const amenities = searchParams.get("amenities");
+  const amenities = searchParams.get("amenities");
+  const page = parseInt(searchParams.get("page") || "1");
+  const limit = parseInt(searchParams.get("limit") || "4");
 
   const query: any = { isActive: true };
 
   if (minPrice) query.price = { ...query.price, $gte: Number(minPrice) };
   if (maxPrice) query.price = { ...query.price, $lte: Number(maxPrice) };
   if (gender && gender !== "all") query.gender = gender;
-if (amenities) {
-  const arr = amenities.split(",");
-  query.amenities = { $in: arr };
-}
+  if (amenities) {
+    const arr = amenities.split(",");
+    query.amenities = { $in: arr };
+  }
 
-  const listings = await Listing.find(query).sort({ createdAt: -1 });
+  const total = await Listing.countDocuments(query);
+  const listings = await Listing.find(query).sort({ createdAt: -1 }).skip((page - 1) * limit).limit(limit);
+  const hasMore = (page * limit) < total;
 
-  return NextResponse.json({ success: true, listings });
+  return NextResponse.json({ success: true, listings, hasMore });
 }

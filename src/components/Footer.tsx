@@ -4,42 +4,50 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-gray-300 py-12 px-4">
-      <div className="max-w-7xl mx-auto">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+    <footer className="bg-white border-t border-gray-200 mt-16">
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        {/* Top Section */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold text-white mb-3">
-              🏠 PG Near Uni
-            </h3>
-            <p className="text-sm text-gray-400">
-              Find comfortable and affordable paying guest accommodations near
-              your university.
+            <h3 className="text-xl font-bold text-gray-900 mb-3">PG Near</h3>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              Find verified PG near Presidency University Bangalore with real
+              photos, pricing, and direct contact. No brokers, no commition.
+            </p>
+
+            <p className="text-sm text-gray-600 leading-relaxed mt-4">
+              located in Rajanakunte, Yelahanka, Bengaluru, Karnataka, India.
             </p>
           </div>
-
-          {/* Quick Links */}
+          {/* Explore */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
+            <h4 className="text-sm font-semibold text-gray-900 mb-4">
+              Explore
+            </h4>
+            <ul className="space-y-2 text-sm text-gray-600">
               <li>
-                <Link
-                  href="/pg-near-presidency-university"
-                  className="hover:text-blue-400 transition">
-                  Browse Listings
-                </Link>
-              </li>
-              <li>
-                <Link href="/" className="hover:text-blue-400 transition">
+                <Link href="/" className="hover:text-blue-600 transition">
                   Home
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/test-login"
-                  className="hover:text-blue-400 transition">
-                  Login
+                  href="/pg-near-presidency-university"
+                  className="hover:text-blue-600 transition">
+                  Browse Pg near Presidency University Bangalore
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-blue-600 transition">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="hover:text-blue-600 transition">
+                  Contact
                 </Link>
               </li>
             </ul>
@@ -47,61 +55,78 @@ export default function Footer() {
 
           {/* Features */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Features</h4>
-            <ul className="space-y-2 text-sm">
-              <li className="hover:text-blue-400 transition cursor-default">
-                ✓ Verified Listings
-              </li>
-              <li className="hover:text-blue-400 transition cursor-default">
-                ✓ Direct Contact
-              </li>
-              <li className="hover:text-blue-400 transition cursor-default">
-                ✓ Distance Info
-              </li>
-              <li className="hover:text-blue-400 transition cursor-default">
-                ✓ Filter by Amenities
-              </li>
+            <h4 className="text-sm font-semibold text-gray-900 mb-4">
+              Why PG Near
+            </h4>
+            <ul className="space-y-2 text-sm text-gray-600">
+              <li>Verified PG Listings</li>
+              <li>Direct Owner Contact</li>
+              <li>Close to Presedency University</li>
+              <li>Student-friendly options</li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Contact</h4>
-            <ul className="space-y-2 text-sm">
+            <h4 className="text-sm font-semibold text-gray-900 mb-4">
+              Contact
+            </h4>
+            <ul className="space-y-2 text-sm text-gray-600">
               <li>
-                📧{" "}
                 <a
-                  href="mailto:support@pgnearuni.com"
-                  className="hover:text-blue-400 transition">
-                  support@pgnearuni.com
+                  href="mailto:pgnear.in@gmail.com"
+                  className="hover:text-blue-600 transition">
+                  pgnear.in@gmail.com
                 </a>
               </li>
-              <li>📱 +91 9876543210</li>
-              <li className="text-gray-400 text-xs mt-2">
-                Available 24/7 for assistance
+              <li>+91 8709555934</li>
+              <li className="text-xs text-gray-500 mt-2">
+                Typically responds within a few hours
+              </li>
+              <li className="mt-6">
+                <a
+                  href="https://www.mdsahilalam.com/"
+                  target="_blank"
+                  className="hover:text-blue-600 transition ">
+                  Portfolio: mdsahilalam.com
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/md-sahil-alam-software-developer/"
+                  target="_blank"
+                  className="hover:text-blue-600 transition">
+                  LinkedIn: Md Sahil Alam Software Developer
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/md-sahil-alam"
+                  target="_blank"
+                  className="hover:text-blue-600 transition">
+                  GitHub: md sahil alam Software engineer
+                </a>
+              </li>
+              <li className="text-xs text-gray-500 mt-2">
+                <p>Based in Bangalore</p>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-gray-700 py-6">
-          {/* Bottom Footer */}
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm text-gray-400">
-              © {currentYear} PG Near University. All rights reserved.
-            </p>
-            <div className="flex gap-6 mt-4 md:mt-0 text-sm">
-              <a href="#" className="hover:text-blue-400 transition">
-                Privacy Policy
-              </a>
-              <a href="#" className="hover:text-blue-400 transition">
-                Terms of Service
-              </a>
-              <a href="#" className="hover:text-blue-400 transition">
-                Contact Us
-              </a>
-            </div>
+        {/* Bottom */}
+        <div className="border-t border-gray-200 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-gray-500">
+            © {currentYear} PG Near. All rights reserved.
+          </p>
+
+          <div className="flex gap-6 text-sm text-gray-500">
+            <a href="/privacy" className="hover:text-blue-600 transition">
+              Privacy
+            </a>
+            <a href="/terms" className="hover:text-blue-600 transition">
+              Terms
+            </a>
           </div>
         </div>
       </div>

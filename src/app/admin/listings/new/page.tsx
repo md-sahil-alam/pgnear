@@ -103,8 +103,8 @@ export default function NewListingPage() {
                 Two Sharing (₹/month)
               </label>
               <Input
-                name="price"
-                type="twoSharingprice"
+                name="twoSharingprice"
+                type="number"
                 placeholder="5000"
                 value={form.twoSharingprice}
                 onChange={handleChange}
