@@ -2,7 +2,7 @@ import ListingsClient from "./ListingsClient";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const res = await fetch("/api/listings?page=1&limit=10", {
+const res = await fetch("https://pgnear.in/api/listings?page=1&limit=10", {
   cache: "no-store",
 });
 
