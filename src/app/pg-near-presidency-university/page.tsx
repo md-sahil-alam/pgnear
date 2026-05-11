@@ -52,7 +52,6 @@ export default function ListingsPage() {
           }}
         />
 
-        {/* ✅ INTRO TEXT */}
         <p className="text-gray-600 max-w-2xl mb-8">
           Looking for a PG near Presidency University Bangalore? Browse verified
           PG listings with clear pricing, amenities, photos, and direct contact

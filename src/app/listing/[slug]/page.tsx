@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import { UserRound } from "lucide-react";
 import { Tooltip } from "@/components/ui/Tooltip";
 import { Users, MapPin, IndianRupee, ShieldCheck } from "lucide-react";
+import ProtectedContact from "@/components/ProtectedContact";
 
 export default async function ListingDetailPage({
   params,
@@ -168,35 +169,12 @@ export default async function ListingDetailPage({
               )}
 
               {/* Contact Section */}
-              <div className="bg-blue-50 rounded-lg p-6 mt-8">
-                <h2 className="text-xl font-semibold mb-4">Get in Touch</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <a
-                    href={whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 transition font-semibold">
-                    <span>
-                      {" "}
-                      <MessageCircleMore />
-                    </span>
-                    WhatsApp
-                  </a>
-                  <a
-                    href={phoneLink}
-                    className="flex items-center justify-center gap-2 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
-                    <span>
-                      {" "}
-                      <PhoneCall />
-                    </span>
-                    Call
-                  </a>
-                </div>
-                <p className="text-gray-600 text-sm mt-4">
-                  Phone: {listing.contactPhone} | WhatsApp:{" "}
-                  {listing.contactWhatsApp}
-                </p>
-              </div>
+              <ProtectedContact
+                phoneNumber={listing.contactPhone} // 10-digit number
+                whatsAppNumber={listing.contactWhatsApp}
+                listingId={listing._id.toString()}
+                ownerName={listing.ownerName}
+              />
             </div>
           </div>
         </div>
