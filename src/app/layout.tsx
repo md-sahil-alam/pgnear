@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.pgnear.in"),
 
-  title: "PG Near – Verified Student PGs",
+  title: "PG Near Presidency University Verified Student PGs",
 
   description:
     "Find verified PGs near Presidency University Bangalore for boys & girls. Compare prices, amenities, and contact owners directly.",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   applicationName: "PG Near",
 
   openGraph: {
-    title: "PG Near",
+    title: "PG Near ",
     description: "Verified PGs near Presidency University Bangalore.",
     siteName: "PG Near",
     url: "https://www.pgnear.in",
