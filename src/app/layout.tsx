@@ -13,10 +13,29 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "PG Near Presidency University Bangalore | Verified Boys & Girls PG | pgnear.in",
+export const metadata: Metadata = {
+  metadataBase: new URL("https://www.pgnear.in"),
+
+  title: "PG Near – Verified Student PGs",
+
   description:
-    "Find verified PGs near Presidency University Bangalore for boys & girls. Compare prices, amenities, and contact owners directly. No brokers. Fast and simple with pgnear.in.",
+    "Find verified PGs near Presidency University Bangalore for boys & girls. Compare prices, amenities, and contact owners directly.",
+
+  applicationName: "PG Near",
+
+  openGraph: {
+    title: "PG Near",
+    description: "Verified PGs near Presidency University Bangalore.",
+    siteName: "PG Near",
+    url: "https://www.pgnear.in",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "PG Near",
+    description: "Verified PGs near Presidency University Bangalore.",
+  },
 };
 
 export default function RootLayout({
