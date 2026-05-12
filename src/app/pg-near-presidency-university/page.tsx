@@ -94,6 +94,7 @@ export default function ListingsPage() {
             PGs within walking distance of Presidency University Bangalore
           </li>
           <li>1 sharing, 2 sharing, and 3 sharing options</li>
+          <li>Wishlist feature for making better decission</li>
           <li>Verified contact details of PG owners</li>
           <li>Clear pricing with no hidden charges</li>
         </ul>
