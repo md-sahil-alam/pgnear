@@ -34,14 +34,16 @@ export default function SaveButton({
 
     const checkWishlist = async () => {
       try {
-        const res = await fetch(
-          `/api/wishlist/${listingId}?firebaseUid=${user.uid}`,
-        );
+        const res = await fetch(`/api/wishlist?firebaseUid=${user.uid}`);
 
         const data = await res.json();
 
         if (data.success) {
-          setIsSaved(data.isSaved);
+          const saved = data.listings.some(
+            (item: any) => item._id === listingId,
+          );
+
+          setIsSaved(saved);
         }
       } catch (error) {
         console.error("Failed to check wishlist:", error);
@@ -49,7 +51,6 @@ export default function SaveButton({
         setChecked(true);
       }
     };
-
     checkWishlist();
   }, [listingId, user?.uid, authLoading]);
 

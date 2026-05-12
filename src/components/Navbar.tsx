@@ -2,34 +2,38 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { useAuth } from "@/context/AuthContext";
-import { Button } from "@/components/ui/Button";
-import { Heart, LogOut } from "lucide-react";
-import PhoneLoginModal from "./PhoneLoginModal";
+import { signOut, useSession } from "next-auth/react";
+
+import { Heart, LogOut, Shield } from "lucide-react";
 
 export default function Navbar() {
-  const { user, logout, loading: authLoading } = useAuth();
+  const { data: session } = useSession();
+
+  const user = session?.user;
+
   const [menuOpen, setMenuOpen] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const isAdmin = user?.isAdmin;
 
   const handleLogout = async () => {
-    await logout();
+    await signOut();
     setMenuOpen(false);
   };
 
   return (
-    <nav className="bg-white/50 backdrop-blur-[9px] sticky top-0 z-50 ">
+    <nav className="bg-white/50 backdrop-blur-[9px] sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* TOP BAR */}
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link href="/" className="font-bold text-3xl text-blue-600 ">
-            PG Near{" "}
-            <p className="text-sm text-gray-500 -mt-1 font-style: italic font-normal">
+          {/* LOGO */}
+          <Link href="/" className="font-bold text-3xl text-blue-600">
+            PG Near
+            <p className="text-sm text-gray-500 -mt-1 italic font-normal">
               Presidency University
             </p>
           </Link>
 
-          {/* Desktop Menu */}
+          {/* DESKTOP MENU */}
           <div className="hidden md:flex items-center gap-6">
             <Link
               href="/"
@@ -45,8 +49,7 @@ export default function Navbar() {
 
             <Link
               href="/wishlist"
-              className=" text-red-600 transition font-medium py-2 flex items-center gap-2 "
-              onClick={() => setMenuOpen(false)}>
+              className="text-red-600 transition font-medium flex items-center gap-2">
               <Heart size={18} />
               Wishlist
             </Link>
@@ -54,108 +57,122 @@ export default function Navbar() {
             <Link
               href="/about"
               className="text-gray-700 hover:text-blue-600 transition font-medium">
-              About us
+              About Us
             </Link>
 
-            {/* {!authLoading && user?.uid ? (
+            {/* ADMIN ROUTES */}
+            {isAdmin && (
               <>
+                <div className="h-6 w-1px bg-gray-300" />
+
                 <Link
-                  href="/wishlist"
-                  className="text-gray-700 hover:text-blue-600 transition font-medium flex items-center gap-1">
-                  <Heart size={20} />
-                  Wishlist
+                  href="/admin/analytics"
+                  className="text-blue-600 font-semibold flex items-center gap-2">
+                  <Shield size={18} />
+                  Admin
                 </Link>
-                <div className="relative group">
-                  <button className="text-gray-700 hover:text-blue-600 transition font-medium">
-                    {user.name || "Account"} ▼
-                  </button>
-                  <div className="hidden group-hover:block absolute right-0 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
-                    <button
-                      onClick={handleLogout}
-                      className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 transition flex items-center gap-2">
-                      <LogOut size={16} />
-                      Logout
-                    </button>
-                  </div>
-                </div>
+
+                <Link
+                  href="/admin/listings"
+                  className="text-gray-700 hover:text-blue-600 transition font-medium">
+                  Manage Listings
+                </Link>
+
+                <Link
+                  href="/admin/listings/new"
+                  className="text-gray-700 hover:text-blue-600 transition font-medium">
+                  Add Listing
+                </Link>
+
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-2 text-red-600 hover:text-red-700 font-medium">
+                  <LogOut size={18} />
+                  Logout
+                </button>
               </>
-            ) : (
-              <button
-                onClick={() => setShowLoginModal(true)}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                Login
-              </button>
-            )} */}
+            )}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-end gap-5 md:hidden">
+          {/* MOBILE BUTTON */}
+          <div className="flex gap-6 md:hidden items-center">
             <Link
               href="/wishlist"
-              className=" text-blue-600 transition font-medium py-1 flex items-center gap-2 md:hidden"
-              onClick={() => setMenuOpen(false)}>
-              Wishlist
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center gap-2 text-red-600 font-medium">
               <Heart size={18} />
+              Wishlist
             </Link>
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden text-gray-700 hover:text-blue-600 text-2xl">
+              className="md:hidden text-2xl text-gray-700">
               ☰
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* MOBILE MENU */}
         {menuOpen && (
-          <div className="md:hidden  border-t border-b border-gray-200 py-4 px-4">
-            <div className="space-y-3">
-              <Link
-                href="/pg-near-presidency-university"
-                className="block text-blue-600 transition font-medium py-2"
-                onClick={() => setMenuOpen(false)}>
-                Listings
-              </Link>
+          <div className="md:hidden border-t py-4 space-y-3">
+            <Link
+              href="/"
+              onClick={() => setMenuOpen(false)}
+              className="block text-gray-700 font-medium">
+              Home
+            </Link>
 
-              {/* {!authLoading && user?.uid ? (
-                <>
+            <Link
+              href="/pg-near-presidency-university"
+              onClick={() => setMenuOpen(false)}
+              className="block text-gray-700 font-medium">
+              Listings
+            </Link>
+
+            <Link
+              href="/about"
+              onClick={() => setMenuOpen(false)}
+              className="block text-gray-700 font-medium">
+              About Us
+            </Link>
+
+            {/* ADMIN MOBILE */}
+            {isAdmin && (
+              <>
+                <div className="border-t pt-3 space-y-3">
                   <Link
-                    href="/wishlist"
-                    className=" text-blue-600 transition font-medium py-2 flex items-center gap-2 border-t border-gray-200"
-                    onClick={() => setMenuOpen(false)}>
-                    <Heart size={18} />
-                    Wishlist
+                    href="/admin"
+                    onClick={() => setMenuOpen(false)}
+                    className="flex items-center gap-2 text-blue-600 font-semibold">
+                    <Shield size={18} />
+                    Admin Panel
                   </Link>
+
+                  <Link
+                    href="/admin/listings"
+                    onClick={() => setMenuOpen(false)}
+                    className="block text-gray-700 font-medium">
+                    Manage Listings
+                  </Link>
+
+                  <Link
+                    href="/admin/listings/create"
+                    onClick={() => setMenuOpen(false)}
+                    className="block text-gray-700 font-medium">
+                    Add Listing
+                  </Link>
+
                   <button
                     onClick={handleLogout}
-                    className=" w-full text-left text-blue-600 transition font-medium py-2 border-t border-gray-200 flex items-center gap-2">
-                    <LogOut size={16} />
+                    className="flex items-center gap-2 text-red-600 font-medium">
+                    <LogOut size={18} />
                     Logout
                   </button>
-                </>
-              ) : (
-                <button
-                  onClick={() => {
-                    setShowLoginModal(true);
-                    setMenuOpen(false);
-                  }}
-                  className="block w-full text-left bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium border-t border-gray-200">
-                  Login
-                </button>
-              )} */}
-            </div>
+                </div>
+              </>
+            )}
           </div>
         )}
       </div>
-
-      {/* Phone Login Modal */}
-      <PhoneLoginModal
-        isOpen={showLoginModal}
-        onClose={() => setShowLoginModal(false)}
-        onSuccess={() => {
-          setShowLoginModal(false);
-          setMenuOpen(false);
-        }}
-      />
     </nav>
   );
 }

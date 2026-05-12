@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/getSession";
+import Navbar from "@/components/Navbar";
 
 export default async function AdminLayout({
   children,
@@ -14,12 +15,8 @@ export default async function AdminLayout({
 
   return (
     <div>
+      <Navbar />
       {children}
-      <a
-        href="/admin/listings/new"
-        className="bg-blue-500 text-white px-4 py-2 rounded">
-        + Add Listing
-      </a>
     </div>
   );
 }

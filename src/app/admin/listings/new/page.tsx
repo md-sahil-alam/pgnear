@@ -12,6 +12,7 @@ export default function NewListingPage() {
   const router = useRouter();
 
   const [form, setForm] = useState({
+    ownerName: "",
     title: "",
     oneSharingprice: "",
     twoSharingprice: "",
@@ -73,7 +74,20 @@ export default function NewListingPage() {
             <CardTitle className="text-2xl">Add New Listing</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Owner Name
+              </label>
+              <Input
+                name="ownerName"
+                placeholder="Name"
+                value={form.ownerName}
+                onChange={handleChange}
+              />
+            </div>
+
             {/* Title */}
+
             <div>
               <label className="block text-sm font-medium mb-2">Title</label>
               <Input
