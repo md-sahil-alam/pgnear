@@ -140,7 +140,7 @@ export default function Navbar() {
               <>
                 <div className="border-t pt-3 space-y-3">
                   <Link
-                    href="/admin"
+                    href="admin/analytics"
                     onClick={() => setMenuOpen(false)}
                     className="flex items-center gap-2 text-blue-600 font-semibold">
                     <Shield size={18} />
@@ -155,7 +155,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/admin/listings/create"
+                    href="/admin/listings/new"
                     onClick={() => setMenuOpen(false)}
                     className="block text-gray-700 font-medium">
                     Add Listing

@@ -27,7 +27,7 @@ export default function ImageUpload({
     const newImageUrls: string[] = [];
 
     try {
-      for (let i = 0; i < Math.min(files.length, 5 - images.length); i++) {
+      for (let i = 0; i < Math.min(files.length, 15 - images.length); i++) {
         const file = files[i];
         const formData = new FormData();
         formData.append("file", file);
@@ -84,16 +84,16 @@ export default function ImageUpload({
         className={cn(
           "border-2 border-dashed rounded-lg p-6 text-center cursor-pointer",
           "hover:border-blue-500 hover:bg-blue-50 transition",
-          images.length >= 5 ? "opacity-50 cursor-not-allowed" : "",
+          images.length >= 15 ? "opacity-50 cursor-not-allowed" : "",
         )}
-        onClick={() => images.length < 5 && fileInputRef.current?.click()}>
+        onClick={() => images.length < 15 && fileInputRef.current?.click()}>
         <input
           ref={fileInputRef}
           type="file"
           multiple
           accept="image/*"
           onChange={handleFileSelect}
-          disabled={uploading || images.length >= 5}
+          disabled={uploading || images.length >= 15}
           className="hidden"
         />
 
@@ -107,7 +107,7 @@ export default function ImageUpload({
               📷 Click to upload images
             </p>
             <p className="text-sm text-gray-500">
-              {images.length}/5 images ({5 - images.length} remaining)
+              {images.length}/15 images ({15 - images.length} remaining)
             </p>
           </div>
         )}

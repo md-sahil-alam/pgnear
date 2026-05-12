@@ -6,6 +6,7 @@ const ListingSchema = new Schema(
     description: { type: String },
     owner: { type: String, default: null },
     slug: { type: String, unique: true },
+    price: Number,
     oneSharingprice: { type: Number, default: null},
     twoSharingprice: { type: Number, default: null},
     threeSharingprice: { type: Number, default: null },

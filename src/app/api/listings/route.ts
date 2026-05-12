@@ -10,6 +10,7 @@ export async function POST(req: Request) {
 
     const listing = await Listing.create({
       ...body,
+      price: body.price || body.oneSharingprice || 0,
      slug:
   body.title
     .toLowerCase()

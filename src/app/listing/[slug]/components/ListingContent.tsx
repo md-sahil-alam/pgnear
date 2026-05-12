@@ -164,17 +164,48 @@ export default async function ListingContent({ slug }: ListingContentProps) {
                   Amenities
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-                  {serializedListing.amenities.map((amenity: string) => (
-                    <span
-                      key={amenity}
-                      className="flex items-center gap-2 text-sm p-2 bg-blue-50 text-blue-700 rounded-lg">
-                      <Check size={14} />
-                      {amenity}
-                    </span>
-                  ))}
+                  {serializedListing.amenities
+                    .slice(0, 8)
+                    .map((amenity: string) => (
+                      <span
+                        key={amenity}
+                        className="flex items-center gap-2 text-sm p-2 bg-blue-50 text-blue-700 rounded-lg">
+                        <Check size={14} />
+                        {amenity}
+                      </span>
+                    ))}
                 </div>
+
+                {serializedListing.amenities.length > 8 && (
+                  <details className="mt-4">
+                    <summary className="cursor-pointer text-sm text-blue-600 hover:text-blue-800">
+                      Read more
+                    </summary>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mt-3">
+                      {serializedListing.amenities
+                        .slice(8)
+                        .map((amenity: string) => (
+                          <span
+                            key={amenity}
+                            className="flex items-center gap-2 text-sm p-2 bg-blue-50 text-blue-700 rounded-lg">
+                            <Check size={14} />
+                            {amenity}
+                          </span>
+                        ))}
+                    </div>
+                  </details>
+                )}
               </div>
             )}
+
+          <div className="mb-6">
+            <p className="text-gray-600 text-sm">Owner Name</p>
+            <p className="text-lg font-semibold">
+              {serializedListing.ownerName ||
+                serializedListing.owner ||
+                "Not provided"}
+            </p>
+          </div>
 
           {/* Contact Section */}
           <div className=" pt-6 mt-7">

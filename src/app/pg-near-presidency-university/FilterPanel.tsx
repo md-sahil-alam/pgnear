@@ -1,10 +1,18 @@
 "use client";
 
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
+
 export default function FilterPanel({
   filters,
   setFilters,
 }: {
-  filters: any;
+  filters: {
+    minPrice: number;
+    maxPrice: number;
+    gender: string;
+    amenities: string[];
+  };
   setFilters: any;
 }) {
   return (
@@ -14,32 +22,28 @@ export default function FilterPanel({
       {/* Price */}
       <div className="mb-5">
         <p className="text-sm font-medium mb-2">Price Range</p>
-
-        <div className="flex gap-2">
-          <input
-            type="number"
-            placeholder="Min"
-            value={filters.minPrice}
-            onChange={(e) =>
+        <div className="px-2">
+          <Slider
+            range
+            min={0}
+            max={50000}
+            step={500}
+            value={[filters.minPrice, filters.maxPrice]}
+            onChange={(value) => {
+              const [min, max] = value as [number, number];
               setFilters((prev: any) => ({
                 ...prev,
-                minPrice: e.target.value,
-              }))
-            }
-            className="w-full border px-3 py-2 rounded"
+                minPrice: min,
+                maxPrice: max,
+              }));
+            }}
+            trackStyle={[{ backgroundColor: "#000" }]}
+            handleStyle={[{ borderColor: "#000" }, { borderColor: "#000" }]}
           />
-          <input
-            type="number"
-            placeholder="Max"
-            value={filters.maxPrice}
-            onChange={(e) =>
-              setFilters((prev: any) => ({
-                ...prev,
-                maxPrice: e.target.value,
-              }))
-            }
-            className="w-full border px-3 py-2 rounded"
-          />
+          <div className="flex justify-between text-sm text-gray-500 mt-2">
+            <span>₹{filters.minPrice}</span>
+            <span>₹{filters.maxPrice}</span>
+          </div>
         </div>
       </div>
 
@@ -99,10 +103,10 @@ export default function FilterPanel({
       <button
         onClick={() =>
           setFilters({
-            minPrice: "",
-            maxPrice: "",
+            minPrice: 0,
+            maxPrice: 50000,
             gender: "all",
-            amenity: "",
+            amenities: [],
           })
         }
         className="w-full bg-gray-100 py-2 rounded">

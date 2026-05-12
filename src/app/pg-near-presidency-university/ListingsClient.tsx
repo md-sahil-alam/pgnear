@@ -22,8 +22,8 @@ type Listing = {
 };
 
 type Filters = {
-  minPrice: string;
-  maxPrice: string;
+  minPrice: number;
+  maxPrice: number;
   gender: string;
   amenities: string[];
 };
@@ -35,8 +35,8 @@ export default function ListingsClient({
   initialListings?: Listing[];
 }) {
   const [filters, setFilters] = useState<Filters>({
-    minPrice: "",
-    maxPrice: "",
+    minPrice: 0,
+    maxPrice: 50000,
     gender: "all",
     amenities: [],
   });
@@ -57,6 +57,13 @@ export default function ListingsClient({
     const params = new URLSearchParams();
     params.set("page", currentPage.toString());
     params.set("limit", "10");
+    if (filters.minPrice > 0)
+      params.set("minPrice", filters.minPrice.toString());
+    if (filters.maxPrice < 50000)
+      params.set("maxPrice", filters.maxPrice.toString());
+    if (filters.gender !== "all") params.set("gender", filters.gender);
+    if (filters.amenities.length > 0)
+      params.set("amenities", filters.amenities.join(","));
 
     const res = await fetch(`/api/listings?${params.toString()}`);
     const data = await res.json();
