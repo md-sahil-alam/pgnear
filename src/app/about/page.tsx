@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import Link from "next/link";
-
+import { Heart } from "lucide-react";
 export const metadata = {
   title: "About Md Sahil Alam | PG Near Presidency University Bangalore",
   description:
@@ -26,7 +26,7 @@ export default function AboutPage() {
             </h1>
 
             <h1 className="text-2xl md:text-3xl font-bold text-gray-500 leading-tight mt-2 ">
-              Built for Students, By a Student
+              Built for the Students, By the Students
             </h1>
 
             <p className="mt-4 text-gray-600 text-lg">
@@ -59,7 +59,7 @@ export default function AboutPage() {
               />
             </div>
 
-            <div className="grid gap-4 gap-4 mt-8 second ">
+            <div className="grid gap-4  mt-8 second ">
               <Image
                 src="https://res.cloudinary.com/dd1rxc66q/image/upload/v1777920694/md-sahil-alam-sofware-developer_papiav.jpg"
                 alt="PG Near founder Md Sahil Alam "
@@ -129,28 +129,33 @@ export default function AboutPage() {
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 mt-10 text-left">
-            <div className="p-6 border rounded-xl bg-white">
+            <div className="p-6 border rounded-xl bg-white hover:shadow-md transition">
               <h3 className="font-semibold text-gray-900 mb-2">No Brokers</h3>
               <p className="text-sm text-gray-600">
                 Contact PG owners directly without paying extra commission.
               </p>
             </div>
 
-            <div className="p-6 border rounded-xl bg-white">
+            <div className="p-6 rounded-xl border bg-white hover:shadow-md transition">
+              <div className="flex gap-2.5">
+                <Heart className="text-red-500 mt-1" size={18} />
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  save time & reduce stress
+                </h3>
+              </div>
+
+              <p className="text-gray-600 text-sm">
+                Save pgs in your <span className="font-bold ">wishlist</span> to
+                view them later and make an informed decision without the rush.
+              </p>
+            </div>
+
+            <div className="p-6 border rounded-xl bg-white hover:shadow-md transition">
               <h3 className="font-semibold text-gray-900 mb-2">
                 Verified Listings
               </h3>
               <p className="text-sm text-gray-600">
                 Only genuine PGs listed to save your time and effort.
-              </p>
-            </div>
-
-            <div className="p-6 border rounded-xl bg-white">
-              <h3 className="font-semibold text-gray-900 mb-2">
-                Built for Students
-              </h3>
-              <p className="text-sm text-gray-600">
-                Designed based on real problems students face.
               </p>
             </div>
           </div>

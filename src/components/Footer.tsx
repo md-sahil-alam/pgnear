@@ -44,11 +44,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link
+                {/* <Link
                   href="/contact"
                   className="hover:text-blue-600 transition">
                   Contact
-                </Link>
+                </Link> */}
               </li>
             </ul>
           </div>

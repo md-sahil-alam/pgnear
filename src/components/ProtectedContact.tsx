@@ -5,6 +5,7 @@ import { Lock, Phone, MessageCircle, Loader2 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import PhoneLoginModal from "./PhoneLoginModal";
 import { Button } from "./ui/Button";
+import { Check, Eye, EyeOff } from "lucide-react";
 
 interface ProtectedContactProps {
   phoneNumber: string;
@@ -53,7 +54,7 @@ export default function ProtectedContact({
   const handleWhatsAppClick = async () => {
     await trackInteraction("whatsapp");
     const whatsAppNum = whatsAppNumber || phoneNumber;
-    window.location.href = `https://wa.me/91${whatsAppNum}?text=Hi, I'm interested in your PG listing`;
+    window.location.href = `https://wa.me/91${whatsAppNum}?text=Hi, i found your pg form pgnear.in I'm interested in your PG`;
   };
 
   const handleLoginSuccess = (userData: any) => {
@@ -72,7 +73,7 @@ export default function ProtectedContact({
   // User is logged in and unlocked
   if (user && isUnlocked) {
     return (
-      <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+      <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-6">
         <div className="mb-4">
           <h3 className="text-lg font-semibold text-gray-900">
             Contact {ownerName}
@@ -112,7 +113,7 @@ export default function ProtectedContact({
         </div>
 
         {/* Contact Details Display */}
-        <div className="mt-4 pt-4 border-t border-green-200">
+        <div className="mt-4 pt-4 border-t border-emerald-200">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <p className="text-gray-600 text-sm">Phone Number</p>
@@ -135,20 +136,21 @@ export default function ProtectedContact({
   // User is logged in but not unlocked yet
   if (user && !isUnlocked) {
     return (
-      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+      <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-6">
         <div className="mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">
-            Contact Unlocked
+          <h3 className="text-lg font-semibold text-emerald-700 flex items-center gap-2">
+            Contact Unlocked <Check />
           </h3>
+
           <p className="text-gray-600 text-sm mt-1">
-            You're signed in. Click below to view contact details.
+            Click below to view contact details.
           </p>
         </div>
 
         <Button
           onClick={() => setIsUnlocked(true)}
-          className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-3 rounded-lg">
-          View Contact Details
+          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2">
+          View Contact Details <Eye size={22} />
         </Button>
       </div>
     );
@@ -160,7 +162,7 @@ export default function ProtectedContact({
       <div className="bg-gray-100 rounded-lg p-6 relative group">
         <div className="mb-4">
           <h3 className="text-lg font-semibold text-gray-900">
-            {ownerName}'s Contact
+            Owners's Contact
           </h3>
           <p className="text-gray-600 text-sm mt-1">
             Sign in to view contact details

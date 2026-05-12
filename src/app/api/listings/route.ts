@@ -52,5 +52,8 @@ export async function GET(req: Request) {
   const listings = await Listing.find(query).sort({ createdAt: -1 }).skip((page - 1) * limit).limit(limit);
   const hasMore = (page * limit) < total;
 
-  return NextResponse.json({ success: true, listings, hasMore });
+  // Serialize Mongoose documents to plain objects
+  const serializedListings = JSON.parse(JSON.stringify(listings));
+
+  return NextResponse.json({ success: true, listings: serializedListings, hasMore });
 }

@@ -3,6 +3,9 @@
 import { useEffect, useState, useRef } from "react";
 import FiltersWrapper from "./FilterWrapper";
 import Link from "next/link";
+import SaveButton from "@/components/SaveButton";
+import { Shield, ShieldCheck } from "lucide-react";
+import { ListingsGridSkeleton } from "@/components/skeletons";
 
 /* ✅ TYPE DEFINITIONS */
 type Listing = {
@@ -104,7 +107,7 @@ export default function ListingsClient({
       {/* Listings */}
       <div className="lg:col-span-3">
         {loading ? (
-          <p className="text-gray-500">Loading...</p>
+          <ListingsGridSkeleton count={8} columns={2} />
         ) : listings.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {listings.map((listing: Listing) => (
@@ -127,10 +130,16 @@ export default function ListingsClient({
                   )}
 
                   {listing.isVerified && (
-                    <span className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">
-                      Verified
+                    <span className="absolute top-2 left-2 bg-emerald-500 text-white text-xs px-2 py-1 rounded">
+                      Verified{" "}
+                      <ShieldCheck size={18} className="inline-block ml-1" />
                     </span>
                   )}
+
+                  {/* Save Button */}
+                  <div className="absolute top-2 right-2">
+                    <SaveButton listingId={listing._id} size="md" />
+                  </div>
                 </div>
 
                 {/* Content */}

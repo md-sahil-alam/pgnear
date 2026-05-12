@@ -87,7 +87,6 @@ export default function PhoneLoginModal({
       // await recaptchaVerifierRef.current!.render();
 
       const formattedPhone = `+91${phoneNumber}`;
-      console.log("Sending OTP to:", formattedPhone);
 
       const result = await signInWithPhoneNumber(
         auth,

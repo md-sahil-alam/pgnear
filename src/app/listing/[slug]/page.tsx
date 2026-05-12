@@ -1,14 +1,12 @@
-import { connectDB } from "@/lib/db";
-import Listing from "@/models/Listing";
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import ImageGallery from "@/components/ImageGallery";
-import { MessagesSquare, PhoneCall, MessageCircleMore } from "lucide-react";
 import Navbar from "@/components/Navbar";
-import { UserRound } from "lucide-react";
-import { Tooltip } from "@/components/ui/Tooltip";
-import { Users, MapPin, IndianRupee, ShieldCheck } from "lucide-react";
-import ProtectedContact from "@/components/ProtectedContact";
+import { Suspense } from "react";
+import { ListingDetailSkeleton } from "@/components/skeletons";
+import ListingContent from "./components/ListingContent";
+
+export const metadata = {
+  title: "PG Listing Details",
+  description: "View detailed information about this PG listing",
+};
 
 export default async function ListingDetailPage({
   params,
@@ -17,167 +15,13 @@ export default async function ListingDetailPage({
 }) {
   const { slug } = await params;
 
-  await connectDB();
-  const listing = await Listing.findOne({ slug, isActive: true });
-
-  if (!listing) {
-    notFound();
-  }
-
-  const whatsappLink = `https://wa.me/${listing.contactWhatsApp}?text=${encodeURIComponent(
-    `Hi,${listing.owner} I found your pg at pgnear.in im intrested in your pg: ${listing.title}`,
-  )}`;
-  const phoneLink = `tel:${listing.contactPhone}`;
-
   return (
     <>
       <Navbar />
       <div className="min-h-screen bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 py-8">
-          {/* Back Link */}
-          <Link
-            href="/pg-near-presidency-university"
-            className="text-blue-600 hover:text-blue-800 mb-6 inline-block">
-            ← Back to Listings
-          </Link>
-
-          <div className="bg-white rounded-lg overflow-hidden">
-            {/* Images */}
-            <ImageGallery images={listing.images || []} />
-
-            {/* Details */}
-            <div className="p-8">
-              <h1 className="text-3xl font-bold mb-4">{listing.title}</h1>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 pb-6 border-b color-black">
-                <div>
-                  <p className="text-gray-600 text-sm">Gender</p>
-                  <p className="text-lg font-semibold capitalize">
-                    {listing.gender}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-gray-600 text-sm">Distance from Uni</p>
-                  <p className="text-lg font-semibold">
-                    {listing.distanceFromUni}m
-                  </p>
-                </div>
-                <div>
-                  <p className="text-gray-600 text-sm">Verified</p>
-                  <p className="text-lg font-semibold">
-                    {listing.isVerified ? "✓ Yes" : "Not Verified"}
-                  </p>
-                </div>
-              </div>
-
-              {/* Price and Basic Info */}
-              <div className="mb-6">
-                <p className="text-gray-600 text-xl font-semibold mb-2 ">
-                  Price
-                </p>
-
-                <div className="border rounded-lg overflow-hidden">
-                  <table className="w-full text-sm">
-                    <thead className="bg-gray-100">
-                      <tr>
-                        <th className="text-left px-4 py-2">Sharing</th>
-                        <th className="text-left px-4 py-2">Price / month</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-t">
-                        <td className="px-4 py-2">
-                          <span className="flex items-center gap-1">
-                            1 Sharing
-                            <UserRound size={14} />
-                            <Tooltip text="Single persion (only you) in a room" />
-                          </span>
-                        </td>
-                        <td className="px-4 py-2 font-semibold">
-                          {listing.oneSharingprice != null ? (
-                            <span className="text-emerald-600">
-                              ₹{listing.oneSharingprice}
-                            </span>
-                          ) : (
-                            <span className="text-gray-400">Not available</span>
-                          )}
-                        </td>
-                      </tr>
-
-                      <tr className="border-t">
-                        <td className="px-4 py-2">
-                          <span className="flex items-center gap-1">
-                            2 Sharing <UserRound size={14} />
-                            <UserRound size={14} />
-                            <Tooltip text="Two persion in a room" />
-                          </span>
-                        </td>
-                        <td className="px-4 py-2 font-semibold">
-                          {listing.twoSharingprice != null ? (
-                            <span className="text-emerald-600">
-                              ₹{listing.twoSharingprice}
-                            </span>
-                          ) : (
-                            <span className="text-gray-400">Not available</span>
-                          )}
-                        </td>
-                      </tr>
-
-                      <tr className="border-t">
-                        <td className="px-4 py-2">
-                          {" "}
-                          <span className="flex items-center gap-1">
-                            3 Sharing <UserRound size={14} />
-                            <UserRound size={14} /> <UserRound size={14} />
-                          </span>
-                        </td>
-                        <td className="px-4 py-2 font-semibold">
-                          {listing.threeSharingprice != null ? (
-                            <span className="text-emerald-600">
-                              ₹{listing.threeSharingprice}
-                            </span>
-                          ) : (
-                            <span className="text-gray-400">Not available</span>
-                          )}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              {/* Address */}
-              <div className="mb-6 ">
-                <h2 className="text-xl font-semibold mb-2">Location</h2>
-                <p className="text-gray-700">{listing.address}</p>
-              </div>
-
-              {/* Amenities */}
-              {listing.amenities && listing.amenities.length > 0 && (
-                <div className="mb-6">
-                  <h2 className="text-xl font-semibold mb-3">Amenities</h2>
-                  <div className="flex flex-wrap gap-2">
-                    {listing.amenities.map((amenity: string) => (
-                      <span
-                        key={amenity}
-                        className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                        {amenity}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Contact Section */}
-              <ProtectedContact
-                phoneNumber={listing.contactPhone} // 10-digit number
-                whatsAppNumber={listing.contactWhatsApp}
-                listingId={listing._id.toString()}
-                ownerName={listing.ownerName}
-              />
-            </div>
-          </div>
-        </div>
+        <Suspense fallback={<ListingDetailSkeleton />}>
+          <ListingContent slug={slug} />
+        </Suspense>
       </div>
     </>
   );

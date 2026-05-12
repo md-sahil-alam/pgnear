@@ -1,6 +1,8 @@
 import ListingsClient from "./ListingsClient";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Suspense } from "react";
+import { ListingsPageSkeleton } from "@/components/skeletons";
 
 const res = await fetch("https://pgnear.in/api/listings?page=1&limit=10", {
   cache: "no-store",
@@ -26,41 +28,43 @@ export default function ListingsPage() {
     <div className="min-h-screen bg-white">
       <Navbar />
 
-      <div className="max-w-7xl mx-auto px-4 py-6 lg:py-8">
-        {/* ✅ H1 (STRONG SEO SIGNAL) */}
-        <h1 className="text-2xl lg:text-3xl font-bold mb-4 text-gray-900">
-          PG Near Presidency University Bangalore
-        </h1>
+      <Suspense fallback={<ListingsPageSkeleton />}>
+        <div className="max-w-7xl mx-auto px-4 py-6 lg:py-8">
+          {/* ✅ H1 (STRONG SEO SIGNAL) */}
+          <h1 className="text-2xl lg:text-3xl font-bold mb-4 text-gray-900">
+            PG Near Presidency University Bangalore
+          </h1>
 
-        {/* ✅ SCHEMA (RIGHT AFTER H1) */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ItemList",
-              name: "PG near Presidency University Bangalore",
-              itemListElement: listings.map(
-                (listing: Listing, index: number) => ({
-                  "@type": "ListItem",
-                  position: index + 1,
-                  name: listing.title,
-                  url: `https://pgnear.in/listing/${listing.slug}`,
-                }),
-              ),
-            }),
-          }}
-        />
+          {/* ✅ SCHEMA (RIGHT AFTER H1) */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "ItemList",
+                name: "PG near Presidency University Bangalore",
+                itemListElement: listings.map(
+                  (listing: Listing, index: number) => ({
+                    "@type": "ListItem",
+                    position: index + 1,
+                    name: listing.title,
+                    url: `https://pgnear.in/listing/${listing.slug}`,
+                  }),
+                ),
+              }),
+            }}
+          />
 
-        <p className="text-gray-600 max-w-2xl mb-8">
-          Looking for a PG near Presidency University Bangalore? Browse verified
-          PG listings with clear pricing, amenities, photos, and direct contact
-          with owners, without any hassle.
-        </p>
+          <p className="text-gray-600 max-w-2xl mb-8">
+            Looking for a PG near Presidency University Bangalore? Browse
+            verified PG listings with clear pricing, amenities, photos, and
+            direct contact with owners, without any hassle.
+          </p>
 
-        {/* ✅ LISTINGS */}
-        <ListingsClient initialListings={listings} />
-      </div>
+          {/* ✅ LISTINGS */}
+          <ListingsClient initialListings={listings} />
+        </div>
+      </Suspense>
 
       {/* ✅ SEO CONTENT SECTION */}
       <section className="max-w-4xl mx-auto px-4 py-16">

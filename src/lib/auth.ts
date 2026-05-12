@@ -32,6 +32,20 @@ export const authOptions = {
       },
     }),
   ],
+  callbacks: {
+    jwt({ token, user }: any) {
+      if (user?.id) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    session({ session, token }: any) {
+      if (session.user) {
+        session.user.id = token.id;
+      }
+      return session;
+    },
+  },
   session: {
     strategy: "jwt" as const,
   },

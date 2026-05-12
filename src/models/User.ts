@@ -16,6 +16,21 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
+    wishlist: [
+      {
+        listingId: {
+          type: Schema.Types.ObjectId,
+          ref: "Listing",
+          required: true,
+        },
+        title: String,
+        slug: String,
+        savedAt: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
     unlockedListings: [
       {
         listingId: {
@@ -52,4 +67,8 @@ const UserSchema = new Schema(
   { timestamps: true }
 );
 
+// Index for wishlist queries
+UserSchema.index({ firebaseUid: 1 });
+
 export default mongoose.models.User || mongoose.model("User", UserSchema);
+

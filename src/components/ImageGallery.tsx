@@ -34,7 +34,7 @@ export default function ImageGallery({ images }: { images: string[] }) {
     setCurrent((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  // 🔥 Keyboard navigation
+  //  Keyboard navigation
   useEffect(() => {
     if (!fullscreen) return;
 
@@ -48,7 +48,7 @@ export default function ImageGallery({ images }: { images: string[] }) {
     return () => window.removeEventListener("keydown", handleKey);
   }, [fullscreen]);
 
-  // 🔥 Swipe
+  //  Swipe
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.changedTouches[0].screenX;
   };
@@ -87,7 +87,7 @@ export default function ImageGallery({ images }: { images: string[] }) {
         )}
       </div>
 
-      {/* 🔥 Thumbnail Preview */}
+      {/* Thumbnail Preview */}
       {images.length > 1 && (
         <div className="flex gap-2 mt-3 overflow-x-auto px-3 py-2">
           {images.map((img, i) => (

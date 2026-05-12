@@ -8,7 +8,7 @@ export default function FiltersWrapper({ filters, setFilters }: any) {
 
   return (
     <>
-      {/* 📱 Mobile Button */}
+      {/* Mobile Button */}
       <div className="lg:hidden mb-4">
         <button
           onClick={() => setOpen(true)}
@@ -17,12 +17,12 @@ export default function FiltersWrapper({ filters, setFilters }: any) {
         </button>
       </div>
 
-      {/* 💻 Desktop Sidebar */}
+      {/* Desktop Sidebar */}
       <div className="hidden lg:block">
         <FilterPanel filters={filters} setFilters={setFilters} />
       </div>
 
-      {/* 📱 Mobile Drawer */}
+      {/*  Mobile Drawer */}
       {open && (
         <div className="fixed inset-0 z-50">
           {/* Overlay */}
