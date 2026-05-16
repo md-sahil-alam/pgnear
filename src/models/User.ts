@@ -49,6 +49,7 @@ const UserSchema = new Schema(
           type: Schema.Types.ObjectId,
           ref: "Listing",
         },
+        pgName: String,
         interactionType: {
           type: String,
           enum: ["call", "whatsapp"],

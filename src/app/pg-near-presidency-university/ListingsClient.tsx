@@ -155,7 +155,7 @@ export default function ListingsClient({
                   </h3>
 
                   {/* ✅ Safe price handling */}
-                  <p className="text-blue-600 font-bold text-lg mb-1">
+                  <p className="text-emerald-600 font-bold text-lg mb-1">
                     {listing.price
                       ? `₹${listing.price}`
                       : "Price not available"}

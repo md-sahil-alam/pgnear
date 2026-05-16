@@ -9,6 +9,7 @@ import { formatGender } from "@/lib/gender";
 import PhoneLoginModal from "@/components/PhoneLoginModal";
 import { Heart } from "lucide-react";
 import { WishlistPageSkeleton } from "@/components/skeletons";
+import Footer from "@/components/Footer";
 
 interface WishlistListing {
   _id: string;
@@ -65,7 +66,6 @@ export default function WishlistPage() {
   if (!user?.uid) {
     return (
       <>
-        <Navbar />
         <div className="min-h-screen bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 py-12">
             <div className="bg-white rounded-xl p-12 text-center border border-gray-200">
@@ -104,6 +104,7 @@ export default function WishlistPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Navbar />
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="mb-10">
@@ -234,6 +235,7 @@ export default function WishlistPage() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }

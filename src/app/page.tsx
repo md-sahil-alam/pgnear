@@ -48,7 +48,9 @@ export default async function HomePage() {
             </h1>
 
             <p className="  mt-2 text-sm md:text-base ">
-              Varified PG listings. Clear pricing. Direct contact.
+              Clear pricing, direct owner contact, and{" "}
+              <span className="text-emerald-600 font-bold "> cashback </span> on
+              successful bookings.
             </p>
 
             <div className="mt-5 w-2/4 md:w-1/4 tracking-wide mx-auto">

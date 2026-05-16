@@ -1,7 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Phone, MessageCircle, Users, TrendingUp } from "lucide-react";
+import {
+  Phone,
+  MessageCircle,
+  Users,
+  TrendingUp,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
 
 interface UserStat {
   _id: string;
@@ -13,6 +20,11 @@ interface UserStat {
   interactionsCount: number;
   calls: number;
   whatsapps: number;
+  recentInteractions?: {
+    pgName: string;
+    interactionType: string;
+    timestamp: string;
+  }[];
 }
 
 interface DashboardStats {
@@ -28,6 +40,7 @@ export default function DashboardPage() {
   const [users, setUsers] = useState<UserStat[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [expandedUserId, setExpandedUserId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchDashboardData();
@@ -66,7 +79,7 @@ export default function DashboardPage() {
   if (error) {
     return (
       <div className="min-h-screen bg-gray-50 p-8">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="bg-red-50 border border-red-200 text-red-700 px-6 py-4 rounded-lg">
             {error}
           </div>
@@ -77,14 +90,14 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 sm:p-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
             User Analytics Dashboard
           </h1>
           <p className="text-gray-600 mt-2">
-            Track user interactions and engagement
+            Track user interactions, engagement, and activity details
           </p>
         </div>
 
@@ -174,82 +187,172 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {/* Users Table */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">
-              Users ({users.length})
-            </h2>
-          </div>
+        {/* Users Cards Section */}
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Users ({users.length})
+          </h2>
 
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50 border-b border-gray-200">
-                <tr>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
-                    Name
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
-                    Phone
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
-                    Joined
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
-                    Last Active
-                  </th>
-                  <th className="px-6 py-3 text-center text-sm font-semibold text-gray-900">
-                    Unlocked
-                  </th>
-                  <th className="px-6 py-3 text-center text-sm font-semibold text-gray-900">
-                    Calls
-                  </th>
-                  <th className="px-6 py-3 text-center text-sm font-semibold text-gray-900">
-                    WhatsApp
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {users.map((user) => (
-                  <tr key={user._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm text-gray-900 font-medium">
-                      {user.name}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">
-                      {user.phoneNumber}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">
-                      {new Date(user.createdAt).toLocaleDateString()}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">
-                      {new Date(user.lastLoginAt).toLocaleDateString()}
-                    </td>
-                    <td className="px-6 py-4 text-center">
-                      <span className="inline-flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold">
-                        {user.unlockedListingsCount}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-center">
-                      <span className="inline-flex items-center justify-center w-8 h-8 bg-purple-100 text-purple-600 rounded-full text-sm font-semibold">
+          <div className="space-y-4">
+            {users.map((user) => (
+              <div
+                key={user._id}
+                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                {/* User Summary Row */}
+                <button
+                  onClick={() =>
+                    setExpandedUserId(
+                      expandedUserId === user._id ? null : user._id,
+                    )
+                  }
+                  className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition">
+                  <div className="flex items-center gap-4 flex-1">
+                    {/* User Info */}
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-gray-900">
+                        {user.name}
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        {user.phoneNumber}
+                      </p>
+                    </div>
+
+                    {/* Dates */}
+                    <div className="hidden sm:flex gap-6 text-sm">
+                      <div>
+                        <p className="text-gray-600">Joined</p>
+                        <p className="font-medium text-gray-900">
+                          {new Date(user.createdAt).toLocaleDateString()}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-gray-600">Last Active</p>
+                        <p className="font-medium text-gray-900">
+                          {new Date(user.lastLoginAt).toLocaleDateString()}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Stats Badges */}
+                    <div className="flex items-center gap-2">
+                      <span className="inline-flex items-center justify-center px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
                         {user.calls}
+                        <Phone size={14} className="ml-1" />
                       </span>
-                    </td>
-                    <td className="px-6 py-4 text-center">
-                      <span className="inline-flex items-center justify-center w-8 h-8 bg-green-100 text-green-600 rounded-full text-sm font-semibold">
+                      <span className="inline-flex items-center justify-center px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
                         {user.whatsapps}
+                        <MessageCircle size={14} className="ml-1" />
                       </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                      <span className="inline-flex items-center justify-center px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold">
+                        {user.interactionsCount}
+                      </span>
+                    </div>
+                  </div>
 
-            {users.length === 0 && (
-              <div className="px-6 py-12 text-center">
-                <p className="text-gray-500">No users yet</p>
+                  {/* Expand Icon */}
+                  <div className="ml-4">
+                    {expandedUserId === user._id ? (
+                      <ChevronUp className="text-gray-400" />
+                    ) : (
+                      <ChevronDown className="text-gray-400" />
+                    )}
+                  </div>
+                </button>
+
+                {/* Expanded Details */}
+                {expandedUserId === user._id && (
+                  <div className="border-t border-gray-200 px-6 py-4 bg-gray-50">
+                    {/* Mobile Date Info */}
+                    <div className="sm:hidden mb-4 grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <p className="text-gray-600">Joined</p>
+                        <p className="font-medium text-gray-900">
+                          {new Date(user.createdAt).toLocaleDateString()}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-gray-600">Last Active</p>
+                        <p className="font-medium text-gray-900">
+                          {new Date(user.lastLoginAt).toLocaleDateString()}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Interactions History */}
+                    <div className="mb-6">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-3">
+                        Interaction History ({user.interactionsCount})
+                      </h4>
+                      {user.recentInteractions &&
+                      user.recentInteractions.length > 0 ? (
+                        <div className="space-y-2 max-h-64 overflow-y-auto">
+                          {user.recentInteractions.map((interaction, idx) => (
+                            <div
+                              key={idx}
+                              className="flex items-center justify-between bg-white p-3 rounded-lg border border-gray-200">
+                              <div className="flex-1">
+                                <p className="font-medium text-gray-900">
+                                  {interaction.pgName}
+                                </p>
+                                <p className="text-xs text-gray-500">
+                                  {new Date(
+                                    interaction.timestamp,
+                                  ).toLocaleString()}
+                                </p>
+                              </div>
+                              <div className="ml-4">
+                                {interaction.interactionType === "call" ? (
+                                  <span className="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold">
+                                    <Phone size={14} /> Call
+                                  </span>
+                                ) : (
+                                  <span className="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">
+                                    <MessageCircle size={14} /> WhatsApp
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-gray-500 italic">
+                          No interactions yet
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Stats Summary */}
+                    <div className="grid grid-cols-3 gap-4 text-sm">
+                      <div className="bg-white p-3 rounded-lg border border-gray-200">
+                        <p className="text-gray-600">Calls</p>
+                        <p className="text-xl font-bold text-blue-600">
+                          {user.calls}
+                        </p>
+                      </div>
+                      <div className="bg-white p-3 rounded-lg border border-gray-200">
+                        <p className="text-gray-600">WhatsApps</p>
+                        <p className="text-xl font-bold text-green-600">
+                          {user.whatsapps}
+                        </p>
+                      </div>
+                      {/* <div className="bg-white p-3 rounded-lg border border-gray-200">
+                        <p className="text-gray-600">Unlocked</p>
+                        <p className="text-xl font-bold text-purple-600">
+                          {user.unlockedListingsCount}
+                        </p>
+                      </div> */}
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
+            ))}
           </div>
+
+          {users.length === 0 && (
+            <div className="bg-white rounded-lg p-12 text-center">
+              <p className="text-gray-500 text-lg">No users yet</p>
+            </div>
+          )}
         </div>
 
         {/* Footer */}

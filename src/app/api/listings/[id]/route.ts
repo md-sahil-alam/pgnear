@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { Types } from "mongoose";
 
 const ALLOWED_FIELDS = [
+  "owner",
   "title",
   "price",
   "gender",

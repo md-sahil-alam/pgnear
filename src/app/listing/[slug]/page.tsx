@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import { Suspense } from "react";
 import { ListingDetailSkeleton } from "@/components/skeletons";
 import ListingContent from "./components/ListingContent";
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "PG Listing Details",
@@ -23,6 +24,7 @@ export default async function ListingDetailPage({
           <ListingContent slug={slug} />
         </Suspense>
       </div>
+      <Footer />
     </>
   );
 }

@@ -106,7 +106,7 @@ export default async function ListingContent({ slug }: ListingContentProps) {
                   <tr className="border-t">
                     <td className="px-2 py-2">
                       <span className="flex items-center gap-1">
-                        1 Sharing
+                        3 Sharing
                         <UserRound size={14} />
                         <UserRound size={14} />
                         <UserRound size={14} />
@@ -114,7 +114,7 @@ export default async function ListingContent({ slug }: ListingContentProps) {
                       </span>
                     </td>
                     <td className="px-4 py-2 font-semibold text-emerald-600">
-                      ₹{serializedListing.ThreeSharingprice || "—"}
+                      ₹{serializedListing.threeSharingprice || "—"}
                     </td>
                   </tr>
 
@@ -219,6 +219,7 @@ export default async function ListingContent({ slug }: ListingContentProps) {
               whatsAppNumber={serializedListing.contactWhatsApp}
               listingId={serializedListing._id}
               ownerName={serializedListing.owner}
+              pgName={serializedListing.title}
             />
           </div>
         </div>

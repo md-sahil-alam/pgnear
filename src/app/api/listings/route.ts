@@ -2,14 +2,24 @@ import { connectDB } from "@/lib/db";
 import Listing from "@/models/Listing";
 import { NextResponse } from "next/server";
 
+function normalizeGender(value?: string) {
+  const normalized = value?.toString().trim().toLowerCase();
+  if (!normalized || normalized === "all" || normalized === "any") return "all";
+  if (normalized === "boys" || normalized === "boy" || normalized === "male") return "boys";
+  if (normalized === "girls" || normalized === "girl" || normalized === "female") return "girls";
+  return "all";
+}
+
 export async function POST(req: Request) {
   try {
     await connectDB();
 
     const body = await req.json();
+    const gender = normalizeGender(body.gender);
 
     const listing = await Listing.create({
       ...body,
+      gender,
       price: body.price || body.oneSharingprice || 0,
      slug:
   body.title
@@ -43,13 +53,14 @@ export async function GET(req: Request) {
 
   if (minPrice) query.price = { ...query.price, $gte: Number(minPrice) };
   if (maxPrice) query.price = { ...query.price, $lte: Number(maxPrice) };
-  if (gender && gender !== "all") {
+  const normalizedGender = normalizeGender(gender || undefined);
+  if (normalizedGender && normalizedGender !== "all") {
     const genderValues =
-      gender === "boys"
+      normalizedGender === "boys"
         ? ["boys", "male"]
-        : gender === "girls"
+        : normalizedGender === "girls"
         ? ["girls", "female"]
-        : [gender];
+        : [normalizedGender];
 
     query.gender = { $in: genderValues };
   }

@@ -144,9 +144,9 @@ export default function NewListingPage() {
                 Gender Preference
               </label>
               <Select name="gender" value={form.gender} onChange={handleChange}>
-                <option value="all">All</option>
-                <option value="boys">Boys</option>
-                <option value="girls">Girls</option>
+                <option value="all">all</option>
+                <option value="boys">boys</option>
+                <option value="girls">girls</option>
               </Select>
             </div>
 

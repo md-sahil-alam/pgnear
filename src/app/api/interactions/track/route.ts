@@ -6,9 +6,9 @@ export async function POST(request: NextRequest) {
   try {
     await connectDB();
 
-    const { firebaseUid, listingId, interactionType } = await request.json();
+    const { firebaseUid, listingId, interactionType, pgName } = await request.json();
 
-    if (!firebaseUid || !listingId || !interactionType) {
+    if (!firebaseUid || !listingId || !interactionType || !pgName) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
@@ -34,6 +34,7 @@ export async function POST(request: NextRequest) {
     // Add interaction to user's interactions array
     user.interactions.push({
       listingId,
+      pgName,
       interactionType,
       timestamp: new Date(),
     });

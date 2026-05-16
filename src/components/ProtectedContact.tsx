@@ -5,13 +5,14 @@ import { Lock, Phone, MessageCircle, Loader2 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import PhoneLoginModal from "./PhoneLoginModal";
 import { Button } from "./ui/Button";
-import { Check, Eye, EyeOff } from "lucide-react";
+import { Check, Eye } from "lucide-react";
 
 interface ProtectedContactProps {
   phoneNumber: string;
   whatsAppNumber?: string;
   listingId: string;
   ownerName: string;
+  pgName?: string;
 }
 
 export default function ProtectedContact({
@@ -19,6 +20,7 @@ export default function ProtectedContact({
   whatsAppNumber,
   listingId,
   ownerName,
+  pgName,
 }: ProtectedContactProps) {
   const { user, loading: authLoading } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -36,6 +38,7 @@ export default function ProtectedContact({
         body: JSON.stringify({
           firebaseUid: user.uid,
           listingId: listingId,
+          pgName: pgName || ownerName,
           interactionType: type,
         }),
       });
@@ -54,7 +57,12 @@ export default function ProtectedContact({
   const handleWhatsAppClick = async () => {
     await trackInteraction("whatsapp");
     const whatsAppNum = whatsAppNumber || phoneNumber;
-    window.location.href = `https://wa.me/91${whatsAppNum}?text=Hi, i found your pg form pgnear.in I'm interested in your PG`;
+    const senderName = user?.name || user?.phoneNumber || "";
+    const message = encodeURIComponent(
+      `Hi, I'm ${senderName} and I found your PG on pgnear.in I'm interested in your PG.`,
+    );
+
+    window.location.href = `https://wa.me/91${whatsAppNum}?text=${message}`;
   };
 
   const handleLoginSuccess = (userData: any) => {
@@ -75,9 +83,8 @@ export default function ProtectedContact({
     return (
       <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-6">
         <div className="mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">
-            Contact {ownerName}
-          </h3>
+          <h3 className="text-lg font-semibold text-gray-900">Contact</h3>
+
           <p className="text-gray-600 text-sm mt-1">
             You've unlocked the contact details for this PG
           </p>
@@ -92,9 +99,9 @@ export default function ProtectedContact({
             {trackingLoading ? (
               <Loader2 size={18} className="animate-spin" />
             ) : (
-              <Phone size={18} />
+              "Call"
             )}
-            Call: {phoneNumber}
+            <Phone size={18} />
           </Button>
 
           {whatsAppNumber && (
@@ -111,9 +118,13 @@ export default function ProtectedContact({
             </Button>
           )}
         </div>
+        <p className="text-gray-600 text-sm mt-6 text-center">
+          Get <span className=" text-emerald-600 font-bold ">Cashback</span>{" "}
+          reward on sucessful booking through us.
+        </p>
 
         {/* Contact Details Display */}
-        <div className="mt-4 pt-4 border-t border-emerald-200">
+        {/* <div className="mt-4 pt-4 border-t border-emerald-200">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <p className="text-gray-600 text-sm">Phone Number</p>
@@ -128,7 +139,7 @@ export default function ProtectedContact({
               </div>
             )}
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

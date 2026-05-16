@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
 
     // Get all users with their interaction counts
     const users = await User.find({})
-      .select("name phoneNumber createdAt lastLoginAt")
+      .select("name phoneNumber createdAt lastLoginAt interactions unlockedListings")
       .populate("unlockedListings.listingId", "title")
       .populate("interactions.listingId", "title")
       .sort({ createdAt: -1 });
@@ -27,6 +27,13 @@ export async function GET(request: NextRequest) {
       whatsapps: user.interactions.filter(
         (i: any) => i.interactionType === "whatsapp"
       ).length,
+      recentInteractions: user.interactions
+        .sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+        .map((interaction: any) => ({
+          pgName: interaction.pgName || interaction.listingId?.title || "Unknown PG",
+          interactionType: interaction.interactionType,
+          timestamp: interaction.timestamp,
+        })),
     }));
 
     // Calculate dashboard stats
