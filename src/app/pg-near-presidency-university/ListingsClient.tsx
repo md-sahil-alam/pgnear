@@ -3,11 +3,10 @@
 import { useEffect, useState, useRef } from "react";
 import FiltersWrapper from "./FilterWrapper";
 import Link from "next/link";
-import SaveButton from "@/components/SaveButton";
-import { Shield, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import { ListingsGridSkeleton } from "@/components/skeletons";
+import { formatGender } from "@/lib/gender";
 
-/* ✅ TYPE DEFINITIONS */
 type Listing = {
   _id: string;
   title: string;
@@ -28,7 +27,7 @@ type Filters = {
   amenities: string[];
 };
 
-/* ✅ COMPONENT */
+/*  COMPONENT */
 export default function ListingsClient({
   initialListings = [],
 }: {
@@ -49,7 +48,7 @@ export default function ListingsClient({
 
   const sentinelRef = useRef<HTMLDivElement>(null);
 
-  /* ✅ FETCH FUNCTION */
+  /* FETCH FUNCTION */
   const fetchListings = async (currentPage: number, append = false) => {
     if (append) setLoadingMore(true);
     else setLoading(true);
@@ -80,14 +79,14 @@ export default function ListingsClient({
     else setLoading(false);
   };
 
-  /* ✅ DEBOUNCE FILTER */
+  /* DEBOUNCE FILTER */
   useEffect(() => {
     setPage(1);
     setHasMore(true);
     fetchListings(1, false);
   }, [filters]);
 
-  /* ✅ INFINITE SCROLL */
+  /* INFINITE SCROLL */
   const pageRef = useRef(1);
 
   useEffect(() => {
@@ -105,7 +104,7 @@ export default function ListingsClient({
     return () => observer.disconnect();
   }, [hasMore, loadingMore]);
 
-  /* ✅ UI */
+  /* UI */
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
       {/* Filters */}
@@ -144,9 +143,9 @@ export default function ListingsClient({
                   )}
 
                   {/* Save Button */}
-                  <div className="absolute top-2 right-2">
+                  {/* <div className="absolute top-2 right-2">
                     <SaveButton listingId={listing._id} size="md" />
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Content */}
@@ -189,8 +188,9 @@ export default function ListingsClient({
 
                   <div className="flex items-center justify-between text-sm text-gray-500">
                     <span className="capitalize">
-                      {listing.gender || "Any"}
+                      {formatGender(listing.gender)}
                     </span>
+
                     <span>
                       {listing.distanceFromUni
                         ? `${listing.distanceFromUni}m`

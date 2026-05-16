@@ -15,6 +15,7 @@ import { Tooltip } from "@/components/ui/Tooltip";
 import { Users, MapPin, IndianRupee, ShieldCheck, Check } from "lucide-react";
 import ProtectedContact from "@/components/ProtectedContact";
 import ListingHeader from "@/components/ListingHeader";
+import { formatGender } from "@/lib/gender";
 
 interface ListingContentProps {
   slug: string;
@@ -60,7 +61,7 @@ export default async function ListingContent({ slug }: ListingContentProps) {
             <div>
               <p className="text-gray-600 text-sm">Gender</p>
               <p className="text-lg font-semibold capitalize">
-                {serializedListing.gender}
+                {formatGender(serializedListing.gender)}
               </p>
             </div>
             <div>

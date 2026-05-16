@@ -30,12 +30,12 @@ export default function ListingsPage() {
 
       <Suspense fallback={<ListingsPageSkeleton />}>
         <div className="max-w-7xl mx-auto px-4 py-6 lg:py-8">
-          {/* ✅ H1 (STRONG SEO SIGNAL) */}
+          {/* H1 (STRONG SEO SIGNAL) */}
           <h1 className="text-2xl lg:text-3xl font-bold mb-4 text-gray-900">
             PG Near Presidency University Bangalore
           </h1>
 
-          {/* ✅ SCHEMA (RIGHT AFTER H1) */}
+          {/* SCHEMA (RIGHT AFTER H1) */}
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
@@ -61,12 +61,12 @@ export default function ListingsPage() {
             direct contact with owners, without any hassle.
           </p>
 
-          {/* ✅ LISTINGS */}
+          {/* LISTINGS */}
           <ListingsClient initialListings={listings} />
         </div>
       </Suspense>
 
-      {/* ✅ SEO CONTENT SECTION */}
+      {/* SEO CONTENT SECTION */}
       <section className="max-w-4xl mx-auto px-4 py-16">
         <h2 className="text-2xl font-bold mb-4 text-gray-900">
           Why Choose a PG Near Presidency University Bangalore?

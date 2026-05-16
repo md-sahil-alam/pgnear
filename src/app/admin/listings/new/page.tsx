@@ -17,7 +17,7 @@ export default function NewListingPage() {
     oneSharingprice: "",
     twoSharingprice: "",
     threeSharingprice: "",
-    gender: "any",
+    gender: "all",
     amenities: "",
     contactPhone: "",
     contactWhatsApp: "",
@@ -144,9 +144,9 @@ export default function NewListingPage() {
                 Gender Preference
               </label>
               <Select name="gender" value={form.gender} onChange={handleChange}>
-                <option value="any">Any</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="all">All</option>
+                <option value="boys">Boys</option>
+                <option value="girls">Girls</option>
               </Select>
             </div>
 

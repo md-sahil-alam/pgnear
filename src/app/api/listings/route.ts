@@ -43,7 +43,16 @@ export async function GET(req: Request) {
 
   if (minPrice) query.price = { ...query.price, $gte: Number(minPrice) };
   if (maxPrice) query.price = { ...query.price, $lte: Number(maxPrice) };
-  if (gender && gender !== "all") query.gender = gender;
+  if (gender && gender !== "all") {
+    const genderValues =
+      gender === "boys"
+        ? ["boys", "male"]
+        : gender === "girls"
+        ? ["girls", "female"]
+        : [gender];
+
+    query.gender = { $in: genderValues };
+  }
   if (amenities) {
     const arr = amenities.split(",");
     query.amenities = { $in: arr };

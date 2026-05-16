@@ -2,6 +2,7 @@
 
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import { genderOptions } from "@/lib/gender";
 
 export default function FilterPanel({
   filters,
@@ -52,18 +53,18 @@ export default function FilterPanel({
         <p className="text-sm font-medium mb-2">Gender</p>
 
         <div className="flex gap-2">
-          {["all", "male", "female"].map((g) => (
+          {genderOptions.map((option) => (
             <button
-              key={g}
+              key={option.value}
               onClick={() =>
-                setFilters((prev: any) => ({ ...prev, gender: g }))
+                setFilters((prev: any) => ({ ...prev, gender: option.value }))
               }
               className={`px-3 py-1 rounded border ${
-                filters.gender === g
+                filters.gender === option.value
                   ? "bg-black text-white"
                   : "bg-white text-gray-600"
               }`}>
-              {g}
+              {option.label}
             </button>
           ))}
         </div>

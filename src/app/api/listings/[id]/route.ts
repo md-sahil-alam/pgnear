@@ -51,26 +51,6 @@ export async function PATCH(
       }
     });
 
-    // If title is being updated, regenerate slug
-    if (updateData.title) {
-      const newSlug = generateSlug(updateData.title);
-
-      // Check if new slug already exists (from different listing)
-      const existingListing = await Listing.findOne({
-        slug: newSlug,
-        _id: { $ne: id },
-      });
-
-      if (existingListing) {
-        return NextResponse.json(
-          { success: false, error: "A listing with this title already exists" },
-          { status: 409 }
-        );
-      }
-
-      updateData.slug = newSlug;
-    }
-
     const listing = await Listing.findByIdAndUpdate(id, updateData, {
       new: true,
     });

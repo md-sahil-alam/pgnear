@@ -5,6 +5,7 @@ import DeleteButton from "./DeleteButton";
 import EditButton from "./EditButton";
 import ToggleButton from "./ToggleButton";
 import { BadgeCheck, CircleCheckBig, CircleOff, Search } from "lucide-react";
+import { formatGender } from "@/lib/gender";
 
 interface Listing {
   _id: string;
@@ -128,7 +129,7 @@ export default function ListingsTable({ initialListings }: ListingsTableProps) {
                   {/* Gender */}
                   <td className="px-5 py-4 text-center">
                     <span className="capitalize px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-sm">
-                      {item.gender}
+                      {formatGender(item.gender)}
                     </span>
                   </td>
 

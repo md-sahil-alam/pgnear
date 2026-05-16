@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import SaveButton from "@/components/SaveButton";
 import { ShieldCheck } from "lucide-react";
+import { formatGender } from "@/lib/gender";
 
 interface Listing {
   _id: string;
@@ -81,7 +82,9 @@ export default function HomeListings({ listings }: HomeListingsProps) {
 
               {/* Meta */}
               <div className="flex items-center justify-between text-sm text-gray-500 mt-3">
-                <span className="capitalize">{listing.gender || "Any"}</span>
+                <span className="capitalize">
+                  {formatGender(listing.gender)}
+                </span>
 
                 <span>
                   {listing.distanceFromUni

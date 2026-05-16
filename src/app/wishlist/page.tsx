@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 import SaveButton from "@/components/SaveButton";
+import { formatGender } from "@/lib/gender";
 import PhoneLoginModal from "@/components/PhoneLoginModal";
 import { Heart } from "lucide-react";
 import { WishlistPageSkeleton } from "@/components/skeletons";
@@ -200,7 +201,7 @@ export default function WishlistPage() {
                     {/* Meta */}
                     <div className="flex items-center justify-between text-sm text-gray-500 mt-3">
                       <span className="capitalize">
-                        {listing.gender || "Any"}
+                        {formatGender(listing.gender)}
                       </span>
                       <span>
                         {listing.distanceFromUni

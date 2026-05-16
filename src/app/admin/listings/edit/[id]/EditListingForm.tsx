@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import ImageUpload from "@/components/ImageUpload";
+import { normalizeGenderValue } from "@/lib/gender";
 
 interface Listing {
   _id: string;
@@ -37,7 +38,7 @@ export default function EditListingForm({ listing }: { listing: Listing }) {
     twoSharingprice: listing.twoSharingprice?.toString() || "",
     threeSharingprice: listing.threeSharingprice?.toString() || "",
 
-    gender: listing.gender || "any",
+    gender: normalizeGenderValue(listing.gender || "all"),
 
     amenities: listing.amenities?.join(", ") || "",
 
@@ -196,9 +197,9 @@ export default function EditListingForm({ listing }: { listing: Listing }) {
           </label>
 
           <Select name="gender" value={form.gender} onChange={handleChange}>
-            <option value="any">Any</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="all">All</option>
+            <option value="boys">Boys</option>
+            <option value="girls">Girls</option>
           </Select>
         </div>
 
