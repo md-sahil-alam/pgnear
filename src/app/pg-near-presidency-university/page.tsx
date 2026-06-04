@@ -4,6 +4,9 @@ import Footer from "@/components/Footer";
 import { Suspense } from "react";
 import { ListingsPageSkeleton } from "@/components/skeletons";
 
+// Revalidate every 60 seconds to pick up new/deleted listings
+export const revalidate = 60;
+
 const res = await fetch("https://pgnear.in/api/listings?page=1&limit=10", {
   cache: "no-store",
 });

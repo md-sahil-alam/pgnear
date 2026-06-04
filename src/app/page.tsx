@@ -10,6 +10,9 @@ import HomeListings from "@/components/HomeListings";
 import { Suspense } from "react";
 import { HomePageSkeleton } from "@/components/skeletons";
 
+// Revalidate every 60 seconds to pick up new/deleted listings
+export const revalidate = 60;
+
 export default async function HomePage() {
   await connectDB();
 
