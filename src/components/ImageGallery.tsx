@@ -64,7 +64,10 @@ export default function ImageGallery({ images }: { images: string[] }) {
   return (
     <>
       {/* Main Image */}
-      <div className="relative">
+      <div
+        className="relative"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}>
         <img
           src={images[current]}
           className="w-full h-96 object-cover cursor-pointer transition duration-300"
