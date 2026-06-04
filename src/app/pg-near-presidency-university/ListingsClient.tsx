@@ -13,6 +13,7 @@ type Listing = {
   slug: string;
   images?: string[];
   isVerified?: boolean;
+  twoSharingprice?: number;
   threeSharingprice?: number;
   address?: string;
   amenities?: string[];
@@ -156,8 +157,8 @@ export default function ListingsClient({
 
                   {/* ✅ Safe price handling */}
                   <p className="text-emerald-600 font-bold text-lg mb-1">
-                    {listing.threeSharingprice
-                      ? `₹${listing.threeSharingprice}`
+                    {listing.threeSharingprice || listing.twoSharingprice
+                      ? `₹${listing.threeSharingprice || listing.twoSharingprice}`
                       : "Price not available"}
                     <span className="text-sm text-gray-500 font-normal">
                       /month

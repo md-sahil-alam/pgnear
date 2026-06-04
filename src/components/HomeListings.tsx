@@ -69,7 +69,7 @@ export default function HomeListings({ listings }: HomeListingsProps) {
 
               {/* Price */}
               <p className="text-lg font-bold text-emerald-600 mt-2">
-                ₹{listing.threeSharingprice || "—"}
+                ₹{listing.threeSharingprice || listing.twoSharingprice || "—"}
                 <span className="text-sm text-gray-500 font-normal">
                   /month
                 </span>
