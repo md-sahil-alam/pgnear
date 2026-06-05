@@ -157,9 +157,10 @@ export default function ListingsClient({
 
                   {/* ✅ Safe price handling */}
                   <p className="text-emerald-600 font-bold text-lg mb-1">
-                    {listing.threeSharingprice || listing.twoSharingprice
-                      ? `₹${listing.threeSharingprice || listing.twoSharingprice}`
-                      : "Price not available"}
+                    ₹
+                    {listing.threeSharingprice ||
+                      listing.twoSharingprice ||
+                      "—"}
                     <span className="text-sm text-gray-500 font-normal">
                       /month
                     </span>

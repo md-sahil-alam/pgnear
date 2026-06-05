@@ -12,6 +12,7 @@ interface Listing {
   title: string;
   images?: string[];
   threeSharingprice?: number;
+  twoSharingprice?: number;
   address?: string;
   gender?: string;
   distanceFromUni?: number;
