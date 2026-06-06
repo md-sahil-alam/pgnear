@@ -37,8 +37,99 @@ export default async function ListingContent({ slug }: ListingContentProps) {
   )}`;
   const phoneLink = `tel:${serializedListing.contactPhone}`;
 
+  // Generate schema markup for LocalBusiness + AggregateOffer
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: serializedListing.title,
+    description: `${serializedListing.title} - PG accommodation near Presidency University Bangalore`,
+    image: serializedListing.images?.[0] || "",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: serializedListing.address || "",
+      addressLocality: "Bangalore",
+      addressRegion: "Karnataka",
+      postalCode: "560109",
+      addressCountry: "IN",
+    },
+    telephone: `+91${serializedListing.contactPhone}`,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "Customer Service",
+      telephone: `+91${serializedListing.contactPhone}`,
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: serializedListing.latitude || 13.145,
+      longitude: serializedListing.longitude || 77.5986,
+    },
+    areaServed: "Bangalore",
+    priceRange:
+      "₹" +
+      Math.min(
+        serializedListing.threeSharingprice || 999999,
+        serializedListing.twoSharingprice || 999999,
+        serializedListing.oneSharingprice || 999999,
+      ),
+    aggregateOffer: {
+      "@type": "AggregateOffer",
+      availability: "https://schema.org/InStock",
+      priceCurrency: "INR",
+      offers: [
+        ...(serializedListing.threeSharingprice
+          ? [
+              {
+                "@type": "Offer",
+                name: "3 Sharing",
+                price: serializedListing.threeSharingprice,
+                availability: "https://schema.org/InStock",
+              },
+            ]
+          : []),
+        ...(serializedListing.twoSharingprice
+          ? [
+              {
+                "@type": "Offer",
+                name: "2 Sharing",
+                price: serializedListing.twoSharingprice,
+                availability: "https://schema.org/InStock",
+              },
+            ]
+          : []),
+        ...(serializedListing.oneSharingprice
+          ? [
+              {
+                "@type": "Offer",
+                name: "1 Sharing",
+                price: serializedListing.oneSharingprice,
+                availability: "https://schema.org/InStock",
+              },
+            ]
+          : []),
+      ],
+    },
+    amenities: serializedListing.amenities || [],
+    review: {
+      "@type": "Review",
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: serializedListing.isVerified ? "5" : "4",
+      },
+      author: {
+        "@type": "Organization",
+        name: "PG Near",
+      },
+    },
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
+      {/* Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+
       {/* Back Link */}
       <Link
         href="/pg-near-presidency-university"
@@ -213,6 +304,15 @@ export default async function ListingContent({ slug }: ListingContentProps) {
             <h2 className="text-2xl font-bold text-gray-700 mb-2 flex items-center gap-2">
               Owner Contact
             </h2>
+            <p className="">
+              booke with us and and earn exciting
+              <Link href="/rewards" className="text-emerald-600 font-bold">
+                {" "}
+                Cashback Rewards
+              </Link>{" "}
+              on successful booking through us.
+            </p>
+
             {/* ProtectedContact Component */}
             <ProtectedContact
               phoneNumber={serializedListing.contactPhone}
@@ -221,6 +321,10 @@ export default async function ListingContent({ slug }: ListingContentProps) {
               ownerName={serializedListing.owner}
               pgName={serializedListing.title}
             />
+            <p className="text-gray-600 mb-4">
+              Contact details are protected to prevent misuse. Click unlock and
+              view the contact information.
+            </p>
           </div>
         </div>
       </div>

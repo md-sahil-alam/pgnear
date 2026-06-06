@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Suspense } from "react";
 import { ListingsPageSkeleton } from "@/components/skeletons";
+import { Metadata } from "next";
 
 // Revalidate every 60 seconds to pick up new/deleted listings
 export const revalidate = 60;
@@ -20,10 +21,32 @@ type Listing = {
   slug: string;
 };
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "PG Near Presidency University Bangalore | Verified PG Listings",
   description:
-    "Find PG near Presidency University Bangalore with verified listings, clear pricing, photos, and direct contact with owners. No brokers.",
+    "Browse verified PG accommodations near Presidency University Bangalore with clear pricing, amenities, photos, and direct owner contact. No brokers involved.",
+  keywords: [
+    "PG near Presidency University Bangalore",
+    "Girls hostel near Presidency University",
+    "Boys hostel near Presidency University",
+    "Accommodation Bangalore",
+    "Verified PG listings",
+    "PG in Dibbur",
+    "PG in Rajanakunte",
+    "Single room PG near Presidency University",
+    "Female PG near Presidency University Bangalore",
+  ],
+  openGraph: {
+    title: "PG Near Presidency University Bangalore",
+    description:
+      "Verified PG listings with clear pricing and direct owner contact",
+    url: "https://pgnear.in/pg-near-presidency-university",
+    siteName: "PG Near",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://pgnear.in/pg-near-presidency-university",
+  },
 };
 
 export default function ListingsPage() {

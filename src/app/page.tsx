@@ -9,9 +9,38 @@ import { Users, MapPin, IndianRupee, ShieldCheck, Heart } from "lucide-react";
 import HomeListings from "@/components/HomeListings";
 import { Suspense } from "react";
 import { HomePageSkeleton } from "@/components/skeletons";
+import { Metadata } from "next";
 
 // Revalidate every 60 seconds to pick up new/deleted listings
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "PG Near Presidency University Bangalore | Verified PG Listings",
+  description:
+    "Find verified PG accommodations near Presidency University Bangalore with clear pricing, direct owner contact, and cashback rewards on bookings.",
+  keywords: [
+    "PG near Presidency University",
+    "Girls PG Bangalore",
+    "Boys PG Bangalore",
+    "Hostel near Presidency University",
+    "Affordable PG Bangalore",
+    "PG in Dibbur",
+    "PG in Rajanakunte",
+    "Single room PG near Presidency University",
+    "Female PG near Presidency University Bangalore",
+  ],
+  openGraph: {
+    title: "PG Near Presidency University Bangalore | Verified PG Listings",
+    description:
+      "Find verified PG accommodations with clear pricing and direct owner contact",
+    url: "https://pgnear.in",
+    siteName: "PG Near",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://pgnear.in",
+  },
+};
 
 export default async function HomePage() {
   await connectDB();
@@ -30,7 +59,7 @@ export default async function HomePage() {
       <section className="relative w-full h-[70vh] min-h-125 overflow-hidden">
         {/* Background Image */}
         <img
-          src="https://res.cloudinary.com/dd1rxc66q/image/upload/v1777930318/ChatGPT_Image_May_5_2026_03_01_21_AM_fn0nbu.png"
+          src="https://res.cloudinary.com/dd1rxc66q/image/upload/v1780742857/pgnear_heroimg_presidency_unversity.png"
           alt="PG near Presidency University Bangalore"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -51,9 +80,15 @@ export default async function HomePage() {
             </h1>
 
             <p className="  mt-2 text-sm md:text-base ">
-              Clear pricing, direct owner contact, and{" "}
-              <span className="text-emerald-600 font-bold "> cashback </span> on
-              successful bookings.
+              Varified PGs, direct owner contact, and
+              <Link href="/rewards">
+                <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2 py-1.5 text-md font-medium mx-1.5 text-emerald-600  inline-flex items-center">
+                  <span className="inline-block -rotate-2 hover:scale-110 transition-transform">
+                    Cashback
+                  </span>
+                </span>
+              </Link>
+              on successful bookings, and rewards for referring friends.
             </p>
 
             <div className="mt-5 w-2/4 md:w-1/4 tracking-wide mx-auto">

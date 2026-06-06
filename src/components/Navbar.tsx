@@ -48,10 +48,22 @@ export default function Navbar() {
             </Link>
 
             <Link
+              href="/blog"
+              className="text-gray-700 hover:text-blue-600 transition font-medium">
+              Blog
+            </Link>
+
+            <Link
               href="/wishlist"
               className="text-red-600 transition font-medium flex items-center gap-2">
               <Heart size={18} />
               Wishlist
+            </Link>
+
+            <Link
+              href="/rewards"
+              className="text-gray-700 hover:text-blue-600 transition font-medium">
+              Cash Back
             </Link>
 
             <Link
@@ -121,12 +133,33 @@ export default function Navbar() {
               Home
             </Link>
 
+            <hr className="border-gray-100"></hr>
+
             <Link
               href="/pg-near-presidency-university"
               onClick={() => setMenuOpen(false)}
               className="block text-gray-700 font-medium">
               Listings
             </Link>
+
+            <hr className="border-gray-100"></hr>
+
+            <Link
+              href="/blog"
+              onClick={() => setMenuOpen(false)}
+              className="block text-gray-700 font-medium">
+              Blog
+            </Link>
+
+            <hr className="border-gray-100"></hr>
+
+            <Link
+              href="/rewards"
+              className="block text-gray-700 hover:text-blue-600 transition font-medium">
+              Cash Back
+            </Link>
+
+            <hr className="border-gray-100"></hr>
 
             <Link
               href="/about"

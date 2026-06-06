@@ -38,6 +38,14 @@ export default function Footer() {
                   Browse Pg near Presidency University Bangalore
                 </Link>
               </li>
+
+              <li>
+                <Link
+                  href="/rewards"
+                  className="hover:text-blue-600 transition">
+                  Cash Back
+                </Link>
+              </li>
               <li>
                 <Link href="/about" className="hover:text-blue-600 transition">
                   About

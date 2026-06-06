@@ -6,6 +6,7 @@ import { useAuth } from "@/context/AuthContext";
 import PhoneLoginModal from "./PhoneLoginModal";
 import { Button } from "./ui/Button";
 import { Check, Eye } from "lucide-react";
+import Link from "next/link";
 
 interface ProtectedContactProps {
   phoneNumber: string;
@@ -49,20 +50,21 @@ export default function ProtectedContact({
     }
   };
 
-  const handleCallClick = async () => {
+  const handleCallClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
     await trackInteraction("call");
-    window.location.href = `tel:+91${phoneNumber}`;
+    window.open(`tel:+91${phoneNumber}`, "_blank");
   };
 
-  const handleWhatsAppClick = async () => {
+  const handleWhatsAppClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
     await trackInteraction("whatsapp");
     const whatsAppNum = whatsAppNumber || phoneNumber;
     const senderName = user?.name || user?.phoneNumber || "";
     const message = encodeURIComponent(
-      `Hi, I'm ${senderName} and I found your PG on pgnear.in I'm interested in your PG.`,
+      `Hi, I'm ${senderName}. I found your PG on pgnear.in and I'm interested in your PG. Is it available?`,
     );
-
-    window.location.href = `https://wa.me/91${whatsAppNum}?text=${message}`;
+    window.open(`https://wa.me/91${whatsAppNum}?text=${message}`, "_blank");
   };
 
   const handleLoginSuccess = (userData: any) => {
@@ -92,7 +94,7 @@ export default function ProtectedContact({
 
         {/* Phone and WhatsApp Buttons */}
         <div className="flex flex-col sm:flex-row gap-3">
-          <Button
+          <button
             onClick={handleCallClick}
             disabled={trackingLoading}
             className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2">
@@ -102,10 +104,10 @@ export default function ProtectedContact({
               "Call"
             )}
             <Phone size={18} />
-          </Button>
+          </button>
 
           {whatsAppNumber && (
-            <Button
+            <button
               onClick={handleWhatsAppClick}
               disabled={trackingLoading}
               className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-gray-300 text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2">
@@ -115,7 +117,7 @@ export default function ProtectedContact({
                 <MessageCircle size={18} />
               )}
               WhatsApp
-            </Button>
+            </button>
           )}
         </div>
         <p className="text-gray-600 text-sm mt-6 text-center">

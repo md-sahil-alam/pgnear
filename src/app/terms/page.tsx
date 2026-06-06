@@ -63,9 +63,9 @@ export default function TermsPage() {
           4. User Responsibility
         </h2>
         <ul className="list-disc pl-5 text-gray-600 space-y-2">
-          <li>Verify all information before making decisions</li>
-          <li>Communicate respectfully with PG owners</li>
-          <li>Do not misuse contact information</li>
+          <li>Verify all information before making decisions.</li>
+          <li>Communicate respectfully with PG owners.</li>
+          <li>Do not misuse contact information.</li>
         </ul>
 
         {/* Section 5 */}
@@ -74,53 +74,121 @@ export default function TermsPage() {
         </h2>
 
         <p className="text-gray-600 mb-4">
-          PG Near may offer cashback rewards to users who successfully book a PG
-          through our platform and provide valid proof of booking.
+          PG Near may offer cashback rewards of up to ₹500 to eligible users who
+          successfully book a PG through our platform and complete the
+          verification process.
         </p>
 
         <ul className="list-disc pl-5 text-gray-600 space-y-2">
-          <li>Cashback eligibility is subject to successful verification.</li>
           <li>
-            Users may be asked to provide booking confirmation, payment receipt,
-            booking proof, or other relevant details.
+            Cashback is available only for genuine and successfully completed PG
+            bookings.
           </li>
           <li>
-            Cashback amounts may vary and are not guaranteed for every booking.
+            Users must submit valid booking proof, such as payment receipts,
+            screenshots, booking confirmations, or other documents requested by
+            PG Near.
           </li>
           <li>
-            Fake, edited, misleading, or invalid proofs may result in rejection
-            of cashback requests.
+            All cashback claims are subject to verification with the respective
+            PG owner.
           </li>
           <li>
-            PG Near reserves the right to approve, reject, or cancel cashback
-            claims at its discretion.
+            Cashback amounts may vary depending on the PG, offer, or promotional
+            campaign.
+          </li>
+          <li>
+            Users can claim cashback by contacting PG Near on WhatsApp at{" "}
+            <span className="font-medium">+91 8709555934</span> and submitting
+            the required booking proof.
+          </li>
+          <li>
+            Cashback processing may take up to 14 days after successful
+            verification.
+          </li>
+          <li>
+            Users may be asked to provide UPI details or other payment
+            information for reward processing.
+          </li>
+          <li>
+            Rewards are only applicable for genuine and completed bookings. If a
+            booking is cancelled, reversed, refunded, found to be fraudulent, or
+            cannot be verified with the PG owner, rewards may be rejected or
+            recovered.
+          </li>
+          <li>
+            Fake, edited, misleading, duplicate, or fraudulent claims may result
+            in rejection of rewards and suspension from future reward programs.
           </li>
         </ul>
 
         {/* Section 6 */}
         <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-2">
-          6. Prohibited Activities
+          6. Referral Program
         </h2>
+
+        <p className="text-gray-600 mb-4">
+          PG Near may offer referral rewards to users who successfully refer new
+          students who later complete a verified PG booking through our
+          platform.
+        </p>
+
         <ul className="list-disc pl-5 text-gray-600 space-y-2">
-          <li>Posting false or misleading information</li>
-          <li>Using the platform for illegal purposes</li>
-          <li>Attempting to harm or disrupt the platform</li>
-          <li>Submitting fake booking proofs or cashback claims</li>
+          <li>
+            Referrers may earn rewards of up to ₹200 for each successfully
+            verified booking.
+          </li>
+          <li>
+            Referral rewards are only considered when the booked student
+            provides the referrer's name and phone number during the
+            verification process.
+          </li>
+          <li>
+            Referral rewards are processed only after booking verification and
+            owner confirmation of sucessful booking.
+          </li>
+          <li>
+            There is no fixed limit on successful referral rewards; however, all
+            referrals must be genuine and verifiable.
+          </li>
+          <li>
+            Fake, duplicate, misleading, or fraudulent referrals may be
+            rejected.
+          </li>
+          <li>
+            PG Near reserves the right to modify, suspend, or discontinue the
+            referral program at any time.
+          </li>
         </ul>
 
+        {/* Section 7 */}
         <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-2">
-          7. Privacy & User Data
+          7. Prohibited Activities
+        </h2>
+        <ul className="list-disc pl-5 text-gray-600 space-y-2">
+          <li>Posting false or misleading information.</li>
+          <li>Using the platform for illegal purposes.</li>
+          <li>Attempting to harm or disrupt the platform.</li>
+          <li>Submitting fake booking proofs or cashback claims.</li>
+          <li>Creating fraudulent referrals or duplicate accounts.</li>
+        </ul>
+
+        {/* Section 8 */}
+        <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-2">
+          8. Privacy & User Data
         </h2>
 
         <p className="text-gray-600">
           By using PG Near, you agree that we may collect and store limited user
-          information such as contact details, booking proofs, and communication
-          records for verification, support, and platform improvement purposes.
-          We do not sell personal user data to third parties.
+          information such as contact details, booking proofs, referral details,
+          and communication records for verification, support, and platform
+          improvement purposes. We do not sell personal user data to third
+          parties.
         </p>
 
+        {/* Section 9 */}
         <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-2">
-          8. Listing Removal & Suspension
+          9. Listing Removal & Suspension
         </h2>
 
         <p className="text-gray-600">
@@ -129,8 +197,9 @@ export default function TermsPage() {
           violates our platform policies.
         </p>
 
+        {/* Section 10 */}
         <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-2">
-          9. Third-Party Interactions
+          10. Third-Party Interactions
         </h2>
 
         <p className="text-gray-600">
@@ -139,49 +208,56 @@ export default function TermsPage() {
           responsible for third-party actions, behavior, or transactions.
         </p>
 
+        {/* Section 11 */}
         <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-2">
-          10. Cashback Processing
+          11. Cashback & Referral Reward Processing
         </h2>
 
         <p className="text-gray-600">
-          Cashback rewards may take time to process after successful
-          verification. Processing timelines may vary depending on booking
-          confirmation and owner validation.
+          Cashback and referral rewards may take up to 14 days to process after
+          successful verification with the PG owner. Processing timelines may
+          vary depending on booking confirmation and verification requirements.
         </p>
 
-        {/* Section 7 */}
+        {/* Section 12 */}
         <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-2">
-          11. Limitation of Liability
+          12. Limitation of Liability
         </h2>
         <p className="text-gray-600">
-          PG Near is not responsible for any loss, damage, or issues arising
-          from interactions between users and PG owners.
+          PG Near is not responsible for any loss, damage, disputes, or issues
+          arising from interactions, agreements, or transactions between users
+          and PG owners.
         </p>
 
+        {/* Section 13 */}
         <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-2">
-          12. Platform Content
+          13. Platform Content
         </h2>
 
         <p className="text-gray-600">
-          The PG Near name, branding, website design, and platform content may
-          not be copied, reproduced, or misused without permission.
+          The PG Near name, branding, website design, content, images, and
+          platform materials may not be copied, reproduced, distributed, or
+          misused without permission.
         </p>
 
-        {/* Section 8 */}
+        {/* Section 14 */}
         <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-2">
-          13. Changes to Terms
+          14. Changes to Terms
         </h2>
         <p className="text-gray-600">
           We may update these terms at any time. Continued use of the platform
-          means you accept the updated terms.
+          after any changes constitutes acceptance of the updated terms.
         </p>
 
-        {/* Section 9 */}
+        {/* Section 15 */}
         <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-2">
-          14. Contact
+          15. Contact
         </h2>
         <p className="text-gray-600">
-          If you have any questions about these terms, feel free to contact us.
+          If you have any questions regarding these terms, cashback claims,
+          referral rewards, booking verification, or platform usage, please
+          contact us on WhatsApp at{" "}
+          <span className="font-medium">+91 8709555934</span>.
         </p>
       </div>
 
