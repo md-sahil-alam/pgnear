@@ -54,11 +54,17 @@ export default function RewardsPage() {
                 Claim on WhatsApp
               </Link>
 
+              <Link
+                href="https://www.pgnear.in/"
+                className="inline-flex items-center justify-center rounded-xl border border-gray-300 px-8 py-4 font-semibold text-gray-700 hover:bg-gray-50 transition">
+                View PGs
+              </Link>
+              {/* 
               <a
                 href="#how-it-works"
                 className="inline-flex items-center justify-center rounded-xl border border-gray-300 px-8 py-4 font-semibold text-gray-700 hover:bg-gray-50 transition">
                 Learn More
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
@@ -218,16 +224,14 @@ export default function RewardsPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Eligibility</h2>
 
           <ul className="space-y-4 text-gray-700">
-            <li>✅ All PGs listed on PG Near are eligible.</li>
-            <li>✅ Valid booking proof is required.</li>
-            <li>✅ Verification with the PG owner is required.</li>
-            <li>✅ Cashback and referral rewards may take up to 14 days.</li>
+            <li>All PGs listed on PG Near are eligible.</li>
+            <li>Valid booking proof is required.</li>
+            <li>Verification with the PG owner is required.</li>
+            <li>Cashback and referral rewards may take up to 14 days.</li>
+            <li>Users can claim rewards for multiple successful bookings.</li>
             <li>
-              ✅ Users can claim rewards for multiple successful bookings.
-            </li>
-            <li>
-              ✅ The referrer identified by the booked student during
-              verification will be considered the valid referrer.
+              The referrer identified by the booked student during verification
+              will be considered the valid referrer.
             </li>
           </ul>
         </div>
