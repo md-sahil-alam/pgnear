@@ -223,7 +223,7 @@ export default function RewardsPage() {
         <div className="rounded-3xl border border-blue-100 bg-blue-50 p-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Eligibility</h2>
 
-          <ul className="space-y-4 text-gray-700">
+          <ul className="list-disc pl-6 space-y-3 text-gray-700 marker:text-emerald-500">
             <li>All PGs listed on PG Near are eligible.</li>
             <li>Valid booking proof is required.</li>
             <li>Verification with the PG owner is required.</li>
