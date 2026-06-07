@@ -48,12 +48,6 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="/blog"
-              className="text-gray-700 hover:text-blue-600 transition font-medium">
-              Blog
-            </Link>
-
-            <Link
               href="/wishlist"
               className="text-red-600 transition font-medium flex items-center gap-2">
               <Heart size={18} />
@@ -70,6 +64,12 @@ export default function Navbar() {
               href="/about"
               className="text-gray-700 hover:text-blue-600 transition font-medium">
               About Us
+            </Link>
+
+            <Link
+              href="/blog"
+              className="text-gray-700 hover:text-blue-600 transition font-medium">
+              Blog
             </Link>
 
             {/* ADMIN ROUTES */}
@@ -145,15 +145,6 @@ export default function Navbar() {
             <hr className="border-gray-100"></hr>
 
             <Link
-              href="/blog"
-              onClick={() => setMenuOpen(false)}
-              className="block text-gray-700 font-medium">
-              Blog
-            </Link>
-
-            <hr className="border-gray-100"></hr>
-
-            <Link
               href="/rewards"
               className="block text-gray-700 hover:text-blue-600 transition font-medium">
               Cash Back
@@ -166,6 +157,15 @@ export default function Navbar() {
               onClick={() => setMenuOpen(false)}
               className="block text-gray-700 font-medium">
               About Us
+            </Link>
+
+            <hr className="border-gray-100"></hr>
+
+            <Link
+              href="/blog"
+              onClick={() => setMenuOpen(false)}
+              className="block text-gray-700 font-medium">
+              Blog
             </Link>
 
             {/* ADMIN MOBILE */}
