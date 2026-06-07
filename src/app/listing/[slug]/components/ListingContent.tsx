@@ -300,17 +300,17 @@ export default async function ListingContent({ slug }: ListingContentProps) {
           </div>
 
           {/* Contact Section */}
-          <div className=" pt-6 mt-7">
+          <div className=" pt-6 mt-7 ">
             <h2 className="text-2xl font-bold text-gray-700 mb-2 flex items-center gap-2">
               Owner Contact
             </h2>
-            <p className="">
+            <p className="mb-1">
               booke with us and and earn exciting
-              <Link href="/rewards" className="text-emerald-600 font-bold">
+              <Link href="/rewards" className="text-emerald-600 font-bold ">
                 {" "}
                 Cashback Rewards
               </Link>{" "}
-              on successful booking through us.
+              on successful booking.
             </p>
 
             {/* ProtectedContact Component */}
@@ -321,7 +321,7 @@ export default async function ListingContent({ slug }: ListingContentProps) {
               ownerName={serializedListing.owner}
               pgName={serializedListing.title}
             />
-            <p className="text-gray-600 mb-4">
+            <p className="text-gray-600 mb-4 text-sm mt-1">
               Contact details are protected to prevent misuse. Click unlock and
               view the contact information.
             </p>
