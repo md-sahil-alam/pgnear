@@ -52,12 +52,27 @@ export default function ProtectedContact({
 
   const handleCallClick = async (e: React.MouseEvent) => {
     e.preventDefault();
+
+    if (typeof window !== "undefined") {
+      (window as any).gtag?.("event", "contact", {
+        event_category: "lead",
+        event_label: "call_click",
+      });
+    }
     await trackInteraction("call");
     window.open(`tel:+91${phoneNumber}`, "_blank");
   };
 
   const handleWhatsAppClick = async (e: React.MouseEvent) => {
     e.preventDefault();
+
+    if (typeof window !== "undefined") {
+      (window as any).gtag?.("event", "contact", {
+        event_category: "lead",
+        event_label: "whatsapp_click",
+      });
+    }
+
     await trackInteraction("whatsapp");
     const whatsAppNum = whatsAppNumber || phoneNumber;
     const senderName = user?.name || user?.phoneNumber || "";
