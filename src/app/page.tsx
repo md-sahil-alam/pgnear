@@ -80,7 +80,7 @@ export default async function HomePage() {
             </h1>
 
             <p className="  mt-2 text-sm md:text-base ">
-              Varified PGs, direct owner contact, and
+              Verified PGs, direct owner contact, and
               <Link href="/rewards">
                 <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2 py-1.5 text-md font-medium mx-1.5 text-emerald-600  inline-flex items-center">
                   <span className="inline-block -rotate-2 hover:scale-110 transition-transform">
