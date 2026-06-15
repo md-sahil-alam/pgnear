@@ -68,7 +68,7 @@ export default function AboutPage() {
                 className="rounded-xl object-cover"
               />
               <Image
-                src="https://res.cloudinary.com/dd1rxc66q/image/upload/v1777920694/Md-Sahil-Alam-Software-engeener_vr6eyb.jpg"
+                src="https://res.cloudinary.com/dd1rxc66q/image/upload/v1781519306/IMG_20260608_010035_582Md%20Sahil%20Alam%20Founder%20Of%20PG%20Near.webp"
                 alt="Md Sahil Alam Bangalore enfeener"
                 width={300}
                 height={300}
