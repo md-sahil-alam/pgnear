@@ -68,7 +68,7 @@ export default function Navbar() {
 
             <Link
               href="/blog"
-              className="text-gray-700 hover:text-blue-600 transition font-medium">
+              className="text-gray-700 hover:text-blue-600 transition font-medium hidden ">
               Blog
             </Link>
 
@@ -164,7 +164,7 @@ export default function Navbar() {
             <Link
               href="/blog"
               onClick={() => setMenuOpen(false)}
-              className="block text-gray-700 font-medium">
+              className=" text-gray-700 font-medium hidden">
               Blog
             </Link>
 
