@@ -57,7 +57,7 @@ export default function Navbar() {
             <Link
               href="/rewards"
               className="text-gray-700 hover:text-blue-600 transition font-medium">
-              Cash Back
+              Cash Rewards
             </Link>
 
             <Link
@@ -147,7 +147,7 @@ export default function Navbar() {
             <Link
               href="/rewards"
               className="block text-gray-700 hover:text-blue-600 transition font-medium">
-              Cash Back
+              Cash Rewards
             </Link>
 
             <hr className="border-gray-100"></hr>
