@@ -25,3 +25,11 @@ declare module "next-auth/jwt" {
     isAdmin?: boolean;
   }
 }
+
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
+export {};

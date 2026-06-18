@@ -8,7 +8,7 @@ import { Heart } from "lucide-react";
 export const metadata = {
   title: "About Md Sahil Alam | PG Near Presidency University Bangalore",
   description:
-    "Learn how PG Near helps students find PG near Presidency University Bangalore with verified listings, clear pricing, and direct contact without brokers.",
+    "Learn about Md Sahil Alam Founder of PG Near and how PG Near helps students find PG near Presidency University Bangalore with verified listings, clear pricing, and direct contact without brokers.",
 };
 
 export default function AboutPage() {
@@ -31,10 +31,16 @@ export default function AboutPage() {
 
             <p className="mt-4 text-gray-600 text-lg">
               Hi, I’m{" "}
-              <span className="font-semibold text-gray-900">Md Sahil Alam</span>
+              <span className="font-semibold text-gray-900">
+                Md Sahil Alam, Founder of PG Near
+              </span>
               . I built{" "}
-              <span className="font-semibold text-gray-900">pgnear.in</span> to
-              make finding PG near Presidency University Bangalore simple,
+              <span className="font-semibold text-gray-900">
+                <a href="https://www.pgnear.in" target="_blank">
+                  PG Near
+                </a>
+              </span>{" "}
+              to make finding PG near Presidency University Bangalore simple,
               clear, and stress-free.
             </p>
           </div>

@@ -10,6 +10,7 @@ import HomeListings from "@/components/HomeListings";
 import { Suspense } from "react";
 import { HomePageSkeleton } from "@/components/skeletons";
 import { Metadata } from "next";
+import ReferralPopup from "@/components/ui/ReferralPopup";
 
 // Revalidate every 60 seconds to pick up new/deleted listings
 export const revalidate = 60;
@@ -56,6 +57,8 @@ export default async function HomePage() {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <Navbar />
+      <ReferralPopup rewardLink="/rewards" delayMs={4000} snoozeDays={7} />
+
       <section className="relative w-full h-[70vh] min-h-125 overflow-hidden">
         {/* Background Image */}
         <img
@@ -103,16 +106,16 @@ export default async function HomePage() {
       </section>
 
       {/* Latest Listings Section */}
-      <section className="max-w-7xl mx-auto px-4 py-16">
+      <section className="max-w-7xl mx-auto px-4 py-8">
         {/* Header */}
-        <div className="flex items-end justify-between mb-10">
+        <div className="flex items-end justify-between mb-4">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               Latest PG Listings
             </h2>
-            <p className="text-gray-600 mt-2">
+            {/* <p className="text-gray-600 mt-2">
               Recently added PGs near Presidency University
-            </p>
+            </p> */}
           </div>
 
           <Link
