@@ -4,7 +4,6 @@ const ListingSchema = new Schema(
   {
     title: String,
     description: { type: String },
-    owner: { type: String, default: null },
     slug: { type: String, unique: true },
     price: Number,
     oneSharingprice: { type: Number, default: null},
@@ -13,7 +12,7 @@ const ListingSchema = new Schema(
     gender: { type: String, enum: ["all", "boys", "girls"], default: "all" },
     amenities: [String],
     images: [{ type: String }],
-    ownerName: String,
+    ownerName: { type: String, default: null },
     contactPhone: {
       type: String,
       match: /^[0-9]{10}$/
@@ -22,6 +21,13 @@ const ListingSchema = new Schema(
       type: String,
       match: /^[0-9]{10}$/
     },
+    nearCollege: [
+      {
+        college: String,
+        distance: Number,
+      },
+    ],
+
     isVerified: { type: Boolean, default: false },
     isActive: { type: Boolean, default: true },
     address: String,

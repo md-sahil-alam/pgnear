@@ -8,9 +8,12 @@ import { Metadata } from "next";
 // Revalidate every 60 seconds to pick up new/deleted listings
 export const revalidate = 60;
 
-const res = await fetch("https://pgnear.in/api/listings?page=1&limit=10", {
-  cache: "no-store",
-});
+const res = await fetch(
+  "https://pgnear.in/api/listings?page=1&limit=100&college=presidency-university",
+  {
+    cache: "no-store",
+  },
+);
 
 const data = await res.json();
 const listings = data.listings || [];
@@ -88,7 +91,10 @@ export default function ListingsPage() {
           </p>
 
           {/* LISTINGS */}
-          <ListingsClient initialListings={listings} />
+          <ListingsClient
+            initialListings={listings}
+            college="presidency-university"
+          />
         </div>
       </Suspense>
 

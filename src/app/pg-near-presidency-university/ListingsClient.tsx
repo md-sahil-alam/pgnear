@@ -31,8 +31,12 @@ type Filters = {
 /*  COMPONENT */
 export default function ListingsClient({
   initialListings = [],
+  college,
+  gender,
 }: {
   initialListings?: Listing[];
+  college?: string;
+  gender?: string;
 }) {
   const [filters, setFilters] = useState<Filters>({
     minPrice: 0,
@@ -57,6 +61,12 @@ export default function ListingsClient({
     const params = new URLSearchParams();
     params.set("page", currentPage.toString());
     params.set("limit", "10");
+    if (college) {
+      params.set("college", college);
+    }
+    if (gender) {
+      params.set("gender", gender);
+    }
     if (filters.minPrice > 0)
       params.set("minPrice", filters.minPrice.toString());
     if (filters.maxPrice < 50000)
@@ -67,6 +77,7 @@ export default function ListingsClient({
 
     const res = await fetch(`/api/listings?${params.toString()}`);
     const data = await res.json();
+    console.log("API DATA", data);
 
     if (append) {
       setListings((prev) => [...prev, ...data.listings]);
@@ -86,6 +97,11 @@ export default function ListingsClient({
     setHasMore(true);
     fetchListings(1, false);
   }, [filters]);
+  // useEffect(() => {
+  //   if (initialListings.length === 0) {
+  //     fetchListings(1, false);
+  //   }
+  // }, []);
 
   /* INFINITE SCROLL */
   const pageRef = useRef(1);
@@ -97,6 +113,8 @@ export default function ListingsClient({
       if (entries[0].isIntersecting && hasMore && !loadingMore) {
         pageRef.current += 1;
         fetchListings(pageRef.current, true);
+        console.log("Initial Listings:", initialListings.length);
+        console.log("Current Listings:", listings.length);
       }
     });
 

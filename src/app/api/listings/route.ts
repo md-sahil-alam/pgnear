@@ -48,9 +48,12 @@ export async function GET(req: Request) {
   const amenities = searchParams.get("amenities");
   const page = parseInt(searchParams.get("page") || "1");
   const limit = parseInt(searchParams.get("limit") || "4");
-
+  const college = searchParams.get("college");
   const query: any = { isActive: true };
 
+  if (college) {
+  query["nearCollege.college"] = college;
+}
   if (minPrice) query.price = { ...query.price, $gte: Number(minPrice) };
   if (maxPrice) query.price = { ...query.price, $lte: Number(maxPrice) };
   const normalizedGender = normalizeGender(gender || undefined);
@@ -76,5 +79,12 @@ export async function GET(req: Request) {
   // Serialize Mongoose documents to plain objects
   const serializedListings = JSON.parse(JSON.stringify(listings));
 
-  return NextResponse.json({ success: true, listings: serializedListings, hasMore });
+  return NextResponse.json({
+  success: true,
+  DEBUG_COLLEGE: college,
+  DEBUG_QUERY: query,
+  total,
+  listings: serializedListings,
+  hasMore,
+});
 }
