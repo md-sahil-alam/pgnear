@@ -1,5 +1,3 @@
-// src/components/CollegeListingsPage.tsx
-
 import ListingsClient from "@/app/pg-near-presidency-university/ListingsClient";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -35,7 +33,7 @@ export default function CollegeListingsPage({
 
       <Suspense fallback={<ListingsPageSkeleton />}>
         <div className="max-w-7xl mx-auto px-4 py-6 lg:py-8">
-          <h1 className="text-2xl lg:text-3xl font-bold mb-4 text-gray-900">
+          <h1 className="text-2xl lg:text-3xl font-bold mb-4 text-gray-900 lg:ml-5">
             {title}
           </h1>
 
@@ -58,7 +56,7 @@ export default function CollegeListingsPage({
             }}
           />
 
-          <p className="text-gray-600 max-w-2xl mb-8">{description}</p>
+          <p className="text-gray-600 max-w-2xl mb-8 lg:ml-5">{description}</p>
 
           <ListingsClient
             initialListings={listings}
@@ -69,7 +67,7 @@ export default function CollegeListingsPage({
       </Suspense>
 
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <h2 className="text-2xl font-bold mb-4 text-gray-900">
+        <h2 className="text-2xl font-bold mb-4 text-gray-900 ">
           Why Choose a PG Near {collegeName}?
         </h2>
 

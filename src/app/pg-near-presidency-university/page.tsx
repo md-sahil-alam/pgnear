@@ -60,7 +60,7 @@ export default function ListingsPage() {
       <Suspense fallback={<ListingsPageSkeleton />}>
         <div className="max-w-7xl mx-auto px-4 py-6 lg:py-8">
           {/* H1 (STRONG SEO SIGNAL) */}
-          <h1 className="text-2xl lg:text-3xl font-bold mb-4 text-gray-900">
+          <h1 className="text-2xl lg:text-3xl font-bold mb-4 text-gray-900 lg:ml-5">
             PG Near Presidency University Bangalore
           </h1>
 
@@ -84,7 +84,7 @@ export default function ListingsPage() {
             }}
           />
 
-          <p className="text-gray-600 max-w-2xl mb-8">
+          <p className="text-gray-600 max-w-2xl mb-8 lg:ml-5">
             Looking for a PG near Presidency University Bangalore? Browse
             verified PG listings with clear pricing, amenities, photos, and
             direct contact with owners, without any hassle.

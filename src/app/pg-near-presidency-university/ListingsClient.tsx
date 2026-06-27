@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 import { ListingsGridSkeleton } from "@/components/skeletons";
 import { formatGender } from "@/lib/gender";
+import SearchBar from "@/components/SearchBar";
 
 type Listing = {
   _id: string;
@@ -46,10 +47,20 @@ export default function ListingsClient({
   });
 
   const [listings, setListings] = useState<Listing[]>(initialListings || []);
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [search]);
 
   const sentinelRef = useRef<HTMLDivElement>(null);
 
@@ -61,6 +72,9 @@ export default function ListingsClient({
     const params = new URLSearchParams();
     params.set("page", currentPage.toString());
     params.set("limit", "10");
+    if (debouncedSearch.trim()) {
+      params.set("search", debouncedSearch.trim());
+    }
     if (college) {
       params.set("college", college);
     }
@@ -93,10 +107,12 @@ export default function ListingsClient({
 
   /* DEBOUNCE FILTER */
   useEffect(() => {
-    setPage(1);
+    pageRef.current = 1;
     setHasMore(true);
+
     fetchListings(1, false);
-  }, [filters]);
+  }, [filters, debouncedSearch]);
+
   // useEffect(() => {
   //   if (initialListings.length === 0) {
   //     fetchListings(1, false);
@@ -127,10 +143,19 @@ export default function ListingsClient({
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
       {/* Filters */}
+
       <FiltersWrapper filters={filters} setFilters={setFilters} />
 
       {/* Listings */}
       <div className="lg:col-span-3">
+        <div className="lg:col-span-3 mb-6">
+          <SearchBar
+            search={search}
+            onSearchChange={setSearch}
+            total={listings.length}
+          />
+        </div>
+
         {loading ? (
           <ListingsGridSkeleton count={8} columns={2} />
         ) : listings.length > 0 ? (

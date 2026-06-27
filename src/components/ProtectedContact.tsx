@@ -77,7 +77,7 @@ export default function ProtectedContact({
     const whatsAppNum = whatsAppNumber || phoneNumber;
     const senderName = user?.name || user?.phoneNumber || "";
     const message = encodeURIComponent(
-      `Hi, I'm ${senderName}. I found your PG on pgnear.in and I'm interested in your PG. Is it available?`,
+      `Hi, I'm ${senderName}.I found your PG on pgnear.in ,Is it available?`,
     );
     window.open(`https://wa.me/91${whatsAppNum}?text=${message}`, "_blank");
   };

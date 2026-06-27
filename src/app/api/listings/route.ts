@@ -42,6 +42,8 @@ export async function GET(req: Request) {
 
   const { searchParams } = new URL(req.url);
 
+ const query: any = { isActive: true };
+ const search = searchParams.get("search");
   const minPrice = searchParams.get("minPrice");
   const maxPrice = searchParams.get("maxPrice");
   const gender = searchParams.get("gender");
@@ -49,8 +51,30 @@ export async function GET(req: Request) {
   const page = parseInt(searchParams.get("page") || "1");
   const limit = parseInt(searchParams.get("limit") || "4");
   const college = searchParams.get("college");
-  const query: any = { isActive: true };
+ 
+if (search) {
+  query.$or = [
+    {
+      title: {
+        $regex: search,
+        $options: "i",
+      },
+    },
+    {
+      address: {
+        $regex: search,
+        $options: "i",
+      },
+    },
 
+    {
+      amenities: {
+        $regex: search,
+        $options: "i",
+      },
+    },
+  ];
+}
   if (college) {
   query["nearCollege.college"] = college;
 }

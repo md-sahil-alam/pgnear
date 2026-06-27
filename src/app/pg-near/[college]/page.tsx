@@ -59,12 +59,14 @@ export default async function CollegePage({
     .lean();
 
   return (
-    <CollegeListingsPage
-      title={collegeData.title}
-      description={collegeData.description}
-      collegeName={collegeData.name}
-      college={college}
-      listings={JSON.parse(JSON.stringify(listings))}
-    />
+    <>
+      <CollegeListingsPage
+        title={collegeData.title}
+        description={collegeData.description}
+        collegeName={collegeData.name}
+        college={college}
+        listings={JSON.parse(JSON.stringify(listings))}
+      />
+    </>
   );
 }
