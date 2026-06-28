@@ -16,6 +16,7 @@ import { Users, MapPin, IndianRupee, ShieldCheck, Check } from "lucide-react";
 import ProtectedContact from "@/components/ProtectedContact";
 import ListingHeader from "@/components/ListingHeader";
 import { formatGender } from "@/lib/gender";
+import SaveButton from "@/components/SaveButton";
 
 interface ListingContentProps {
   slug: string;
@@ -131,11 +132,20 @@ export default async function ListingContent({ slug }: ListingContentProps) {
       />
 
       {/* Back Link */}
-      <Link
-        href="/pg-near-presidency-university"
-        className="text-blue-600 hover:text-blue-800 mb-6 inline-block">
-        ← Back to Listings
-      </Link>
+
+      <div className="flex items-center justify-between ">
+        <Link
+          href="/pg-near-presidency-university"
+          className="text-blue-600 hover:text-blue-800 mb-6 inline-block">
+          ← Back to Listings
+        </Link>
+
+        <SaveButton
+          listingId={serializedListing._id}
+          size="md"
+          showLabel={true}
+        />
+      </div>
 
       <div className="bg-white rounded-lg overflow-hidden">
         {/* Images */}
@@ -157,18 +167,31 @@ export default async function ListingContent({ slug }: ListingContentProps) {
             </div>
             <div>
               <div className="flex items-center ">
+                <p className="text-gray-600 text-sm">Starting from</p>
+              </div>
+              <p className="text-lg font-semibold text-emerald-600">
+                ₹
+                {serializedListing.threeSharingprice ||
+                  serializedListing.twoSharingprice ||
+                  "—"}
+              </p>
+            </div>
+            <div>
+              <div className="flex items-center ">
                 <p className="text-gray-600 text-sm">From Campus</p>
               </div>
               <p className="text-lg font-semibold">
                 {serializedListing.distanceFromUni}m
               </p>
             </div>
+
             <div>
-              <p className="text-gray-600 text-sm">Verified</p>
+              {/* <p className="text-gray-600 text-sm">Verified</p> */}
               <p className="text-lg font-semibold">
                 {serializedListing.isVerified ? (
                   <div className="flex items-center gap-1 text-emerald-600">
-                    <ShieldCheck /> <p>Varified</p>
+                    <p>Verified</p>
+                    <ShieldCheck />
                   </div>
                 ) : (
                   "Not Verified"
@@ -176,6 +199,18 @@ export default async function ListingContent({ slug }: ListingContentProps) {
               </p>
             </div>
           </div>
+          {/* ProtectedContact Component */}
+          <ProtectedContact
+            phoneNumber={serializedListing.contactPhone}
+            whatsAppNumber={serializedListing.contactWhatsApp}
+            listingId={serializedListing._id}
+            ownerName={serializedListing.owner}
+            pgName={serializedListing.title}
+          />
+          {/* <p className="text-gray-600 mb-4 text-sm mt-1">
+            Contact details are protected to prevent misuse. Click unlock and
+            view the contact information.
+          </p> */}
 
           {/* Price Table */}
           <div className="mb-6">
@@ -289,41 +324,12 @@ export default async function ListingContent({ slug }: ListingContentProps) {
                 )}
               </div>
             )}
-
           <div className="mb-6">
-            <p className="text-gray-600 text-sm">Owner Name</p>
+            <p className="text-gray-600 text-sm">Owner's Name</p>
             <p className="text-lg font-semibold">
               {serializedListing.ownerName ||
                 serializedListing.owner ||
                 "Not provided"}
-            </p>
-          </div>
-
-          {/* Contact Section */}
-          <div className=" pt-6 mt-7 ">
-            <h2 className="text-2xl font-bold text-gray-700 mb-2 flex items-center gap-2">
-              Owner Contact
-            </h2>
-            <p className="mb-1">
-              booke with us and and earn exciting
-              <Link href="/rewards" className="text-emerald-600 font-bold ">
-                {" "}
-                Cashback Rewards
-              </Link>{" "}
-              on successful booking.
-            </p>
-
-            {/* ProtectedContact Component */}
-            <ProtectedContact
-              phoneNumber={serializedListing.contactPhone}
-              whatsAppNumber={serializedListing.contactWhatsApp}
-              listingId={serializedListing._id}
-              ownerName={serializedListing.owner}
-              pgName={serializedListing.title}
-            />
-            <p className="text-gray-600 mb-4 text-sm mt-1">
-              Contact details are protected to prevent misuse. Click unlock and
-              view the contact information.
             </p>
           </div>
         </div>

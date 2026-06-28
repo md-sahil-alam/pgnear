@@ -1,7 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { Lock, Phone, MessageCircle, Loader2 } from "lucide-react";
+import {
+  Phone,
+  MessageCircle,
+  Loader2,
+  UnlockIcon,
+  PhoneCall,
+  HousePlus,
+} from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import PhoneLoginModal from "./PhoneLoginModal";
 import { Button } from "./ui/Button";
@@ -96,15 +103,15 @@ export default function ProtectedContact({
   }
 
   // User is logged in and unlocked
-  if (user && isUnlocked) {
+  if (user) {
     return (
-      <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-6">
+      <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-6 mb-6">
         <div className="mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">Contact</h3>
-
-          <p className="text-gray-600 text-sm mt-1">
-            You've unlocked the contact details for this PG
-          </p>
+          <h3 className="text-lg font-semibold text-gray-900">Contact Owner</h3>
+          <div className="flex items-center gap-2 mt-1 text-[13px] text-zinc-600">
+            <HousePlus size={15} className="text-emerald-600 animate-pulse" />
+            <span>Rooms fill fast during admissions.</span>
+          </div>
         </div>
 
         {/* Phone and WhatsApp Buttons */}
@@ -162,43 +169,55 @@ export default function ProtectedContact({
   }
 
   // User is logged in but not unlocked yet
-  if (user && !isUnlocked) {
-    return (
-      <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-6">
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold text-emerald-700 flex items-center gap-2">
-            Contact Unlocked <Check />
-          </h3>
+  // if (user && !isUnlocked) {
+  //   return (
+  //     <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-6 mb-6">
+  //       <div className="mb-4">
+  //         <h3 className="text-lg font-semibold text-emerald-700 flex items-center gap-2">
+  //           Contact Unlocked <Check />
+  //         </h3>
 
-          <p className="text-gray-600 text-sm mt-1">
-            Click below to view contact details.
-          </p>
-        </div>
+  //         <p className="text-gray-600 text-sm mt-1">
+  //           Click below to view contact details.
+  //         </p>
+  //       </div>
 
-        <Button
-          onClick={() => setIsUnlocked(true)}
-          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2">
-          View Contact Details <Eye size={22} />
-        </Button>
-      </div>
-    );
-  }
+  //       <Button
+  //         onClick={() => setIsUnlocked(true)}
+  //         className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2">
+  //         View Contact Details <Eye size={22} />
+  //       </Button>
+  //     </div>
+  //   );
+  // }
 
   // User is not logged in - show blurred contact
   return (
     <>
-      <div className="bg-gray-100 rounded-lg p-6 relative group">
+      <div className="bg-gray-100 rounded-lg p-4 pb-3 relative group mb-6">
         <div className="mb-4">
           <h3 className="text-lg font-semibold text-gray-900">
-            Owners's Contact
+            Owner's Contact
           </h3>
-          <p className="text-gray-600 text-sm mt-1">
-            Sign in to view contact details
-          </p>
+          {/* <p className="text-gray-600 text-sm mt-1">
+            unlock in to view{" "}
+            <span className="text-emerald-600 font-semibold">
+              Phone and WhatsApp no.
+            </span>{" "}
+          </p> */}
+          <div className="flex items-center gap-2 mt-2 text-[13px] text-zinc-600">
+            <PhoneCall size={15} className="text-emerald-600 " />
+            <p>Direct call & WhatsApp of the owner</p>
+          </div>
+
+          <div className="flex items-center gap-2 mt-1 text-[13px] text-zinc-600">
+            <HousePlus size={15} className="text-emerald-600 animate-pulse" />
+            <span>Rooms fill fast during admissions.</span>
+          </div>
         </div>
 
         {/* Blurred Contact Section */}
-        <div className="mb-6 blur-sm pointer-events-none">
+        {/* <div className="mb-6 blur-sm pointer-events-none">
           <div className="flex flex-col sm:flex-row gap-3">
             <Button
               disabled
@@ -214,14 +233,14 @@ export default function ProtectedContact({
               WhatsApp
             </Button>
           </div>
-        </div>
+        </div> */}
 
         {/* Unlock Button */}
         <Button
           onClick={() => setShowLoginModal(true)}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2">
-          <Lock size={18} />
-          Unlock Contact Details
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-lg flex items-center justify-center gap-2 text-sm ">
+          <UnlockIcon size={18} />
+          Unlock Owner's Contact
         </Button>
 
         <p className="text-center text-gray-500 text-xs mt-4">
