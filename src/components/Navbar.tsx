@@ -29,7 +29,7 @@ export default function Navbar() {
           {/* LOGO */}
           <div className="flex items-center gap-2">
             <img
-              src="logov2.2.jpeg"
+              src="https://res.cloudinary.com/dd1rxc66q/image/upload/v1783503889/logov2.2_q9b0ng.jpg"
               alt="logo Of Pg Near"
               className="h-10 w-10 rounded-full object-cover"
             />
