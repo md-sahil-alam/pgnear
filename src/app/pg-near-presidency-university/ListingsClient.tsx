@@ -257,7 +257,7 @@ export default function ListingsClient({
         {hasMore && <div ref={sentinelRef} className="h-10" />}
 
         {loadingMore && (
-          <p className="text-gray-500 text-center">Loading more listings...</p>
+          <ListingsGridSkeleton count={8} columns={2}></ListingsGridSkeleton>
         )}
       </div>
     </div>
