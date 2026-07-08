@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Suspense } from "react";
 import { ListingsPageSkeleton } from "@/components/skeletons";
+import Link from "next/link";
 
 type Listing = {
   _id: string;
@@ -56,7 +57,28 @@ export default function CollegeListingsPage({
             }}
           />
 
-          <p className="text-gray-600 max-w-2xl mb-8 lg:ml-5">{description}</p>
+          <p className="text-gray-600 max-w-2xl mb-4 lg:ml-5">{description}</p>
+
+          <ul className="text-blue-500 italic underline lg:ml-5 mb-8 text-sm">
+            <li>
+              <Link href={`/pg-near/${college}/boys`}>
+                Boys PGs near {collegeName}
+              </Link>
+            </li>
+
+            <li>
+              {" "}
+              <Link href={`/pg-near/${college}/girls`}>
+                Girls PGs near {collegeName}
+              </Link>
+            </li>
+
+            <li>
+              <Link href={`/pg-near/${college}`}>
+                All PGs near {collegeName}
+              </Link>
+            </li>
+          </ul>
 
           <ListingsClient
             initialListings={listings}
@@ -88,7 +110,17 @@ export default function CollegeListingsPage({
         <ul className="list-disc pl-5 text-gray-600 space-y-2">
           <li>Verified PG accommodations near {collegeName}</li>
           <li>1 sharing, 2 sharing, and 3 sharing options</li>
-          <li>Boys PG and Girls PG options</li>
+          <li className="text-blue-500 italic underline">
+            <Link href={`/pg-near/${college}/boys`}>
+              Boys PGs near {collegeName}
+            </Link>
+          </li>
+
+          <li className="text-blue-500 italic underline">
+            <Link href={`/pg-near/${college}/girls`}>
+              Girls PGs near {collegeName}
+            </Link>
+          </li>
           <li>Verified owner contact details</li>
           <li>Transparent pricing with no hidden charges</li>
           <li>Wishlist feature for comparing PGs</li>

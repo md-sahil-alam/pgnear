@@ -2,7 +2,7 @@ export const colleges = {
   "presidency-university": {
     name: "Presidency University",
     title: "PG Near Presidency University",
-    description: "Find verified PGs near Presidency University.",
+    description: "Browse verified PG accommodations near Presidency University Bangalore with clear pricing, amenities, photos, and direct owner contact. No brokers involved.",
     image:
       "https://res.cloudinary.com/dd1rxc66q/image/upload/v1783158027/Presidency_University3_gpytqy.webp",
   },
