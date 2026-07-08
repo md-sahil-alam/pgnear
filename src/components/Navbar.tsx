@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { signOut, useSession } from "next-auth/react";
+import logo from "../../public/logov2.2.jpeg";
 
 import { Heart, LogOut, Shield } from "lucide-react";
 
@@ -26,12 +27,17 @@ export default function Navbar() {
         {/* TOP BAR */}
         <div className="flex justify-between items-center h-16">
           {/* LOGO */}
-          <Link href="/" className="font-bold text-3xl text-blue-600">
-            PG Near
-            <p className="text-sm text-gray-500 -mt-1 italic font-normal">
-              Presidency University
-            </p>
-          </Link>
+          <div className="flex items-center gap-2">
+            <img
+              src="logov2.2.jpeg"
+              alt="logo Of Pg Near"
+              className="h-10 w-10 rounded-full object-cover"
+            />
+
+            <Link href="/" className="font-bold text-3xl text-blue-600">
+              PG Near
+            </Link>
+          </div>
 
           {/* DESKTOP MENU */}
           <div className="hidden md:flex items-center gap-6">

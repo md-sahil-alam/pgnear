@@ -1,30 +1,49 @@
 export const colleges = {
-
-    "presidency-university": {
+  "presidency-university": {
     name: "Presidency University",
     title: "PG Near Presidency University",
     description: "Find verified PGs near Presidency University.",
+    image:
+      "https://res.cloudinary.com/dd1rxc66q/image/upload/v1783158027/Presidency_University3_gpytqy.webp",
   },
 
-  "reva-university": {
-    seoIntro: "Looking for a PG near REVA University Bangalore? Browse verified PG listings with clear pricing, amenities, photos, and direct owner contact.",
-    name: "REVA University",
-    title: "PG Near REVA University Bangalore",
-    description:
-      "Browse verified PG accommodations near REVA University Bangalore with direct owner contact.",
-  },
-
-  "nmit": {
+    nmit: {
     name: "NMIT Bangalore",
     title: "PG Near NMIT Bangalore",
     description:
       "Browse verified PG accommodations near NMIT Bangalore with direct owner contact.",
+    image:
+      "https://res.cloudinary.com/dd1rxc66q/image/upload/v1783157203/nmit_xxlgbo.jpg",
   },
 
-  "cmr-university": {
-    name: "CMR University",
-    title: "PG Near CMR University Bangalore",
-    description:
-      "Browse verified PG accommodations near CMR University Bangalore with direct owner contact.",
-  },
+  // "bmsit-university": {
+  //   name: "BMS Institute of Technology and Management",
+  //   title: "PG Near BMS Institute of Technology and Management Bangalore",
+  //   description:
+  //     "Browse verified PG accommodations near BMS Institute of Technology and Management Bangalore with direct owner contact.",
+  //   image:
+  //     "https://res.cloudinary.com/dd1rxc66q/image/upload/v1780742857/pgnear_heroimg_presidency_unversity.png",
+  // },
+
+
+
+  // "reva-university": {
+  //   seoIntro:
+  //     "Looking for a PG near REVA University Bangalore? Browse verified PG listings with clear pricing, amenities, photos, and direct owner contact.",
+  //   name: "REVA University",
+  //   title: "PG Near REVA University Bangalore",
+  //   description:
+  //     "Browse verified PG accommodations near REVA University Bangalore with direct owner contact.",
+  //   image:
+  //     "https://res.cloudinary.com/dd1rxc66q/image/upload/v1780742857/pgnear_heroimg_presidency_unversity.png",
+  // },
+
+  // "cmr-university": {
+  //   name: "CMR University",
+  //   title: "PG Near CMR University Bangalore",
+  //   description:
+  //     "Browse verified PG accommodations near CMR University Bangalore with direct owner contact.",
+  //   image:
+  //     "https://res.cloudinary.com/dd1rxc66q/image/upload/v1780742857/pgnear_heroimg_presidency_unversity.png",
+  // },
 } as const;

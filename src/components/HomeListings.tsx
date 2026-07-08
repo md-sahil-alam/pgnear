@@ -26,7 +26,7 @@ interface HomeListingsProps {
 
 export default function HomeListings({ listings }: HomeListingsProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
       {listings.map((listing) => (
         <Link
           key={listing._id}
@@ -77,7 +77,7 @@ export default function HomeListings({ listings }: HomeListingsProps) {
               </p>
 
               {/* Location */}
-              <p className="text-sm text-gray-500 mt-1 line-clamp-1">
+              <p className=" text-sm text-gray-500 mt-1 line-clamp-1">
                 {listing.address || "Location not available"}
               </p>
 

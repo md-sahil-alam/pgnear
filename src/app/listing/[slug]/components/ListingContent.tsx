@@ -3,13 +3,6 @@ import Listing from "@/models/Listing";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import ImageGallery from "@/components/ImageGallery";
-import {
-  MessagesSquare,
-  PhoneCall,
-  MessageCircleMore,
-  UserSquare,
-  PhoneOutgoing,
-} from "lucide-react";
 import { UserRound } from "lucide-react";
 import { Tooltip } from "@/components/ui/Tooltip";
 import { Users, MapPin, IndianRupee, ShieldCheck, Check } from "lucide-react";
@@ -32,11 +25,6 @@ export default async function ListingContent({ slug }: ListingContentProps) {
 
   // Serialize Mongoose document to plain object
   const serializedListing = JSON.parse(JSON.stringify(listing));
-
-  const whatsappLink = `https://wa.me/${serializedListing.contactWhatsApp}?text=${encodeURIComponent(
-    `Hi,${serializedListing.owner} I found your pg at pgnear.in im intrested in your pg: ${serializedListing.title}`,
-  )}`;
-  const phoneLink = `tel:${serializedListing.contactPhone}`;
 
   // Generate schema markup for LocalBusiness + AggregateOffer
   const schema = {
@@ -132,7 +120,6 @@ export default async function ListingContent({ slug }: ListingContentProps) {
       />
 
       {/* Back Link */}
-
       <div className="flex items-center justify-between ">
         <Link
           href="/pg-near-presidency-university"
@@ -199,6 +186,7 @@ export default async function ListingContent({ slug }: ListingContentProps) {
               </p>
             </div>
           </div>
+
           {/* ProtectedContact Component */}
           <ProtectedContact
             phoneNumber={serializedListing.contactPhone}
@@ -207,12 +195,7 @@ export default async function ListingContent({ slug }: ListingContentProps) {
             ownerName={serializedListing.owner}
             pgName={serializedListing.title}
           />
-          {/* <p className="text-gray-600 mb-4 text-sm mt-1">
-            Contact details are protected to prevent misuse. Click unlock and
-            view the contact information.
-          </p> */}
 
-          {/* Price Table */}
           <div className="mb-6">
             <p className="text-gray-600 text-xl font-semibold mb-2 ">Price</p>
 

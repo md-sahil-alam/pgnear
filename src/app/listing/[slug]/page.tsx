@@ -20,7 +20,7 @@ export async function generateMetadata({
     if (!listing) {
       return {
         title: "Listing Not Found",
-        description: "The listing you are looking for does not exist.",
+        description: "The listing you are looking for is coming soon.",
       };
     }
 
