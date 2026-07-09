@@ -241,8 +241,8 @@ export default function ProtectedContact({
         <Button
           onClick={() => setShowLoginModal(true)}
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-lg flex items-center justify-center gap-2 text-sm ">
-          <UnlockIcon size={18} />
-          Unlock Owner's Contact
+          <Eye size={18} />
+          View Owner's Contact
         </Button>
 
         <p className="text-center text-gray-500 text-xs mt-4">

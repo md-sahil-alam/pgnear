@@ -111,7 +111,7 @@ export default function PhoneLoginModal({
       console.log("Error sending OTP:", err);
       recaptchaVerifierRef.current?.clear();
       recaptchaVerifierRef.current = null;
-      setError(err.message || "Failed to send OTP. Please try again.");
+      setError("Failed to send OTP. Please refresh the page try again.");
     } finally {
       setLoading(false);
     }

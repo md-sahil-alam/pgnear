@@ -12,11 +12,13 @@ const UserSchema = new Schema(
       required: true,
       match: /^[0-9]{10}$/,
     },
-    name: {
-      type: String,
-      required: true,
-     
-    },
+ name: {
+  type: String,
+  required: true,
+  trim: true,
+  minlength: 2,
+  maxlength: 50,
+},
     wishlist: [
       {
         listingId: {
@@ -70,7 +72,7 @@ const UserSchema = new Schema(
 );
 
 // Index for wishlist queries
-UserSchema.index({ firebaseUid: 1 });
+// UserSchema.index({ firebaseUid: 1 });
 
 export default mongoose.models.User || mongoose.model("User", UserSchema);
 

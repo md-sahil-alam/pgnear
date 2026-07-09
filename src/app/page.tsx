@@ -119,7 +119,7 @@ export default async function HomePage() {
 
           <p className="mt-4 text-lg text-gray-600">
             Carefully selected just for you.{" "}
-            <span className="font-semibold ">
+            <span className="font-semibold text-gray-700 ">
               We only list PGs we'd confidently stay in ourselves.
             </span>
           </p>
