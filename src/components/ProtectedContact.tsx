@@ -35,6 +35,19 @@ export default function ProtectedContact({
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [trackingLoading, setTrackingLoading] = useState(false);
 
+  const normalizePhone = (value: string) => value.replace(/\D/g, "");
+
+  const getCallLink = () => `tel:+91${normalizePhone(phoneNumber)}`;
+
+  const getWhatsAppLink = () => {
+    const whatsAppNum = normalizePhone(whatsAppNumber || phoneNumber);
+    const senderName = user?.name?.trim() || "a guest";
+    const message = encodeURIComponent(
+      `Hi, I'm ${senderName}. I found your PG on pgnear.in. Is it available?`,
+    );
+    return `https://wa.me/91${whatsAppNum}?text=${message}`;
+  };
+
   const trackInteraction = async (type: "call" | "whatsapp") => {
     if (!user) return;
 
@@ -57,22 +70,17 @@ export default function ProtectedContact({
     }
   };
 
-  const handleCallClick = async (e: React.MouseEvent) => {
-    e.preventDefault();
-
+  const handleCallClick = () => {
     if (typeof window !== "undefined") {
       (window as any).gtag?.("event", "contact", {
         event_category: "lead",
         event_label: "call_click",
       });
     }
-    await trackInteraction("call");
-    window.open(`tel:+91${phoneNumber}`, "_blank");
+    void trackInteraction("call");
   };
 
-  const handleWhatsAppClick = async (e: React.MouseEvent) => {
-    e.preventDefault();
-
+  const handleWhatsAppClick = () => {
     if (typeof window !== "undefined") {
       (window as any).gtag?.("event", "contact", {
         event_category: "lead",
@@ -80,13 +88,7 @@ export default function ProtectedContact({
       });
     }
 
-    await trackInteraction("whatsapp");
-    const whatsAppNum = whatsAppNumber || phoneNumber;
-    const senderName = user?.name || user?.phoneNumber || "";
-    const message = encodeURIComponent(
-      `Hi, I'm ${senderName}.I found your PG on pgnear.in ,Is it available?`,
-    );
-    window.open(`https://wa.me/91${whatsAppNum}?text=${message}`, "_blank");
+    void trackInteraction("whatsapp");
   };
 
   const handleLoginSuccess = (userData: any) => {
@@ -116,30 +118,30 @@ export default function ProtectedContact({
 
         {/* Phone and WhatsApp Buttons */}
         <div className="flex flex-col sm:flex-row gap-3">
-          <button
+          <a
+            href={getCallLink()}
             onClick={handleCallClick}
-            disabled={trackingLoading}
-            className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2">
+            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2">
             {trackingLoading ? (
               <Loader2 size={18} className="animate-spin" />
             ) : (
               "Call"
             )}
             <Phone size={18} />
-          </button>
+          </a>
 
           {whatsAppNumber && (
-            <button
+            <a
+              href={getWhatsAppLink()}
               onClick={handleWhatsAppClick}
-              disabled={trackingLoading}
-              className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-gray-300 text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2">
+              className="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2">
               {trackingLoading ? (
                 <Loader2 size={18} className="animate-spin" />
               ) : (
                 <MessageCircle size={18} />
               )}
               WhatsApp
-            </button>
+            </a>
           )}
         </div>
         <p className="text-gray-600 text-sm mt-6 text-center">
