@@ -101,7 +101,7 @@ if (search) {
   .select(
     "title slug images isVerified twoSharingprice threeSharingprice address amenities gender distanceFromUni"
   )
-  .sort({ createdAt: -1 })
+  .sort({ _id: -1 })
   .skip((page - 1) * limit)
   .limit(limit)
   .lean();
