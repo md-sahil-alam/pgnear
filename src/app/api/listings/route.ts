@@ -97,18 +97,25 @@ if (search) {
   }
 
   const total = await Listing.countDocuments(query);
-  const listings = await Listing.find(query).sort({ createdAt: -1 }).skip((page - 1) * limit).limit(limit);
+  const listings = await Listing.find(query)
+  .select(
+    "title slug images isVerified twoSharingprice threeSharingprice address amenities gender distanceFromUni"
+  )
+  .sort({ createdAt: -1 })
+  .skip((page - 1) * limit)
+  .limit(limit)
+  .lean();
   const hasMore = (page * limit) < total;
 
   // Serialize Mongoose documents to plain objects
-  const serializedListings = JSON.parse(JSON.stringify(listings));
+  // const serializedListings = JSON.parse(JSON.stringify(listings));
 
   return NextResponse.json({
   success: true,
   DEBUG_COLLEGE: college,
   DEBUG_QUERY: query,
   total,
-  listings: serializedListings,
+  listings,
   hasMore,
 });
 }

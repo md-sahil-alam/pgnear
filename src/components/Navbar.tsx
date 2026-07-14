@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { signOut, useSession } from "next-auth/react";
-import logo from "../../public/logov2.2.jpeg";
 
 import { Heart, LogOut, Shield } from "lucide-react";
 
@@ -27,14 +26,16 @@ export default function Navbar() {
         {/* TOP BAR */}
         <div className="flex justify-between items-center h-16">
           {/* LOGO */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center ">
             <img
               src="https://res.cloudinary.com/dd1rxc66q/image/upload/v1783503889/logov2.2_q9b0ng.jpg"
               alt="logo Of Pg Near"
               className="h-10 w-10 rounded-full object-cover"
             />
 
-            <Link href="/" className="font-bold text-3xl text-blue-600">
+            <Link
+              href="/"
+              className="font-bold text-xl md:text-3xl text-blue-600">
               PG Near
             </Link>
           </div>

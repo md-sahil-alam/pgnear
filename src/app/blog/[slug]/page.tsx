@@ -66,7 +66,9 @@ export default async function BlogPostPage({
     "@type": "Article",
     headline: serializedPost.title,
     description: serializedPost.excerpt,
-    image: serializedPost.image || "https://pgnear.in/og-image.jpg",
+    image:
+      serializedPost.image ||
+      "https://res.cloudinary.com/dd1rxc66q/image/upload/v1782049217/pg-listings/wmuvxdvuqwx3yeipyj1h.jpg",
     datePublished: serializedPost.createdAt,
     dateModified: serializedPost.updatedAt,
     author: {
@@ -78,7 +80,7 @@ export default async function BlogPostPage({
       name: "PG Near",
       logo: {
         "@type": "ImageObject",
-        url: "https://pgnear.in/logo.png",
+        url: "https://res.cloudinary.com/dd1rxc66q/image/upload/v1783503889/logov2.2_q9b0ng.jpg",
       },
     },
   };

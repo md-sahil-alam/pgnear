@@ -17,6 +17,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
     ],
-    sitemap: 'https://pgnear.in/sitemap.xml',
+    sitemap: 'https://www.pgnear.in/sitemap.xml',
   };
 }

@@ -1,7 +1,6 @@
 import { connectDB } from "@/lib/db";
 import Listing from "@/models/Listing";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import {
@@ -24,30 +23,31 @@ import { colleges } from "@/lib/college";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "PG Near Presidency University Bangalore | Verified PG Listings",
+  title: "PG Near | Verified PGs Near Presidency & REVA University Bangalore",
   description:
-    "Find verified PG accommodations near Presidency University Bangalore with clear pricing, direct owner contact, and cashback rewards on bookings.",
+    "Find verified PG accommodations near Presidency University and REVA University Bangalore. Compare rent, amenities, photos, and contact PG owners directly. No brokers.",
   keywords: [
+    "PG Near",
     "PG near Presidency University",
-    "Girls PG Bangalore",
-    "Boys PG Bangalore",
-    "Hostel near Presidency University",
-    "Affordable PG Bangalore",
-    "PG in Dibbur",
-    "PG in Rajanakunte",
-    "Single room PG near Presidency University",
-    "Female PG near Presidency University Bangalore",
+    "Best PG near Presidency University",
+    "PG near REVA University",
+    "Best PG near REVA University",
+    "Girls PG near Presidency University",
+    "Boys PG near Presidency University",
+    "Girls PG near REVA University",
+    "Boys PG near REVA University",
+    "Student accommodation Bangalore",
   ],
   openGraph: {
-    title: "PG Near Presidency University Bangalore | Verified PG Listings",
+    title: "PG Near | Verified PG Near Presidency & REVA University",
     description:
-      "Find verified PG accommodations with clear pricing and direct owner contact",
-    url: "https://pgnear.in",
+      "Browse verified PG accommodations near Presidency University and REVA University with direct owner contact.",
+    url: "https://www.pgnear.in",
     siteName: "PG Near",
     type: "website",
   },
   alternates: {
-    canonical: "https://pgnear.in",
+    canonical: "https://www.pgnear.in",
   },
 };
 

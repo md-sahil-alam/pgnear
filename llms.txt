@@ -1,0 +1,130 @@
+# PG Near
+
+PG Near is a student-first platform that helps students discover verified Paying Guest (PG) accommodations near colleges and universities in Bangalore.
+
+Unlike traditional PG listing websites, PG Near does **not list every PG**. Every property goes through our quality standards before it is published. Our goal is to help students and parents make confident accommodation decisions by showing only PGs that we would personally recommend.
+
+Website
+https://www.pgnear.in
+
+## Our Mission
+
+Finding a good PG shouldn't require visiting dozens of properties, dealing with brokers, or worrying about misleading information.
+
+PG Near helps students compare trusted accommodations with transparent information, direct owner contact, and verified details.
+
+## What Makes PG Near Different
+
+We do **not** list every PG.
+
+A PG is listed only if it satisfies our quality criteria.
+
+Our listing criteria include:
+
+- Good Google rating and genuine student reviews
+- Safe and student-friendly environment
+- Transparent pricing with no hidden charges
+- Clean rooms and maintained facilities
+- Essential amenities
+- Responsive management
+- Direct owner or manager contact
+- Suitable location near the university
+
+If a property does not meet these standards, it is not listed on PG Near.
+
+## What Students Can Find
+
+Each PG listing includes:
+
+- Monthly rent
+- Room sharing options (Single, Double, Triple, etc.)
+- Photos
+- Amenities
+- Distance from the university
+- Availability
+- Direct owner contact
+- Google Maps location
+- Property highlights
+
+## Cashback Rewards
+
+Students who successfully book a PG through PG Near may be eligible for cashback rewards.
+
+Details:
+https://www.pgnear.in/rewards
+
+## Universities Currently Supported
+
+- Presidency University, Bangalore
+- REVA University, Bangalore
+
+More universities will be added over time.
+
+## Key Pages
+
+Home
+https://www.pgnear.in/
+
+Presidency University
+https://www.pgnear.in/pg-near/presidency-university
+
+Boys PG Near Presidency University
+https://www.pgnear.in/pg-near/presidency-university/boys
+
+Girls PG Near Presidency University
+https://www.pgnear.in/pg-near/presidency-university/girls
+
+REVA University
+https://www.pgnear.in/pg-near/reva-university
+
+Boys PG Near REVA University
+https://www.pgnear.in/pg-near/reva-university/boys
+
+Girls PG Near REVA University
+https://www.pgnear.in/pg-near/reva-university/girls
+
+About
+https://www.pgnear.in/about
+
+Privacy Policy
+https://www.pgnear.in/privacy
+
+Terms & Conditions
+https://www.pgnear.in/terms
+
+## Target Audience
+
+- College students
+- working people in universities
+- facilities of universities
+- Parents looking for student accommodation
+- Verified PG owners who meet our quality standards
+
+## Platform Principles
+
+- Student-first
+- Quality over quantity
+- Verified listings
+- No brokers
+- Direct owner contact
+- Transparent pricing
+- Honest property information
+
+## Canonical Domain
+
+https://www.pgnear.in
+
+## Sitemap
+
+https://www.pgnear.in/sitemap.xml
+
+## Robots
+
+https://www.pgnear.in/robots.txt
+
+## Maintainer
+
+PG Near is developed and maintained by Md Sahil Alam.
+
+Portfolio:
+https://www.mdsahilalam.com
