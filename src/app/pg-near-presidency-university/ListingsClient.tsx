@@ -167,7 +167,7 @@ export default function ListingsClient({
           <ListingsGridSkeleton count={6} columns={2} />
         ) : listings.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {listings.map((listing: Listing) => (
+            {listings.map((listing: Listing, index: number) => (
               <Link
                 key={listing._id}
                 href={`/listing/${listing.slug}`}
@@ -179,9 +179,9 @@ export default function ListingsClient({
                       src={optimizeImage(listing.images[0])}
                       alt={`${listing.title} PG`}
                       fill
-                      sizes="(max-width: 640px) 100vw, 50vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover group-hover:scale-105 transition duration-300"
-                      loading="lazy"
+                      priority={index < 2}
                     />
                   ) : (
                     <div className="flex items-center justify-center h-full text-gray-400 text-sm">
