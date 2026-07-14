@@ -60,7 +60,7 @@ export default async function CollegePage({
     .select(
       "title slug images isVerified twoSharingprice threeSharingprice address amenities gender distanceFromUni",
     )
-    .sort({ isVerified: -1 })
+    .sort({ createdAt: -1 })
     .limit(LIMIT)
     .lean();
 
