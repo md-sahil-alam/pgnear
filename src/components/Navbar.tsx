@@ -26,7 +26,7 @@ export default function Navbar() {
         {/* TOP BAR */}
         <div className="flex justify-between items-center h-16">
           {/* LOGO */}
-          <div className="flex items-center ">
+          <div className="flex items-center gap-2 ">
             <img
               src="https://res.cloudinary.com/dd1rxc66q/image/upload/v1783503889/logov2.2_q9b0ng.jpg"
               alt="logo Of Pg Near"

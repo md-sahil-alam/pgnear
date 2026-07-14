@@ -12,9 +12,9 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">PG Near</h3>
             <p className="text-sm text-gray-600 leading-relaxed">
-              Find best and verified PG near Presidency University / NMIT(Nitte
-              Meenakshi Institute of Technology) in Bangalore with real photos,
-              pricing, and direct contact. No brokers, no commition.
+              Find best and verified PG near Presidency University / Reva
+              University in Bangalore with real photos, pricing, and direct
+              contact. No brokers, no commition.
             </p>
 
             <p className="text-sm text-gray-600 leading-relaxed mt-4">
@@ -42,10 +42,9 @@ export default function Footer() {
 
               <li>
                 <Link
-                  href="/pg-near/nmit"
+                  href="/pg-near/reva-university"
                   className="hover:text-blue-600 transition">
-                  Browse Pg near Nmit (Nitte Meenakshi Institute of Technology)
-                  Bangalore
+                  Browse Pg near Reva University Bangalore
                 </Link>
               </li>
 
@@ -80,7 +79,7 @@ export default function Footer() {
               <li>Verified PG Listings</li>
               <li>Direct Owner Contact</li>
               <li>Close to Presedency University</li>
-              <li>Close to nmit (Nitte Meenakshi Institute of Technology)</li>
+              <li>Close to Reva University</li>
               <li>Student-friendly options</li>
             </ul>
           </div>

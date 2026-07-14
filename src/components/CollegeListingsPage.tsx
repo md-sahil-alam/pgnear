@@ -59,26 +59,20 @@ export default function CollegeListingsPage({
 
           <p className="text-gray-600 max-w-2xl mb-4 lg:ml-5">{description}</p>
 
-          <ul className="text-blue-500 italic underline lg:ml-5 mb-8 text-sm">
-            <li>
-              <Link href={`/pg-near/${college}/boys`}>
-                Boys PGs near {collegeName}
-              </Link>
-            </li>
+          <div className=" italic flex gap-3 lg:ml-5 mb-8 text-sm">
+            <span className="border border-blue-600 rounded-xl px-2 ">
+              <Link href={`/pg-near/${college}/boys`}>Boys PGs</Link>
+            </span>
 
-            <li>
+            <span className="border border-pink-500 rounded-xl px-2 ">
               {" "}
-              <Link href={`/pg-near/${college}/girls`}>
-                Girls PGs near {collegeName}
-              </Link>
-            </li>
+              <Link href={`/pg-near/${college}/girls`}>Girls PGs</Link>
+            </span>
 
-            <li>
-              <Link href={`/pg-near/${college}`}>
-                All PGs near {collegeName}
-              </Link>
-            </li>
-          </ul>
+            <span className="border border-black rounded-xl px-2 ">
+              <Link href={`/pg-near/${college}`}>All PGs</Link>
+            </span>
+          </div>
 
           <ListingsClient
             initialListings={listings}

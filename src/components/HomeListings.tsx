@@ -83,7 +83,14 @@ export default function HomeListings({ listings }: HomeListingsProps) {
 
               {/* Meta */}
               <div className="flex items-center justify-between text-sm text-gray-500 mt-3">
-                <span className="capitalize">
+                <span
+                  className={`capitalize font-medium px-2 py-1 rounded-full text-xs ${
+                    listing.gender === "girls" || listing.gender === "female"
+                      ? "bg-pink-100 text-pink-700"
+                      : listing.gender === "boys" || listing.gender === "male"
+                        ? "bg-blue-500 text-white"
+                        : "bg-gray-100 text-gray-700"
+                  }`}>
                   {formatGender(listing.gender)}
                 </span>
 
@@ -100,7 +107,7 @@ export default function HomeListings({ listings }: HomeListingsProps) {
                   {listing.amenities.slice(0, 2).map((amenity) => (
                     <span
                       key={amenity}
-                      className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded">
+                      className="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded">
                       {amenity}
                     </span>
                   ))}

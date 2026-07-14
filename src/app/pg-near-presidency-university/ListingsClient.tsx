@@ -7,6 +7,8 @@ import { ShieldCheck } from "lucide-react";
 import { ListingsGridSkeleton } from "@/components/skeletons";
 import { formatGender } from "@/lib/gender";
 import SearchBar from "@/components/SearchBar";
+import Image from "next/image";
+import { optimizeImage } from "@/lib/cloudinary";
 
 type Listing = {
   _id: string;
@@ -106,33 +108,38 @@ export default function ListingsClient({
   };
 
   /* DEBOUNCE FILTER */
+
+  const pageRef = useRef(1);
+  const firstLoad = useRef(true);
+
+  /* DEBOUNCE FILTER */
   useEffect(() => {
+    if (firstLoad.current) {
+      firstLoad.current = false;
+      return;
+    }
+
     pageRef.current = 1;
     setHasMore(true);
 
     fetchListings(1, false);
   }, [filters, debouncedSearch]);
 
-  // useEffect(() => {
-  //   if (initialListings.length === 0) {
-  //     fetchListings(1, false);
-  //   }
-  // }, []);
-
   /* INFINITE SCROLL */
-  const pageRef = useRef(1);
-
   useEffect(() => {
     if (!sentinelRef.current) return;
 
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && hasMore && !loadingMore) {
-        pageRef.current += 1;
-        fetchListings(pageRef.current, true);
-        console.log("Initial Listings:", initialListings.length);
-        console.log("Current Listings:", listings.length);
-      }
-    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore && !loadingMore) {
+          pageRef.current += 1;
+          fetchListings(pageRef.current, true);
+        }
+      },
+      {
+        rootMargin: "500px",
+      },
+    );
 
     observer.observe(sentinelRef.current);
 
@@ -157,7 +164,7 @@ export default function ListingsClient({
         </div>
 
         {loading ? (
-          <ListingsGridSkeleton count={8} columns={2} />
+          <ListingsGridSkeleton count={6} columns={2} />
         ) : listings.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {listings.map((listing: Listing) => (
@@ -168,10 +175,13 @@ export default function ListingsClient({
                 {/* Image */}
                 <div className="relative h-48 bg-gray-200 overflow-hidden">
                   {listing.images?.length ? (
-                    <img
-                      src={listing.images[0]}
-                      alt={`${listing.title} PG near Presidency University Bangalore`}
-                      className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                    <Image
+                      src={optimizeImage(listing.images[0])}
+                      alt={`${listing.title} PG`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      className="object-cover group-hover:scale-105 transition duration-300"
+                      loading="lazy"
                     />
                   ) : (
                     <div className="flex items-center justify-center h-full text-gray-400 text-sm">
@@ -219,7 +229,7 @@ export default function ListingsClient({
                     {listing.amenities?.slice(0, 3).map((a) => (
                       <span
                         key={a}
-                        className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">
+                        className="text-xs bg-blue-100 text-blue-500 px-2 py-1 rounded">
                         {a}
                       </span>
                     ))}
@@ -232,7 +242,16 @@ export default function ListingsClient({
                   </div>
 
                   <div className="flex items-center justify-between text-sm text-gray-500">
-                    <span className="capitalize">
+                    <span
+                      className={`capitalize font-medium px-2 py-1 rounded-full text-xs ${
+                        listing.gender === "girls" ||
+                        listing.gender === "female"
+                          ? "bg-pink-100 text-pink-700"
+                          : listing.gender === "boys" ||
+                              listing.gender === "male"
+                            ? "bg-blue-500 text-white"
+                            : "bg-gray-100 text-gray-700"
+                      }`}>
                       {formatGender(listing.gender)}
                     </span>
 

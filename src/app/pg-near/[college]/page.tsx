@@ -51,11 +51,17 @@ export default async function CollegePage({
 
   await connectDB();
 
+  const LIMIT = 10;
+
   const listings = await Listing.find({
     "nearCollege.college": college,
     isActive: true,
   })
+    .select(
+      "title slug images isVerified twoSharingprice threeSharingprice address amenities gender distanceFromUni",
+    )
     .sort({ isVerified: -1 })
+    .limit(LIMIT)
     .lean();
 
   return (

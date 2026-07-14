@@ -30,10 +30,10 @@ export default function SearchBar({
         />
       </div>
 
-      <p className="text-sm text-gray-500">
+      {/* <p className="text-sm text-gray-500">
         Showing <span className="font-semibold">{total}</span> listing
         {total !== 1 ? "s" : ""}
-      </p>
+      </p> */}
     </div>
   );
 }
