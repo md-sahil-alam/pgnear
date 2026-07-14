@@ -185,7 +185,10 @@ export default async function HomePage() {
             <Link
               key={slug}
               href={`/pg-near/${slug}`}
-              className="group overflow-hidden rounded-2xl border border-gray-200 shadow-blue-100 bg-white shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg">
+              className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm
+transition-all duration-150
+hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg
+active:scale-[0.98] active:shadow-sm">
               <img
                 src={image}
                 alt={name}
