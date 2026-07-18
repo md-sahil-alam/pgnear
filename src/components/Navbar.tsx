@@ -49,9 +49,15 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="/pg-near-presidency-university"
+              href="/pg-near/presidency-university"
               className="text-gray-700 hover:text-blue-600 transition font-medium">
-              Listings
+              Presidency PGs
+            </Link>
+
+            <Link
+              href="/pg-near/reva-university"
+              className="text-gray-700 hover:text-blue-600 transition font-medium">
+              Reva PGs
             </Link>
 
             <Link
@@ -143,10 +149,19 @@ export default function Navbar() {
             <hr className="border-gray-100"></hr>
 
             <Link
-              href="/pg-near-presidency-university"
+              href="/pg-near/presidency-university"
               onClick={() => setMenuOpen(false)}
               className="block text-gray-700 font-medium">
-              Listings
+              PG Near Presidency University
+            </Link>
+
+            <hr className="border-gray-100" />
+
+            <Link
+              href="/pg-near/reva-university"
+              onClick={() => setMenuOpen(false)}
+              className="block text-gray-700 font-medium">
+              PG Near REVA University
             </Link>
 
             <hr className="border-gray-100"></hr>

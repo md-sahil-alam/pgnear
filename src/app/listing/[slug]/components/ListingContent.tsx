@@ -27,89 +27,159 @@ export default async function ListingContent({ slug }: ListingContentProps) {
   const serializedListing = JSON.parse(JSON.stringify(listing));
 
   // Generate schema markup for LocalBusiness + AggregateOffer
+  const nearbyColleges =
+    serializedListing.nearCollege
+      ?.map((item: { college?: string }) => item.college?.trim())
+      .filter(Boolean) || [];
+
+  const nearbyCollegeText =
+    nearbyColleges.length > 0 ? nearbyColleges.join(" and ") : "Bangalore";
+
+  const prices = [
+    serializedListing.threeSharingprice,
+    serializedListing.twoSharingprice,
+    serializedListing.oneSharingprice,
+  ].filter((price): price is number => typeof price === "number" && price > 0);
+
+  const lowestPrice = prices.length > 0 ? Math.min(...prices) : undefined;
+
   const schema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "LodgingBusiness",
+
     name: serializedListing.title,
-    description: `${serializedListing.title} - PG accommodation near Presidency University Bangalore`,
-    image: serializedListing.images?.[0] || "",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: serializedListing.address || "",
-      addressLocality: "Bangalore",
-      addressRegion: "Karnataka",
-      postalCode: "560109",
-      addressCountry: "IN",
+
+    description:
+      serializedListing.description ||
+      `${serializedListing.title} - PG accommodation near ${nearbyCollegeText}`,
+
+    ...(serializedListing.images?.length
+      ? {
+          image: serializedListing.images,
+        }
+      : {}),
+
+    ...(serializedListing.address
+      ? {
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: serializedListing.address,
+            addressLocality: "Bengaluru",
+            addressRegion: "Karnataka",
+            addressCountry: "IN",
+          },
+        }
+      : {}),
+
+    ...(serializedListing.contactPhone
+      ? {
+          telephone: `+91${serializedListing.contactPhone}`,
+        }
+      : {}),
+
+    ...(serializedListing.contactWhatsApp
+      ? {
+          contactPoint: {
+            "@type": "ContactPoint",
+            contactType: "Customer Service",
+            telephone: `+91${serializedListing.contactWhatsApp}`,
+          },
+        }
+      : {}),
+
+    ...(serializedListing.latitude && serializedListing.longitude
+      ? {
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: serializedListing.latitude,
+            longitude: serializedListing.longitude,
+          },
+        }
+      : {}),
+
+    areaServed: {
+      "@type": "City",
+      name: "Bengaluru",
     },
-    telephone: `+91${serializedListing.contactPhone}`,
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "Customer Service",
-      telephone: `+91${serializedListing.contactPhone}`,
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: serializedListing.latitude || 13.145,
-      longitude: serializedListing.longitude || 77.5986,
-    },
-    areaServed: "Bangalore",
-    priceRange:
-      "₹" +
-      Math.min(
-        serializedListing.threeSharingprice || 999999,
-        serializedListing.twoSharingprice || 999999,
-        serializedListing.oneSharingprice || 999999,
-      ),
-    aggregateOffer: {
-      "@type": "AggregateOffer",
-      availability: "https://schema.org/InStock",
-      priceCurrency: "INR",
-      offers: [
-        ...(serializedListing.threeSharingprice
-          ? [
-              {
-                "@type": "Offer",
-                name: "3 Sharing",
-                price: serializedListing.threeSharingprice,
-                availability: "https://schema.org/InStock",
-              },
-            ]
-          : []),
-        ...(serializedListing.twoSharingprice
-          ? [
-              {
-                "@type": "Offer",
-                name: "2 Sharing",
-                price: serializedListing.twoSharingprice,
-                availability: "https://schema.org/InStock",
-              },
-            ]
-          : []),
-        ...(serializedListing.oneSharingprice
-          ? [
-              {
-                "@type": "Offer",
-                name: "1 Sharing",
-                price: serializedListing.oneSharingprice,
-                availability: "https://schema.org/InStock",
-              },
-            ]
-          : []),
-      ],
-    },
-    amenities: serializedListing.amenities || [],
-    review: {
-      "@type": "Review",
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: serializedListing.isVerified ? "5" : "4",
-      },
-      author: {
-        "@type": "Organization",
-        name: "PG Near",
-      },
-    },
+
+    ...(lowestPrice
+      ? {
+          priceRange: `₹${lowestPrice}+ per month`,
+        }
+      : {}),
+
+    amenityFeature:
+      serializedListing.amenities?.map((amenity: string) => ({
+        "@type": "LocationFeatureSpecification",
+        name: amenity,
+        value: true,
+      })) || [],
+
+    ...(prices.length > 0
+      ? {
+          makesOffer: [
+            ...(serializedListing.threeSharingprice
+              ? [
+                  {
+                    "@type": "Offer",
+                    name: "3 Sharing PG Room",
+                    price: serializedListing.threeSharingprice,
+                    priceCurrency: "INR",
+                    availability: "https://schema.org/InStock",
+                  },
+                ]
+              : []),
+
+            ...(serializedListing.twoSharingprice
+              ? [
+                  {
+                    "@type": "Offer",
+                    name: "2 Sharing PG Room",
+                    price: serializedListing.twoSharingprice,
+                    priceCurrency: "INR",
+                    availability: "https://schema.org/InStock",
+                  },
+                ]
+              : []),
+
+            ...(serializedListing.oneSharingprice
+              ? [
+                  {
+                    "@type": "Offer",
+                    name: "1 Sharing PG Room",
+                    price: serializedListing.oneSharingprice,
+                    priceCurrency: "INR",
+                    availability: "https://schema.org/InStock",
+                  },
+                ]
+              : []),
+          ],
+        }
+      : {}),
+
+    ...(nearbyColleges.length > 0
+      ? {
+          subjectOf: nearbyColleges.map((college: any) => ({
+            "@type": "CollegeOrUniversity",
+            name: college,
+          })),
+        }
+      : {}),
   };
+
+  const collegeRoutes: Record<string, string> = {
+    "reva university": "/pg-near/reva-university",
+    "presidency university": "/pg-near/presidency-university",
+  };
+
+  const college =
+    serializedListing.nearCollege?.[0]?.college?.toLowerCase() || "";
+
+  const backToListingsUrl = college.includes("reva")
+    ? "/pg-near/reva-university"
+    : college.includes("presidency")
+      ? "/pg-near/presidency-university"
+      : "/pg-near/presidency-university";
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -122,7 +192,7 @@ export default async function ListingContent({ slug }: ListingContentProps) {
       {/* Back Link */}
       <div className="flex items-center justify-between ">
         <Link
-          href="/pg-near-presidency-university"
+          href={backToListingsUrl}
           className="text-blue-600 hover:text-blue-800 mb-6 inline-block">
           ← Back to Listings
         </Link>
