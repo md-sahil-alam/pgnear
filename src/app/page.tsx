@@ -185,6 +185,7 @@ export default async function HomePage() {
             <Link
               key={slug}
               href={`/pg-near/${slug}`}
+              prefetch={true}
               className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm
 transition-all duration-150
 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg
