@@ -45,9 +45,23 @@ export const metadata: Metadata = {
     url: "https://www.pgnear.in",
     siteName: "PG Near",
     type: "website",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dd1rxc66q/image/upload/v1782049217/pg-listings/wmuvxdvuqwx3yeipyj1h.jpg",
+        width: 1200,
+        height: 630,
+        alt: "PG Near",
+      },
+    ],
   },
   alternates: {
     canonical: "https://www.pgnear.in",
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [
+      "https://res.cloudinary.com/dd1rxc66q/image/upload/v1782049217/pg-listings/wmuvxdvuqwx3yeipyj1h.jpg",
+    ],
   },
 };
 
