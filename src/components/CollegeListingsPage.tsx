@@ -33,7 +33,13 @@ export default function CollegeListingsPage({
       <Navbar />
 
       <Suspense fallback={<ListingsPageSkeleton />}>
-        <div className="max-w-7xl mx-auto px-4 py-6 lg:py-8">
+        <div className="max-w-7xl mx-auto px-4 py-4 lg:py-8">
+          <a
+            href="/rewards"
+            className="inline-flex w-fit items-center rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-sm font-medium text-emerald-700 duration-300 hover:scale-105 transition-all mb-2 lg:ml-5  ">
+            <span className=" p-1 rounded-full bg-emerald-600 mr-2 animate-ping   "></span>
+            Cashback rewards 🎉
+          </a>
           <h1 className="text-2xl lg:text-3xl font-bold mb-4 text-gray-900 lg:ml-5">
             {title}
           </h1>

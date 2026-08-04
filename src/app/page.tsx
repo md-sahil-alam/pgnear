@@ -123,8 +123,9 @@ export default async function HomePage() {
             </a>
             <a
               href="/rewards"
-              className="inline-flex w-fit items-center rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-sm font-medium text-emerald-700">
-              Cashback rewards
+              className="inline-flex w-fit items-center rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-sm font-medium text-emerald-700 animate-bounce  duration-300 hover:scale-105 transition-all">
+              <span className=" p-1 rounded-full bg-emerald-600 mr-2 animate-ping  "></span>
+              Cashback rewards 🎉
             </a>
           </div>
           <h1 className="mt-2 mb-2 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl lg:text-5xl ">

@@ -88,6 +88,22 @@ export default function DashboardPage() {
     );
   }
 
+  const getWhatsappLink = (user: UserStat) => {
+    const message = encodeURIComponent(
+      `Hi ${user.name} \uD83D\uDC4B
+
+I'm Sahil, founder of PG Near and a student at Presidency University.
+
+I just wanted to check if you're still looking for a PG or if you've already found one.
+
+If you're still searching, just reply with your budget and preferences, and I'll personally help you find a suitable PG. We also offer cashback on successful bookings. 😊
+
+www.pgnear.in`,
+    );
+
+    return `https://wa.me/91${user.phoneNumber}?text=${message}`;
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-4 sm:p-8">
       <div className="max-w-7xl mx-auto">
@@ -239,10 +255,15 @@ export default function DashboardPage() {
                         {user.calls}
                         <Phone size={14} className="ml-1" />
                       </span>
-                      <span className="inline-flex items-center justify-center px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
+                      <a
+                        href={getWhatsappLink(user)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center justify-center px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
                         {user.whatsapps}
                         <MessageCircle size={14} className="ml-1" />
-                      </span>
+                      </a>
                       <span className="inline-flex items-center justify-center px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold">
                         {user.interactionsCount}
                       </span>

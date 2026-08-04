@@ -196,7 +196,7 @@ export default function ProtectedContact({
   // User is not logged in - show blurred contact
   return (
     <>
-      <div className="bg-gray-100 rounded-lg p-4 pb-3 relative group mb-6">
+      <div className="bg-emerald-50 border-2 border-emerald-100 rounded-lg p-4 pb-3 relative group mb-6">
         <div className="mb-4">
           <h3 className="text-lg font-semibold text-gray-900">
             Owner's Contact

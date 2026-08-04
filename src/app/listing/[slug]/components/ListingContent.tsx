@@ -258,6 +258,12 @@ export default async function ListingContent({ slug }: ListingContentProps) {
           </div>
 
           {/* ProtectedContact Component */}
+          <a
+            href="/rewards"
+            className="inline-flex w-fit items-center rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-sm font-medium text-emerald-700 duration-300 hover:scale-105 transition-all mb-2 ">
+            <span className=" p-1 rounded-full bg-emerald-600 mr-2 animate-ping   "></span>
+            Cashback rewards 🎉
+          </a>
           <ProtectedContact
             phoneNumber={serializedListing.contactPhone}
             whatsAppNumber={serializedListing.contactWhatsApp}
